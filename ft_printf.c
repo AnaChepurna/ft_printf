@@ -1,21 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   int_octal.c                                        :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/15 19:32:11 by achepurn          #+#    #+#             */
-/*   Updated: 2017/12/18 14:07:51 by achepurn         ###   ########.fr       */
+/*   Created: 2017/12/18 15:29:19 by achepurn          #+#    #+#             */
+/*   Updated: 2017/12/18 18:54:43 by achepurn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*get_int_octal(va_list ptr)
+int				ft_printf(const char *restrict format, ...)
 {
-	unsigned int	number;
+	static t_arg	**specs = NULL;
+	char			*line;
+	t_list			*list;
 
-	number = va_arg(ptr, unsigned int);
-	return(ft_itoa_base(number, 8));
+	if (!specs)
+		specs = init_specs();
+	line = format;
+	res = NULL;
+	while (*format)
+	{
+		if(*format = '%')
+		{
+			if (format != line)
+				handle_line(line, format, &list);
+			format += handle_specs(&list);
+			line = format;
+		}
+		if (*format)
+			format++;
+	}
+	ft_lstiteri(list, &ft_putstr);
 }

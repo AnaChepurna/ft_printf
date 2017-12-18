@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   handle_line.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/13 19:18:53 by achepurn          #+#    #+#             */
-/*   Updated: 2017/12/18 18:54:46 by achepurn         ###   ########.fr       */
+/*   Created: 2017/12/18 18:13:11 by achepurn          #+#    #+#             */
+/*   Updated: 2017/12/18 18:51:36 by achepurn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include "libft/libft.h"
-# include <stdarg.h>
-# include <stdint.h>
-# include <stdio.h>
-
-# define TYPE_EQU(c) ft_strequ(scheme->type, (c))
-
-typedef struct	s_arg
+void	handle_line(char *line, const char *format, t_list **list)
 {
-	char	*type;
-	char	*size;
-	char	*(*f)(va_list ptr);
-}				t_arg;
+	char	*res;
 
-char	*get_int_decimal(va_list ptr);
-char	*get_int_octal(va_list ptr);
-t_arg	**init_specs(void);
-
-#endif
+	if (res = ft_strnew(format - line))
+	{
+		ft_strncpy(res, line, format - line);
+	}
+	ft_lstaddend(list, ft_lstnew((void *)res, format - line + 1));
+	free(res);
+}

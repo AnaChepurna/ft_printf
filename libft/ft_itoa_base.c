@@ -6,13 +6,13 @@
 /*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/04 12:51:02 by achepurn          #+#    #+#             */
-/*   Updated: 2017/11/20 18:20:33 by achepurn         ###   ########.fr       */
+/*   Updated: 2017/12/18 14:36:26 by achepurn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	a_len(int n, int base)
+static size_t	a_len(uintmax_t n, int base)
 {
 	size_t	res;
 
@@ -27,14 +27,14 @@ static size_t	a_len(int n, int base)
 	return (res);
 }
 
-static void		put_a(int n, char *str, int len, int base)
+static void		put_a(uintmax_t n, char *str, int len, int base)
 {
 	char	*map;
 
 	map = "0123456789abcdefghijklmnopqrstuvwxyz";
 	str[len] = '\0';
 	len--;
-	while (n >= base)
+	while (n >= (unsigned int)base)
 	{
 		str[len] = map[n % base];
 		n /= base;
@@ -43,15 +43,13 @@ static void		put_a(int n, char *str, int len, int base)
 	str[len] = map[n];
 }
 
-char			*ft_itoa_base(int n, int base)
+char			*ft_itoa_base(uintmax_t n, int base)
 {
 	char	*res;
 	size_t	len;
 
-	if (base == 10)
-		return (ft_itoa(n));
-	if (n < 0 || base < 2 || base > 36)
-		return ("");
+	if (base < 2 || base > 36)
+		return (NULL);
 	len = a_len(n, base);
 	res = (char*)malloc(sizeof(char) * len);
 	put_a(n, res, len - 1, base);

@@ -6,7 +6,7 @@
 /*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/26 16:27:14 by achepurn          #+#    #+#             */
-/*   Updated: 2017/11/25 22:29:13 by achepurn         ###   ########.fr       */
+/*   Updated: 2017/12/18 15:14:39 by achepurn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
-char				*ft_itoa(int n);
-char				*ft_itoa_base(int n, int base);
+char				*ft_itoa(intmax_t n);
+char				*ft_itoa_base(uintmax_t n, int base);
 long long int		ft_atoll(const char *s);
 int					ft_atoi(const char *s);
 int					ft_atoi_base(char *str, int base);

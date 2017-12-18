@@ -6,7 +6,7 @@
 /*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 18:54:16 by achepurn          #+#    #+#             */
-/*   Updated: 2017/12/15 19:31:42 by achepurn         ###   ########.fr       */
+/*   Updated: 2017/12/18 15:54:16 by achepurn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*get_int_decimal(va_list ptr)
 
 char	*get_llint_decimal(va_list ptr)
 {
-	long long int;
+	long long int number;
 
 	number = va_arg(ptr, long long int);
 	return (ft_itoa(number));
