@@ -6,7 +6,7 @@
 /*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 15:29:19 by achepurn          #+#    #+#             */
-/*   Updated: 2017/12/18 18:54:43 by achepurn         ###   ########.fr       */
+/*   Updated: 2017/12/25 16:50:33 by achepurn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,14 @@
 
 int				ft_printf(const char *restrict format, ...)
 {
-	static t_arg	**specs = NULL;
-	char			*line;
 	t_list			*list;
 
-	if (!specs)
-		specs = init_specs();
-	line = format;
-	res = NULL;
 	while (*format)
 	{
-		if(*format = '%')
-		{
-			if (format != line)
-				handle_line(line, format, &list);
-			format += handle_specs(&list);
-			line = format;
-		}
-		if (*format)
-			format++;
+		if (*format == '%')
+			handle_format(&format, &list);
+		else
+			handle_line(&format, &line);
 	}
-	ft_lstiteri(list, &ft_putstr);
+	ft_lstiter(list, &ft_putstr);
 }

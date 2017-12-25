@@ -6,7 +6,7 @@
 /*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 19:18:53 by achepurn          #+#    #+#             */
-/*   Updated: 2017/12/18 18:54:46 by achepurn         ###   ########.fr       */
+/*   Updated: 2017/12/25 16:50:36 by achepurn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,26 @@
 # include <stdint.h>
 # include <stdio.h>
 
-# define TYPE_EQU(c) ft_strequ(scheme->type, (c))
-
-typedef struct	s_arg
+typedef struct	s_flag
 {
-	char	*type;
-	char	*size;
-	char	*(*f)(va_list ptr);
-}				t_arg;
+	int			minus;
+	int			plus;
+	int			space;
+	int			hash;
+	int			zero;	
+}				t_flag;
 
-char	*get_int_decimal(va_list ptr);
-char	*get_int_octal(va_list ptr);
-t_arg	**init_specs(void);
+typedef struct	s_scheme
+{
+	t_flag		*flag;
+	int			width;
+	int			precision;
+	char		*size;
+	char		type;
+}				t_scheme;
+
+t_scheme		*scheme_new(void);
+void			handle_format(const char **format, t_list **list);
+void			handle_line(const char **format, t_list **list);
 
 #endif

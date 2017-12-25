@@ -6,20 +6,27 @@
 /*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 18:13:11 by achepurn          #+#    #+#             */
-/*   Updated: 2017/12/18 18:51:36 by achepurn         ###   ########.fr       */
+/*   Updated: 2017/12/25 15:03:31 by achepurn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	handle_line(char *line, const char *format, t_list **list)
+void	handle_line(const char **format, t_list **list)
 {
-	char	*res;
+	char	*start;
+	char	*str;
+	size_t	len;
 
-	if (res = ft_strnew(format - line))
+	start = *format;
+	while (**format && **format != '%')
+		(*format)++;
+	str = NULL;
+	len = *format - start;
+	if (len)
 	{
-		ft_strncpy(res, line, format - line);
+		str = ft_strsub(start, 0, len);
+		ft_lstaddend(list, ft_lstnew(str, len));
+		free(str);
 	}
-	ft_lstaddend(list, ft_lstnew((void *)res, format - line + 1));
-	free(res);
 }

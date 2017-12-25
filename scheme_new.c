@@ -1,38 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_specs.c                                       :+:      :+:    :+:   */
+/*   scheme_new.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/18 16:43:51 by achepurn          #+#    #+#             */
-/*   Updated: 2017/12/18 18:32:35 by achepurn         ###   ########.fr       */
+/*   Created: 2017/12/23 16:47:54 by achepurn          #+#    #+#             */
+/*   Updated: 2017/12/25 14:08:50 by achepurn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf"
 
-static t_arg	*argnew(char *type, char *(*f)(va_list ptr))
+static t_flag		*flag_new(void)
 {
-	t_arg *res;
-
-	if ((res = (t_arg *)malloc(sizeof(t_arg))))
+	t_flag	*res;
+	if ((res = (t_flag *)malloc(sizeof(t_flag))))
 	{
-		res->type = type;
-		res->f = f;
+		res->minus = 0;
+		res->plus = 0;
+		res->space = 0;
+		res->hash = 0;
+		res->zero = 0;
 	}
 	return (res);
 }
 
-t_arg			**init_specs(void)
+t_scheme		*scheme_new(void)
 {
-	t_arg	**res;
+	t_scheme	*res;
 
-	if ((res =(t_arg **)malloc(sizeof(t_arg *) * 3)))
-	{i
-		res[0] = argnew("d", &get_int_decimal);
-		res[1] = argnew("o", &get_int_octal);
-		res[2] = NULL;
+	if ((res = (t_scheme *)malloc(sizeof(t_scheme))))
+	{
+		res->flag = flag_new();
+		res->width = 0;
+		res->precision = 0;
+		res->size = NULL;
+		res->type = NULL;
 	}
-	return (res);
 }
