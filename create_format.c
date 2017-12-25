@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_format.c                                    :+:      :+:    :+:   */
+/*   create_format.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/23 16:14:52 by achepurn          #+#    #+#             */
-/*   Updated: 2017/12/25 19:50:05 by achepurn         ###   ########.fr       */
+/*   Created: 2017/12/25 19:23:09 by achepurn          #+#    #+#             */
+/*   Updated: 2017/12/25 20:15:12 by achepurn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	handle_format(const char **format, t_list **list, va_list ptr)
+static char	*create_str(t_scheme *scheme, va_list ptr)
 {
-	t_scheme	*scheme;
-	char		*str;
+	if (IS_DI(scheme->type))
+		return (create_di(scheme, ptr));
+	if (IS_OX(scheme->type) || IS_U(scheme->type))
+		return (create_oxu(scheme, ptr));
+}
 
-	if (**format == '%')
-		*str = ft_strdup("%");
-	else
-	{
-		scheme = scheme_new();
-		while (handle_flags(*format, scheme->flag))
-			(*format)++;
-		handle_width(format, ptr);
-		handle_precision(format, scheme);
-		handle_type(format, scheme);
-		str = create_format(scheme, ptr);
+char		*create_format(t_scheme *scheme, va_list ptr)
+{
+	char *res;
 
-		free(str);
-		free(scheme->flag);
-		free(scheme);
+	res = create_str(scheme, va_list ptr);
 }

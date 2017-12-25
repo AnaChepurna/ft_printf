@@ -6,7 +6,7 @@
 /*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/23 16:47:54 by achepurn          #+#    #+#             */
-/*   Updated: 2017/12/25 14:08:50 by achepurn         ###   ########.fr       */
+/*   Updated: 2017/12/25 19:10:14 by achepurn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_scheme		*scheme_new(void)
 		res->flag = flag_new();
 		res->width = 0;
 		res->precision = 0;
-		res->size = NULL;
-		res->type = NULL;
+		res->size = 0;
+		res->type = 0;
 	}
 }
