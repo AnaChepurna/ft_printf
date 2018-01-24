@@ -6,7 +6,7 @@
 /*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/23 16:47:54 by achepurn          #+#    #+#             */
-/*   Updated: 2017/12/25 19:10:14 by achepurn         ###   ########.fr       */
+/*   Updated: 2018/01/12 18:19:11 by achepurn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static t_flag		*flag_new(void)
 {
 	t_flag	*res;
+
 	if ((res = (t_flag *)malloc(sizeof(t_flag))))
 	{
 		res->minus = 0;
@@ -26,7 +27,7 @@ static t_flag		*flag_new(void)
 	return (res);
 }
 
-t_scheme		*scheme_new(void)
+t_scheme			*scheme_new(void)
 {
 	t_scheme	*res;
 

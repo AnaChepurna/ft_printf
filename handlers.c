@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   Bt: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/25 18:24:01 by achepurn          #+#    #+#             */
-/*   Updated: 2017/12/25 19:59:03 by achepurn         ###   ########.fr       */
+/*   Created: 2018/01/12 18:21:23 by achepurn          #+#    #+#             */
+/*   Updated: 2018/01/12 18:21:59 by achepurn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	handle_size(const char **format, t_scheme *scheme)
 }
 
 void	handle_type(const char **format, t_scheme *scheme)
-{	
+{
 	scheme->type = **format;
 	(*format)++;
 }

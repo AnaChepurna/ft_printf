@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   format_numbers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/18 15:29:19 by achepurn          #+#    #+#             */
-/*   Updated: 2018/01/12 16:29:46 by achepurn         ###   ########.fr       */
+/*   Created: 2018/01/12 17:54:16 by achepurn          #+#    #+#             */
+/*   Updated: 2018/01/12 18:18:14 by achepurn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int				ft_printf(const char *restrict format, ...)
+void	precision_number(int precision, char **str)
 {
-	t_list			*list;
-	va_list			ptr;
+	size_t	len;
+	char	*line;
+	int		i;
 
-	va_start(ptr, format);
-	while (*format)
+	len = strlen(*str);
+	if (len < precision)
 	{
-		if (*format == '%')
-			handle_format(&(++format), &list, ptr);
-		else
-			handle_line(&format, &line);
+		if ((line = ft_strnew(precision)))
+		{
+			i = 0;
+			while (len < precision)
+			{
+				line[i] = '0';
+				i++;
+			}
+			ft_strcpy(line + i, *str);
+			free(*str);
+			*str = line;
+		}
 	}
-	va_end(ptr);
-	ft_lstiter(list, &ft_putstr);
 }
