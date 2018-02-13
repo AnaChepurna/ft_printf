@@ -14,12 +14,13 @@
 
 int		handle_flags(const char *format, t_flag *flag)
 {
+	printf("handle_flags ->%s\n", format);
 	if (*format == '-')
 		return (flag->minus = 1);
 	if (*format == '+')
 		return (flag->plus = 1);
 	if (*format == ' ')
-		return (flag->spase = 1);
+		return (flag->space = 1);
 	if (*format == '#')
 		return (flag->hash = 1);
 	if (*format == '0')
@@ -27,57 +28,74 @@ int		handle_flags(const char *format, t_flag *flag)
 	return (0);
 }
 
-void	handle_precision(const char **format, t_scheme *scheme)
+int		handle_precision(const char *format, t_scheme *scheme)
 {
-	if (**format == '.')
+	int		i;
+
+	i = 0;
+	printf("handle_precision ->%s\n", format);
+	if (format[i] == '.')
 	{
-		(*format)++;
-		scheme->precision = ft_atoi(*format);
-		while (IS_NUMBER(**format))
-			(*format)++;
+		i++;
+		scheme->precision = ft_atoi(format + i);
+		while (IS_NUMBER(format[i]))
+			i++;
 	}
+	return (i);
 }
 
-void	handle_width(const char **format, t_scheme *scheme, va_list ptr)
+int		handle_width(const char *format, t_scheme *scheme, va_list ptr)
 {
-	if (**format == '*')
+	int		i;
+
+	i = 0;
+	printf("handle_width ->%s\n", format);
+	if (format[i] == '*')
 	{
 		scheme->width = va_arg(ptr, size_t);
-		(*format)++;
+		i++;
 	}
 	else
 	{
-		scheme->width = ft_atoi(*format);
-		while (IS_NUBMER(**format))
-			(*format)++;
+		scheme->width = ft_atoi(format);
+		while (IS_NUMBER(format[i]))
+			i++;
 	}
+	return (i);
 }
 
-void	handle_size(const char **format, t_scheme *scheme)
+int		handle_size(const char *format, t_scheme *scheme)
 {
-	if (ft_strnequ(*format, "h", 1))
+	int		i;
+
+	i = 0;
+	printf("handle_size ->%s\n", format);
+	if (ft_strnequ(format, "h", 1))
 		scheme->size = 'h';
-	else if (ft_strnequ(*format, "hh", 2))
+	else if (ft_strnequ(format, "hh", 2))
 	{
 		scheme->size = 'h' + 'h';
-		(*format)++;
+		i++;
 	}
-	else if (ft_strnequ(*format, "l", 1))
+	else if (ft_strnequ(format, "l", 1))
 		scheme->size = 'l';
-	else if (ft_strnequ(*format, "ll", 2))
+	else if (ft_strnequ(format, "ll", 2))
 	{
 		scheme->size = 'l' + 'l';
-		(*format)++;
+		i++;
 	}
-	else if (ft_strnequ(*format, "j", 1))
+	else if (ft_strnequ(format, "j", 1))
 		scheme->size = 'j';
-	else if (ft_strnequ(*format, "z", 1))
+	else if (ft_strnequ(format, "z", 1))
 		scheme->size = 'z';
-	(*format)++;
+	if (scheme->size)
+		i++;
+	return (i);
 }
 
-void	handle_type(const char **format, t_scheme *scheme)
+int		handle_type(const char *format, t_scheme *scheme)
 {
-	scheme->type = **format;
-	(*format)++;
+	printf("handle_type ->%s\n", format);
+	scheme->type = *format;
+	return (1);
 }

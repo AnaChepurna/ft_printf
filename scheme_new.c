@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf"
+#include "ft_printf.h"
 
 static t_flag		*flag_new(void)
 {
@@ -39,4 +39,20 @@ t_scheme			*scheme_new(void)
 		res->size = 0;
 		res->type = 0;
 	}
+	return (res);
+}
+
+void				scheme_del(t_scheme **s)
+{
+	free((*s)->flag);
+	free(*s);
+	*s = NULL;
+}
+
+void		print_scheme(t_scheme *s)
+{
+	printf("--SCHEME:\nflags => minus %i, plus %i, space %i, hash %i, zero %i\n width %i\n precision = %i\n size %i\n type %i\n--\n", 
+		s->flag->minus, s->flag->plus, s->flag->space,
+		s->flag->hash, s->flag->zero, s->width, s->precision,
+		s->size, s->type);
 }

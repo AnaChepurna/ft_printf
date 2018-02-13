@@ -14,28 +14,35 @@
 
 static char	*create_str(t_scheme *scheme, va_list ptr)
 {
+	printf("create_str\n");
 	if (IS_DI(scheme->type))
 		return (create_di(scheme, ptr));
 	if (IS_OU(scheme->type))
 		return (create_ou(scheme, ptr));
 	if (IS_X(scheme->type))
 		return (create_x(scheme, ptr));
+//////////////////
+	return (NULL);
 }
 
-static char	*create_format(t_scheme *scheme, char **str)
+static char	*formating(t_scheme *scheme, char **str)
 {
+	printf("formating\n");
 	if (scheme->precision)
 	{
-		if (IS_DI(scheme->type) || IS_OU(scheme->type) || IS_X(scheme))
+		if (IS_DI(scheme->type) ||
+			IS_OU(scheme->type) || IS_X(scheme->type))
 			precision_number(scheme->precision, str);
 	}
-	if
+	return (*str);
 }
 
 char		*create_format(t_scheme *scheme, va_list ptr)
 {
 	char *res;
 
-	res = create_str(scheme, va_list ptr);
-	res = create_format(scheme, &res);
+	printf("create_format\n");
+	res = create_str(scheme, ptr);
+	res = formating(scheme, &res);
+	return (res);
 }

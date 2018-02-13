@@ -18,19 +18,16 @@ char	*create_di(t_scheme *scheme, va_list ptr)
 
 	if (scheme->size == 'l' || scheme->type == 'D')
 		number = va_arg(ptr, long int);
-	else if (scheme->size == 0)
+	else if (scheme->size == 0 || scheme->size == 'h'
+		|| scheme->size == 'h' + 'h')
 		number = va_arg(ptr, int);
 	else if (scheme->size == 'l' + 'l')
 		number = va_arg(ptr, long long int);
-	else if (scheme->size == 'h')
-		number = va_arg(ptr, short);
-	else if (scheme->size == 'h' + 'h')
-		number = va_arg(ptr, signed char);
 	else if (scheme->size == 'j')
 		number = va_arg(ptr, intmax_t);
 	else
 		exit(1);
-	return (f_itoa(number));
+	return (ft_itoa(number));
 }
 
 char	*create_ou(t_scheme *scheme, va_list ptr)
@@ -48,10 +45,8 @@ char	*create_ou(t_scheme *scheme, va_list ptr)
 		number = va_arg(ptr, unsigned int);
 	else if (scheme->size == 'l' + 'l')
 		number = va_arg(ptr, unsigned long long int);
-	else if (scheme->size == 'h')
-		number = va_arg(ptr, unsigned short);
-	else if (scheme->size == 'h' + 'h')
-		number = va_arg(ptr, unsigned char);
+	else if (scheme->size == 'h' || scheme->size == 'h' + 'h')
+		number = va_arg(ptr, int);
 	else if (scheme->size == 'j')
 		number = va_arg(ptr, uintmax_t);
 	else if (scheme->size == 'z')
@@ -70,14 +65,14 @@ char	*create_x(t_scheme *scheme, va_list ptr)
 		number = va_arg(ptr, unsigned int);
 	else if (scheme->size == 'l' + 'l')
 		number = va_arg(ptr, unsigned long long int);
-	else if (scheme->size == 'h')
-		number = va_arg(ptr, unsigned short);
-	else if (scheme->size == 'h' + 'h')
-		number = va_arg(ptr, unsigned char);
+	else if (scheme->size == 'h' || scheme->size == 'h' + 'h')
+		number = va_arg(ptr, int);
 	else if (scheme->size == 'j')
 		number = va_arg(ptr, uintmax_t);
 	else if (scheme->size == 'z')
 		number = va_arg(ptr, size_t);
 	line = ft_itoa_base(number, 16);
-	return (sheme->type == 'X' ? ft_toupper(line) : line);
+	if (scheme->type == 'X')
+		ft_strcase(line, UP);
+	return (line);
 }

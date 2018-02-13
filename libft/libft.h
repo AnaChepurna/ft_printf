@@ -16,8 +16,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
+# include <stdint.h>
 
 # define LL_MAX 9223372036854775807
+# define UP 1
+# define DOWN 0
 
 typedef struct		s_list
 {
@@ -101,5 +104,8 @@ t_list				*ft_lstpop(t_list **alst);
 t_list				*ft_lstrm(t_list *alst, int index);
 char				**ft_lsttoarr(t_list *lst);
 void				ft_arrfree(char ***res);
+void				ft_memclr(void *str, size_t len);
+size_t				ft_wstrlen(char *str);
+void				ft_strcase(char *s, int x);
 
 #endif

@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_numbers.c                                   :+:      :+:    :+:   */
+/*   ft_wstrlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/12 17:54:16 by achepurn          #+#    #+#             */
-/*   Updated: 2018/01/12 18:18:14 by achepurn         ###   ########.fr       */
+/*   Created: 2018/02/12 14:21:01 by achepurn          #+#    #+#             */
+/*   Updated: 2018/02/12 14:21:13 by achepurn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	precision_number(int precision, char **str)
+size_t		ft_wstrlen(char *str)
 {
-	int		len;
-	char	*line;
-	int		i;
+	size_t	len;
+	char	buf;
 
-	len = (int)ft_strlen(*str);
-	printf("len = %i, pr =  %i\n", len, precision);
-	if (len < precision)
+	if (!str)
+		return (0);
+	len = 0;
+	while (*str)
 	{
-		if ((line = ft_strnew(precision)))
+		if (*str < 0)
 		{
-			i = 0;
-			while (len + i < precision)
+			buf = *str;
+			while (buf < 0)
 			{
-				line[i] = '0';
-				i++;
-				//printf("%i\n", i);
+				str++;
+				buf = buf << 1;
 			}
-			printf("0s added\n");
-			ft_strcpy(line + i, *str);
-			free(*str);
-			*str = line;
 		}
+		else
+			str++;
+		len++;
 	}
+	return (len);
 }

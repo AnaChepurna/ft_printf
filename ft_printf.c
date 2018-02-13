@@ -12,19 +12,42 @@
 
 #include "ft_printf.h"
 
+static void		print_list(t_list *lst, int	*symbols)
+{
+	while (lst)
+	{
+		ft_putstr(BLUE);
+		ft_putstr((char *)lst->content);
+		*symbols += ft_wstrlen((char *)lst->content);
+		lst = lst->next;
+		ft_putstr(RESET);
+	}
+}	
+
 int				ft_printf(const char *restrict format, ...)
 {
 	t_list			*list;
 	va_list			ptr;
+	int				symbols;
+	int				i;
 
 	va_start(ptr, format);
-	while (*format)
+	i = 0;
+	list = NULL;
+	while (format[i])
 	{
-		if (*format == '%')
-			handle_format(&(++format), &list, ptr);
+		if (format[i] == '%')
+		{
+			i++;
+			i += handle_format(format + i, &list, ptr);
+		}
 		else
-			handle_line(&format, &line);
+			i += handle_line(format + i, &list);
 	}
 	va_end(ptr);
-	ft_lstiter(list, &ft_putstr);
+	printf("end of handling\n");
+	symbols = 0;
+	print_list(list, &symbols);
+	ft_lstdel(&list, &ft_memclr);
+	return (symbols);
 }

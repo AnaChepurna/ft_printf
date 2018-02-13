@@ -12,24 +12,31 @@
 
 #include "ft_printf.h"
 
-void	handle_format(const char **format, t_list **list, va_list ptr)
+int		handle_format(const char *format, t_list **list, va_list ptr)
 {
 	t_scheme	*scheme;
 	char		*str;
+	int			i;
 
-	if (**format == '%')
-		*str = ft_strdup("%");
+	i = 0;
+	printf("handle_format\n");
+	if (format[i] == '%')
+		str = ft_strdup("%");
 	else
 	{
 		scheme = scheme_new();
-		while (handle_flags(*format, scheme->flag))
-			(*format)++;
-		handle_width(format, ptr);
-		handle_precision(format, scheme);
-		handle_type(format, scheme);
+		while (handle_flags(format + i, scheme->flag))
+			i++;
+		i += handle_width(format + i, scheme, ptr);
+		i += handle_precision(format + i, scheme);
+		i += handle_size(format + i, scheme);
+		i += handle_type(format + i, scheme);
+		print_scheme(scheme);
 		str = create_format(scheme, ptr);
-
-		free(str);
-		free(scheme->flag);
-		free(scheme);
+	}
+	ft_lstaddend(list, ft_lstnew(str, ft_strlen(str) + 1));
+	printf("----just added %s to the list\n", str);
+	free(str);
+	scheme_del(&scheme);
+	return (i);
 }

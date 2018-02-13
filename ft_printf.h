@@ -13,10 +13,12 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "libft/libft.h"
-# include <stdarg.h>
-# include <stdint.h>
-# include <stdio.h>
+# include "libftprintf.h"
+
+# define CYAN		"\x1B[36m"
+# define BLUE		"\x1B[34m"
+# define RESET		"\x1B[0m"
+# define MAGENTA	"\x1B[35m"
 
 # define IS_NUMBER(c) (c) >= '0' && (c) <= '9'
 # define IS_DI(n) (n) == 'd' || (n) == 'D' || (n) == 'i'
@@ -45,26 +47,28 @@ typedef struct	s_scheme
  **cheme_new.c
 */
 t_scheme		*scheme_new(void);
+void			scheme_del(t_scheme **s);
+void			print_scheme(t_scheme *s);
 
 /*
  **handle_format.c
 */
-void			handle_format(const char **format, t_list **list, va_list ptr);
+int				handle_format(const char *format, t_list **list, va_list ptr);
 
 /*
  **handle_line.c
 */
-void			handle_line(const char **format, t_list **list);
+int				handle_line(const char *format, t_list **list);
 
 /*
  **handlers.c
 */
-void			handle_width(const char **format, t_scheme *scheme,
+int				handle_width(const char *format, t_scheme *scheme,
 		va_list ptr);
-void			handle_precision(const char **format, t_scheme *scheme);
+int				handle_precision(const char *format, t_scheme *scheme);
 int				handle_flags(const char *format, t_flag *flag);
-void			handle_size(const char **format, t_scheme *scheme);
-void			handle_type(const char **format, t_scheme *scheme);
+int				handle_size(const char *format, t_scheme *scheme);
+int				handle_type(const char *format, t_scheme *scheme);
 
 /*
  **create_format.c
@@ -77,5 +81,10 @@ char			*create_format(t_scheme *scheme, va_list ptr);
 char			*create_di(t_scheme *scheme, va_list ptr);
 char			*create_ou(t_scheme *scheme, va_list ptr);
 char			*create_x(t_scheme *scheme, va_list ptr);
+
+/*
+ **format _numbers.c
+*/
+void			precision_number(int precision, char **str);
 
 #endif
