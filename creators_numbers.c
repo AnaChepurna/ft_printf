@@ -32,7 +32,7 @@ char	*create_di(t_scheme *scheme, va_list ptr)
 
 char	*create_ou(t_scheme *scheme, va_list ptr)
 {
-	intmax_t	number;
+	uintmax_t	number;
 	int			base;
 
 	if (scheme->type == 'o' || scheme->type == 'O')
@@ -56,7 +56,7 @@ char	*create_ou(t_scheme *scheme, va_list ptr)
 
 char	*create_x(t_scheme *scheme, va_list ptr)
 {
-	intmax_t	number;
+	uintmax_t	number;
 	char		*line;
 
 	if (scheme->size == 'l')

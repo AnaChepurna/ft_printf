@@ -25,23 +25,25 @@ static char	*create_str(t_scheme *scheme, va_list ptr)
 	return (NULL);
 }
 
+static char	*format_number(t_scheme *scheme, char **str)
+{
+	if (scheme->flag->plus || scheme->flag->space)
+		sign_number(scheme->flag, str);
+	if (scheme->flag->hash)
+		add_base(scheme, str);
+	if (scheme->precision)
+		precision_number(scheme, str);
+	if (scheme->width)
+		width_number(scheme, str);
+	return (*str);
+}
+
 static char	*formating(t_scheme *scheme, char **str)
 {
 	printf("formating\n");
-	if (scheme->precision)
-	{
-		if (IS_DI(scheme->type) ||
-			IS_OU(scheme->type) || IS_X(scheme->type))
-			precision_number(scheme->precision, str);
-	}
-	if (scheme->flag->plus || scheme->flag->space)
-		sign_number(scheme->flag, str);
-	if (scheme->width)
-	{
-		if (IS_DI(scheme->type) ||
-			IS_OU(scheme->type) || IS_X(scheme->type))
-			width_number(scheme, str);
-	}
+	if (IS_DI(scheme->type) ||
+		IS_OU(scheme->type) || IS_X(scheme->type))
+		format_number(scheme, str);
 	return (*str);
 }
 

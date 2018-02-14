@@ -12,33 +12,43 @@
 
 #include "ft_printf.h"
 
-void	precision_number(int precision, char **str)
+static int		sign_control(char *str)
+{
+	int		sign;
+
+	sign = 0;
+	if (*str == '-' || *str == '+' || *str == ' ' || *str == '0')
+	{
+		sign++;
+		if (*str == '0' && (*(str + 1) == 'x' || *(str + 1) == 'X'))
+			sign++;
+	}
+	return (sign);
+}
+
+void			precision_number(t_scheme *scheme, char **str)
 {
 	int		len;
 	char	*line;
-	int		i;
+	int		sign;
 
+	sign = sign_control(*str);
 	len = (int)ft_strlen(*str);
-	printf("len = %i, pr =  %i\n", len, precision);
-	if (len < precision)
+	if (len - sign < scheme->precision)
 	{
-		if ((line = ft_strnew(precision)))
+		if ((line = ft_strnew(scheme->precision + sign)))
 		{
-			i = 0;
-			while (len + i < precision)
-			{
-				line[i] = '0';
-				i++;
-			}
-			printf("0s added\n");
-			ft_strcpy(line + i, *str);
+			if (sign)
+				ft_strncpy(line, *str, sign);
+			ft_memset(line + sign, '0', scheme->precision - len + sign);
+			ft_strcpy(line + scheme->precision - len + sign * 2, *str + sign);
+			free(*str);
+			*str = line;
 		}
-		free(*str);
-		*str = line;
 	}
 }
 
-void		width_number(t_scheme *scheme, char **str)
+void			width_number(t_scheme *scheme, char **str)
 {
 	int		len;
 	char	*line;
@@ -47,26 +57,22 @@ void		width_number(t_scheme *scheme, char **str)
 	len = ft_strlen(*str);
 	if (len < scheme->width)
 	{
-		printf("%i\n", scheme->flag->zero);
 		if (!scheme->flag->zero)
 			width_str(scheme, str);
 		else if ((line = ft_strnew(scheme->width)))
 		{
-			sign = 0;
-			if (**str == '-' || **str == '+' || **str == ' ')
-			{
-				*line = **str;
-				sign = 1;
-			}
-			ft_memset(line + sign, '0', scheme->width - len + 1);
-			ft_strcpy(line + scheme->width - len + 1, *str + sign);
+			sign = sign_control(*str);
+			if (sign)
+				ft_strncpy(line, *str, sign);
+			ft_memset(line + sign, '0', scheme->width - len + sign);
+			ft_strcpy(line + scheme->width - len + sign, *str + sign);
 			free(*str);
 			*str = line;
 		}
 	}
 }
 
-void		sign_number(t_flag *flag, char **str)
+void			sign_number(t_flag *flag, char **str)
 {
 	char	*line;
 
@@ -80,4 +86,28 @@ void		sign_number(t_flag *flag, char **str)
 			*str = line;
 		}
 	}
+}
+
+void			add_base(t_scheme *scheme, char **str)
+{
+	char		*format;
+	char		*line;
+	int			n;
+
+	format = ft_strdup("0x");
+	n = 0;
+	if (scheme->type == 'p' || scheme->type == 'x' || scheme->type == 'X')
+		n = 2;
+	else if (scheme->type == 'o')
+		n = 1;
+	if ((line = ft_strnew(ft_strlen(*str) + n)))
+	{
+		if (scheme->type == 'X')
+			ft_strcase(format, UP);
+		ft_strncpy(line, format, n);
+		ft_strcpy(line + n, *str);
+		free(*str);
+		*str = line;
+	}
+	free(format);
 }
