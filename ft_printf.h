@@ -87,4 +87,9 @@ char			*create_x(t_scheme *scheme, va_list ptr);
 */
 void			precision_number(int precision, char **str);
 
+/*
+ **format _str.c
+*/
+void			width_str(t_scheme *scheme, char **str);
+
 #endif

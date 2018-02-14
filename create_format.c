@@ -34,6 +34,8 @@ static char	*formating(t_scheme *scheme, char **str)
 			IS_OU(scheme->type) || IS_X(scheme->type))
 			precision_number(scheme->precision, str);
 	}
+	if (scheme->width)
+		width_str(scheme, str);
 	return (*str);
 }
 

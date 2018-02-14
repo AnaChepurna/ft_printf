@@ -5,6 +5,7 @@ SRC = 	main.c \
 		create_format.c \
 		creators_numbers.c \
 		format_numbers.c \
+		format_str.c \
 		ft_printf.c \
 		handle_format.c \
 		handle_line.c \

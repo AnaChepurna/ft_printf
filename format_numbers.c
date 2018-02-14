@@ -29,12 +29,11 @@ void	precision_number(int precision, char **str)
 			{
 				line[i] = '0';
 				i++;
-				//printf("%i\n", i);
 			}
 			printf("0s added\n");
 			ft_strcpy(line + i, *str);
-			free(*str);
-			*str = line;
 		}
+		free(*str);
+		*str = line;
 	}
 }
