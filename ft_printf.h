@@ -86,6 +86,8 @@ char			*create_x(t_scheme *scheme, va_list ptr);
  **format _numbers.c
 */
 void			precision_number(int precision, char **str);
+void			width_number(t_scheme *scheme, char **str);
+void			sign_number(t_flag *flag, char **str);
 
 /*
  **format _str.c

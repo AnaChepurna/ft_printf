@@ -13,9 +13,9 @@ int		main(void)
 	int num;
 
 	num = 111111;
-	x2 = ft_printf("Privet, Привет, %010iou\n", num);
+	x2 = ft_printf("Privet, Привет, %+010iou\n", num);
 	printf(CYAN);
-	x1 = printf("Privet, Привет, %010iou\n", num);
+	x1 = printf("Privet, Привет, %+010iou\n", num);
 	printf(RESET);
 	printf(MAGENTA"my = %i\nor = %i\n" RESET, x2, x1);
 }

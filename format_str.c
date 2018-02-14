@@ -4,28 +4,25 @@ void		width_str(t_scheme *scheme, char **str)
 {
 	int		len;
 	char	*line;
-	int		i;
 
 	len = ft_wstrlen(*str);
 	if (len < scheme->width)
 	{
 		if ((line = ft_strnew(scheme->width)))
 		{
-			if (!scheme->flag->minus || scheme->flag->zero)
+			if (!scheme->flag->minus)
 			{
-				i = 0;
-				while (i < scheme->width - len)
-					line[i++] = scheme->flag->zero ? '0' : ' ';
-				ft_strcpy(line + i, *str);
+				printf ("width_str without minus\n");
+				ft_memset(line, ' ', scheme->width - len);
+				ft_strcpy(line + scheme->width - len, *str);
 			}
 			else
 			{
 				ft_strcpy(line, *str);
-				while (len < scheme->width)
-					line[len++] = ' ';
+				ft_memset(line + len, ' ', scheme->width - len);
 			}
+			free(*str);
+			*str = line;
 		}
-		free(*str);
-		*str = line;
 	}
 }

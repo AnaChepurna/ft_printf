@@ -34,8 +34,14 @@ static char	*formating(t_scheme *scheme, char **str)
 			IS_OU(scheme->type) || IS_X(scheme->type))
 			precision_number(scheme->precision, str);
 	}
+	if (scheme->flag->plus || scheme->flag->space)
+		sign_number(scheme->flag, str);
 	if (scheme->width)
-		width_str(scheme, str);
+	{
+		if (IS_DI(scheme->type) ||
+			IS_OU(scheme->type) || IS_X(scheme->type))
+			width_number(scheme, str);
+	}
 	return (*str);
 }
 
