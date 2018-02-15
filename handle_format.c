@@ -19,8 +19,10 @@ static char	*create_format(t_scheme *scheme, va_list ptr)
 		return (create_di(scheme, ptr));
 	if (IS_O(scheme->type) || IS_X(scheme->type) || IS_U(scheme->type))
 		return (create_oux(scheme, ptr));
-	//if (scheme->type == 'p')
-	//	return (create)
+	if (scheme->type == 'p')
+		return (create_p(scheme, ptr));
+	if (IS_S(scheme->type))
+		return (create_s(scheme, ptr));
 //////////////////
 	printf("NULL\n");
 	return (NULL);

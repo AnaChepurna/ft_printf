@@ -25,6 +25,8 @@
 # define IS_O(n)  (n) == 'o' || (n) == 'O' 
 # define IS_U(n) (n) == 'u' || (n) == 'U'
 # define IS_X(n) (n) == 'x' || (n) == 'X'
+# define IS_C(n) (n) == 'c' || (n) == 'C'
+# define IS_S(n) (n) == 's' || (n) == 'S'
 
 typedef struct	s_flag
 {
@@ -77,6 +79,8 @@ int				handle_type(const char *format, t_scheme *scheme);
 */
 char			*create_di(t_scheme *scheme, va_list ptr);
 char			*create_oux(t_scheme *scheme, va_list ptr);
+char			*create_p(t_scheme *scheme, va_list ptr);
+char			*create_s(t_scheme *scheme, va_list ptr);
 
 /*
  **format _numbers.c
@@ -90,6 +94,7 @@ void			add_base(t_scheme *scheme, char **str);
  **format _str.c
 */
 void			width_str(t_scheme *scheme, char **str);
+void			precision_str(t_scheme *scheme, char **str);
 
 /*
  **getters.c
@@ -97,6 +102,6 @@ void			width_str(t_scheme *scheme, char **str);
 intmax_t		get_i(t_scheme *scheme, va_list prt);
 uintmax_t		get_u(t_scheme *scheme, va_list prt);
 wchar_t			get_c(t_scheme *scheme, va_list prt);
-void			*get_p(t_scheme *scheme, va_list prt);
+void			*get_s(t_scheme *scheme, va_list prt);
 
 #endif

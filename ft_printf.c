@@ -18,7 +18,7 @@ static void		print_list(t_list *lst, int	*symbols)
 	{
 		ft_putstr(BLUE);
 		ft_putstr((char *)lst->content);
-		*symbols += ft_wstrlen((char *)lst->content);
+		*symbols += lst->content_size - 1;
 		lst = lst->next;
 		ft_putstr(RESET);
 	}

@@ -10,14 +10,17 @@ int		main(void)
 {
 	int x1;
 	int x2;
-	int num;
+	int  num;
+	//int		*p;
 
 	num = -777;
-	x2 = ft_printf("Privet, Привет, %*.*i and of cause %#.10X\n", 30, 20,
-	num, num);
+	//p = &num;
+	char *str = "Привет";
+	x2 = ft_printf("Privet, Привет, %*.*i and of cause |%5.4s|\n", 30, 20,
+	num, str);
 	printf(CYAN);
-	x1 = printf("Privet, Привет, %*.*i and of cause %#.10X\n", 30, 20,
-	num, num);
+	x1 = printf("Privet, Привет, %*.*i and of cause |%5.4s|\n", 30, 20,
+	num, str);
 	//printf("Privet, Привет, %Aou\n", -8.99999999999999999);
 	printf(RESET);
 	printf(MAGENTA"my = %i\nor = %i\n" RESET, x2, x1);

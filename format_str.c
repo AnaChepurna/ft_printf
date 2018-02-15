@@ -5,7 +5,7 @@ void		width_str(t_scheme *scheme, char **str)
 	int		len;
 	char	*line;
 
-	len = ft_wstrlen(*str);
+	len = ft_strlen(*str);
 	if (len < scheme->width)
 	{
 		if ((line = ft_strnew(scheme->width)))
@@ -21,6 +21,21 @@ void		width_str(t_scheme *scheme, char **str)
 				ft_strcpy(line, *str);
 				ft_memset(line + len, ' ', scheme->width - len);
 			}
+			free(*str);
+			*str = line;
+		}
+	}
+}
+
+void		precision_str(t_scheme *scheme, char **str)
+{
+	char	*line;
+
+	if (ft_strlen(*str) > scheme->precision)
+	{
+		if ((line = ft_strnew(scheme->precision)))
+		{
+			ft_strncpy(line, *str, scheme->precision);
 			free(*str);
 			*str = line;
 		}

@@ -25,7 +25,8 @@ uintmax_t	get_u(t_scheme *scheme, va_list ptr)
 {
 	uintmax_t	number;
 
-	if (scheme->size == 'l' || scheme->type == 'O' || scheme->type == 'U')
+	if (scheme->size == 'l' || scheme->type == 'O' ||
+		scheme->type == 'U' || scheme->type == 'p')
 		number = va_arg(ptr, unsigned long int);
 	else if (scheme->size == 0)
 		number = va_arg(ptr, unsigned int);
@@ -35,10 +36,10 @@ uintmax_t	get_u(t_scheme *scheme, va_list ptr)
 		number = (short int)va_arg(ptr, unsigned int);
 	else if (scheme->size == 'h' + 'h')
 		number = (unsigned char)va_arg(ptr, unsigned int);
-	else if (scheme->size == 'j')
-		number = va_arg(ptr, uintmax_t);
 	else if (scheme->size == 'z')
 		number = va_arg(ptr, size_t);
+	else if (scheme->size == 'j')
+		number = va_arg(ptr, uintmax_t);
 	else
 		exit(1);
 	return (number);
@@ -57,12 +58,10 @@ wchar_t		get_c(t_scheme *scheme, va_list ptr)
 	return (symbol);
 }
 
-void		*get_p(t_scheme *scheme, va_list ptr)
+void		*get_s(t_scheme *scheme, va_list ptr)
 {
 	void	*pointer;
 
-	if (scheme->type == 'p')
-		pointer = va_arg(ptr, void *);
 	if (scheme->type == 'S' || scheme->size == 'l')
 		pointer = va_arg(ptr, wchar_t *);
 	if (scheme->type == 'c' || scheme->size == 0)

@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include "libft/libft.h"
 
-typedef		struct  s_scheme
+/*typedef		struct  s_scheme
 {
 	void	(*f)(int i);
 }					t_scheme; 
@@ -31,7 +31,7 @@ void		run(t_list *lst)
 	scheme = (t_scheme *)lst->content;
 	scheme->f(i);
 	i++;
-}
+} */
 
 int main(void)
 {
@@ -52,5 +52,7 @@ int main(void)
 		i++;
 	}
 	ft_lstiter(funcs, &run); */
-	printf("%#.10s\n", "hiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
+	char *ptr = "hello";
+
+	printf("% 20p\n", ptr);
 }
