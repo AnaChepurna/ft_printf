@@ -73,12 +73,7 @@ int				handle_size(const char *format, t_scheme *scheme);
 int				handle_type(const char *format, t_scheme *scheme);
 
 /*
- **create_format.c
-*/
-char			*create_format(t_scheme *scheme, va_list ptr);
-
-/*
- **creators _numbers.c
+ **creators.c
 */
 char			*create_di(t_scheme *scheme, va_list ptr);
 char			*create_oux(t_scheme *scheme, va_list ptr);

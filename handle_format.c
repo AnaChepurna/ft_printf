@@ -12,6 +12,20 @@
 
 #include "ft_printf.h"
 
+static char	*create_format(t_scheme *scheme, va_list ptr)
+{
+	printf("create_str\n");
+	if (IS_DI(scheme->type))
+		return (create_di(scheme, ptr));
+	if (IS_O(scheme->type) || IS_X(scheme->type) || IS_U(scheme->type))
+		return (create_oux(scheme, ptr));
+	//if (scheme->type == 'p')
+	//	return (create)
+//////////////////
+	printf("NULL\n");
+	return (NULL);
+}
+
 int		handle_format(const char *format, t_list **list, va_list ptr)
 {
 	t_scheme	*scheme;
