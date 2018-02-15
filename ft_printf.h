@@ -65,7 +65,8 @@ int				handle_line(const char *format, t_list **list);
 */
 int				handle_width(const char *format, t_scheme *scheme,
 		va_list ptr);
-int				handle_precision(const char *format, t_scheme *scheme);
+int				handle_precision(const char *format, t_scheme *scheme,
+		va_list ptr);
 int				handle_flags(const char *format, t_flag *flag);
 int				handle_size(const char *format, t_scheme *scheme);
 int				handle_type(const char *format, t_scheme *scheme);

@@ -12,10 +12,13 @@ int		main(void)
 	int x2;
 	int num;
 
-	num =-111111;
-	x2 = ft_printf("Privet, Привет, %#030Xou\n", num);
+	num = -777;
+	x2 = ft_printf("Privet, Привет, %*.*i and of cause %#.10X\n", 30, 20,
+	num, num);
 	printf(CYAN);
-	x1 = printf("Privet, Привет, %#030Xou\n", num);
+	x1 = printf("Privet, Привет, %*.*i and of cause %#.10X\n", 30, 20,
+	num, num);
+	//printf("Privet, Привет, %Aou\n", -8.99999999999999999);
 	printf(RESET);
 	printf(MAGENTA"my = %i\nor = %i\n" RESET, x2, x1);
 }

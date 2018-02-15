@@ -22,6 +22,7 @@ static char	*create_str(t_scheme *scheme, va_list ptr)
 	if (IS_X(scheme->type))
 		return (create_x(scheme, ptr));
 //////////////////
+	printf("NULL\n");
 	return (NULL);
 }
 

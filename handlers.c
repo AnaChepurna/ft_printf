@@ -28,7 +28,7 @@ int		handle_flags(const char *format, t_flag *flag)
 	return (0);
 }
 
-int		handle_precision(const char *format, t_scheme *scheme)
+int		handle_precision(const char *format, t_scheme *scheme, va_list ptr)
 {
 	int		i;
 
@@ -37,9 +37,17 @@ int		handle_precision(const char *format, t_scheme *scheme)
 	if (format[i] == '.')
 	{
 		i++;
-		scheme->precision = ft_atoi(format + i);
-		while (IS_NUMBER(format[i]))
+		if (format[i] == '*')
+		{
+			scheme->precision = va_arg(ptr, size_t);
 			i++;
+		}
+		else
+		{
+			scheme->precision = ft_atoi(format + i);
+			while (IS_NUMBER(format[i]))
+				i++;
+		}
 	}
 	return (i);
 }

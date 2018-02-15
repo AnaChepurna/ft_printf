@@ -76,3 +76,18 @@ char	*create_x(t_scheme *scheme, va_list ptr)
 		ft_strcase(line, UP);
 	return (line);
 }
+
+/*char	*create_fage(t_scheme *scheme, va_list ptr)
+{
+	long double	number;
+	char		*line;
+
+	if (scheme->size == 'D')
+		number = va_list(ptr, long double);
+	else
+		number = va_list(ptr, double);
+	if (!scheme->precision)
+		scheme->precision = 6;
+	line = create_float(scheme, ptr);
+	return (line);
+} */

@@ -28,7 +28,7 @@ int		handle_format(const char *format, t_list **list, va_list ptr)
 		while (handle_flags(format + i, scheme->flag))
 			i++;
 		i += handle_width(format + i, scheme, ptr);
-		i += handle_precision(format + i, scheme);
+		i += handle_precision(format + i, scheme, ptr);
 		i += handle_size(format + i, scheme);
 		i += handle_type(format + i, scheme);
 		print_scheme(scheme);

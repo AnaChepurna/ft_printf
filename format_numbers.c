@@ -22,6 +22,8 @@ static int		sign_control(char *str)
 		sign++;
 		if (*str == '0' && (*(str + 1) == 'x' || *(str + 1) == 'X'))
 			sign++;
+		if (*str == '0' && !(*(str + 1)))
+			sign--;
 	}
 	return (sign);
 }
@@ -94,6 +96,8 @@ void			add_base(t_scheme *scheme, char **str)
 	char		*line;
 	int			n;
 
+	if (ft_strequ(*str, "0"))
+		return ;
 	format = ft_strdup("0x");
 	n = 0;
 	if (scheme->type == 'p' || scheme->type == 'x' || scheme->type == 'X')
