@@ -2,29 +2,24 @@
 
 char		*create_float(t_scheme *scheme, long double number)
 {
-	char	*i;
-	char	*f;
+	char	*integer;
 	char	*line;
-	int		x;
-	size_t	len;
+	int		i;
+	int		len;
 
-	i = ft_itoa(number);
-	x = scheme->precision + 1;
+	integer = ft_itoa(number);
+	len = ft_strlen(integer);
+	line = ft_strnew(len + i + scheme->precision);
+	ft_strcpy(line, integer);
+	line[len] = '.';
 	number = number % 1;
 	number = number > 0 ? number : -number;
-	while (x--)
-		number *= 10;
-	f = ft_itoa(number);
-	len = ft_strlen(i);
-	if ((line = ft_strnew(len + scheme->precision + 1)))
+	i = 0;
+	while (i < scheme->precision)
 	{
-		ft_strcpy(line, i);
-		line[len] = '.';
-		ft_strcpy(line + len + 1, f);
-		if ((x = (int)ft_strlen(f)) < scheme->precision)
-			ft_memset(line + len + 1 + x, '0', scheme->precision - x);
+		number *= 10;
+		line[len + i] = '0' + number;
 	}
-	free(i);
-	free(f);
+	free(integer);
 	return (line);
 }

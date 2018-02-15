@@ -92,26 +92,22 @@ void			sign_number(t_flag *flag, char **str)
 
 void			add_base(t_scheme *scheme, char **str)
 {
-	char		*format;
+	const char	*format = "0x";
 	char		*line;
 	int			n;
 
 	if (ft_strequ(*str, "0"))
 		return ;
-	format = ft_strdup("0x");
 	n = 0;
-	if (scheme->type == 'p' || scheme->type == 'x' || scheme->type == 'X')
+	if (scheme->type == 'p' || IS_X(scheme->type))
 		n = 2;
-	else if (scheme->type == 'o')
+	else if (IS_O(scheme->type))
 		n = 1;
 	if ((line = ft_strnew(ft_strlen(*str) + n)))
 	{
-		if (scheme->type == 'X')
-			ft_strcase(format, UP);
 		ft_strncpy(line, format, n);
 		ft_strcpy(line + n, *str);
 		free(*str);
 		*str = line;
 	}
-	free(format);
 }

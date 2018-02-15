@@ -11,14 +11,46 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include "ft_printf.h"
+#include "libft/libft.h"
+
+typedef		struct  s_scheme
+{
+	void	(*f)(int i);
+}					t_scheme; 
+
+void		print_number(int i)
+{
+	ft_putchar('0' + i);
+}
+
+void		run(t_list *lst)
+{
+	t_scheme	*scheme;
+	static int	i = 0;
+
+	scheme = (t_scheme *)lst->content;
+	scheme->f(i);
+	i++;
+}
 
 int main(void)
 {
-	int x;
-	int i;
+	/*t_list 		*funcs;
+	t_scheme	*s;
+	t_list		*lst;
+	int			i;
 
-	i =
-		x = 8;
-	printf("%.3f  ");
+	funcs = NULL;
+	i = 0;
+	while (i < 6)
+	{
+		lst = ft_lstnew(NULL, 0);
+		s = (t_scheme *)malloc(sizeof(t_scheme));
+		s->f = &print_number;
+		lst->content = (void *)s;
+		ft_lstadd(&funcs, lst);
+		i++;
+	}
+	ft_lstiter(funcs, &run); */
+	printf("%#.10s\n", "hiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
 }

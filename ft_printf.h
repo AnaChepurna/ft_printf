@@ -22,7 +22,8 @@
 
 # define IS_NUMBER(c) (c) >= '0' && (c) <= '9'
 # define IS_DI(n) (n) == 'd' || (n) == 'D' || (n) == 'i'
-# define IS_OU(n)  (n) == 'o' || (n) == 'O' || (n) == 'u' || (n) == 'U'
+# define IS_O(n)  (n) == 'o' || (n) == 'O' 
+# define IS_U(n) (n) == 'u' || (n) == 'U'
 # define IS_X(n) (n) == 'x' || (n) == 'X'
 
 typedef struct	s_flag
@@ -80,8 +81,7 @@ char			*create_format(t_scheme *scheme, va_list ptr);
  **creators _numbers.c
 */
 char			*create_di(t_scheme *scheme, va_list ptr);
-char			*create_ou(t_scheme *scheme, va_list ptr);
-char			*create_x(t_scheme *scheme, va_list ptr);
+char			*create_oux(t_scheme *scheme, va_list ptr);
 
 /*
  **format _numbers.c
@@ -95,5 +95,13 @@ void			add_base(t_scheme *scheme, char **str);
  **format _str.c
 */
 void			width_str(t_scheme *scheme, char **str);
+
+/*
+ **getters.c
+*/
+intmax_t		get_i(t_scheme *scheme, va_list prt);
+uintmax_t		get_u(t_scheme *scheme, va_list prt);
+wchar_t			get_c(t_scheme *scheme, va_list prt);
+void			*get_p(t_scheme *scheme, va_list prt);
 
 #endif

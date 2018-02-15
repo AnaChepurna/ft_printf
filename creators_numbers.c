@@ -14,67 +14,40 @@
 
 char	*create_di(t_scheme *scheme, va_list ptr)
 {
-	intmax_t	number;
+	char	*str;
 
-	if (scheme->size == 'l' || scheme->type == 'D')
-		number = va_arg(ptr, long int);
-	else if (scheme->size == 0 || scheme->size == 'h'
-		|| scheme->size == 'h' + 'h')
-		number = va_arg(ptr, int);
-	else if (scheme->size == 'l' + 'l')
-		number = va_arg(ptr, long long int);
-	else if (scheme->size == 'j')
-		number = va_arg(ptr, intmax_t);
-	else
-		exit(1);
-	return (ft_itoa(number));
+
+	str = ft_itoa(get_i(scheme, ptr));
+	if (scheme->flag->plus || scheme->flag->space)
+		sign_number(scheme->flag, &str);
+	if (scheme->precision)
+		precision_number(scheme, &str);
+	if (scheme->width)
+		width_number(scheme, &str);
+	return (str);
 }
 
-char	*create_ou(t_scheme *scheme, va_list ptr)
+char	*create_oux(t_scheme *scheme, va_list ptr)
 {
-	uintmax_t	number;
-	int			base;
+	char	*str;
+	int		base;
 
-	if (scheme->type == 'o' || scheme->type == 'O')
+	if (IS_O(scheme->type))
 		base = 8;
+	else if (IS_X(scheme->type))
+		base = 16;
 	else
 		base = 10;
-	if (scheme->size == 'l' || scheme->type == 'O' || scheme->type == 'U')
-		number = va_arg(ptr, unsigned long int);
-	else if (scheme->size == 0)
-		number = va_arg(ptr, unsigned int);
-	else if (scheme->size == 'l' + 'l')
-		number = va_arg(ptr, unsigned long long int);
-	else if (scheme->size == 'h' || scheme->size == 'h' + 'h')
-		number = va_arg(ptr, int);
-	else if (scheme->size == 'j')
-		number = va_arg(ptr, uintmax_t);
-	else if (scheme->size == 'z')
-		number = va_arg(ptr, size_t);
-	return (ft_itoa_base(number, base));
-}
-
-char	*create_x(t_scheme *scheme, va_list ptr)
-{
-	uintmax_t	number;
-	char		*line;
-
-	if (scheme->size == 'l')
-		number = va_arg(ptr, unsigned long int);
-	else if (scheme->size == 0)
-		number = va_arg(ptr, unsigned int);
-	else if (scheme->size == 'l' + 'l')
-		number = va_arg(ptr, unsigned long long int);
-	else if (scheme->size == 'h' || scheme->size == 'h' + 'h')
-		number = va_arg(ptr, int);
-	else if (scheme->size == 'j')
-		number = va_arg(ptr, uintmax_t);
-	else if (scheme->size == 'z')
-		number = va_arg(ptr, size_t);
-	line = ft_itoa_base(number, 16);
+	str = ft_itoa_base(get_u(scheme, ptr), base);
+	if (scheme->flag->hash)
+		add_base(scheme, &str);
+	if (scheme->precision)
+		precision_number(scheme, &str);
+	if (scheme->width)
+		width_number(scheme, &str);
 	if (scheme->type == 'X')
-		ft_strcase(line, UP);
-	return (line);
+		ft_strcase(str, UP);
+	return (str);
 }
 
 /*char	*create_fage(t_scheme *scheme, va_list ptr)

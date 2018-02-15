@@ -10,7 +10,8 @@ SRC = 	main.c \
 		handle_format.c \
 		handle_line.c \
 		handlers.c \
-		scheme_new.c
+		scheme_new.c \
+		getters.c
 
 all: $(NAME)
 

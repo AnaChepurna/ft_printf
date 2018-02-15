@@ -5,6 +5,7 @@
 # include <stdarg.h>
 # include <stdint.h>
 # include <stdio.h>
+# include <wchar.h>
 
 int				ft_printf(const char *restrict format, ...);
 
