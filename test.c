@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <wchar.h>
 #include "libft/libft.h"
 
 /*typedef		struct  s_scheme
@@ -52,7 +53,15 @@ int main(void)
 		i++;
 	}
 	ft_lstiter(funcs, &run); */
-	char *ptr = "hello";
-
-	printf("% 20p\n", ptr);
+	//char string[4]={ 0x61, 0x81, 0x61, 0 };
+	wchar_t *wc = L"Привет!!č";
+	while (*wc)
+	{
+		//printf("%d\n", *wc);
+		wprintf("---%lc\n", *wc);
+		wc++;
+	}
+	char *text = (char *)wc;
+	//printf("%s\n", string);
+	printf("%S", wc);
 }
