@@ -1,7 +1,7 @@
 #ifndef LIBFTPRINTF_H
 #define LIBFTPRINTF_H
 
-# include "libft/libft.h"
+# include "libft.h"
 # include <stdarg.h>
 # include <stdint.h>
 # include <stdio.h>

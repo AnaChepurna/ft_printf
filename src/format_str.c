@@ -41,3 +41,8 @@ void		precision_str(t_scheme *scheme, char **str)
 		}
 	}
 }
+
+/*int			char_number(wchar_t wc)
+{
+	
+}*/
