@@ -96,12 +96,23 @@ void			add_base(t_scheme *scheme, char **str);
 void			width_str(t_scheme *scheme, char **str);
 void			precision_str(t_scheme *scheme, char **str);
 
+
 /*
- **getters.c
+ **format_float.c
+*/
+char			*create_float(t_scheme *scheme, long double number);
+
+/*
+ **getters_core.c
 */
 intmax_t		get_i(t_scheme *scheme, va_list prt);
 uintmax_t		get_u(t_scheme *scheme, va_list prt);
 wchar_t			get_c(t_scheme *scheme, va_list prt);
 void			*get_s(t_scheme *scheme, va_list prt);
+
+/*
+ **getters_adds.c
+*/
+long double		get_f(t_scheme *scheme, va_list ptr);
 
 #endif
