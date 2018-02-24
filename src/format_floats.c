@@ -1,5 +1,20 @@
 #include "ft_printf.h"
 
+int			double_to_int(long double number)
+{
+	int		i;
+
+	i = 0;
+	while (number > 0)
+	{
+		number -= 0.1;
+		printf("%LF\n", number);
+		i++;
+	}
+	printf("%i\n", i);
+	return (i / 10);
+}
+
 char		*create_float(t_scheme *scheme, long double number)
 {
 	char	*integer;
@@ -12,15 +27,15 @@ char		*create_float(t_scheme *scheme, long double number)
 	line = ft_strnew(len + scheme->precision);
 	ft_strcpy(line, integer);
 	line[len] = '.';
-	number -= (int)number;
 	number = number > 0 ? number : -number;
+	number -= (int)number;
 	i = 1;
 	while (i <= scheme->precision)
 	{
 		number *= 10;
 		printf("%Lf. %i\n", number, (int)number);
-		line[len + i] = '0' + number;
-		number -= (int)number;
+		line[len + i] = '0' + double_to_int(number);
+		number -= double_to_int(number);
 		i++;
 	}
 	free(integer);
@@ -49,12 +64,12 @@ int			find_expo(long double  *number)
 	while (*number > 10)
 	{
 		*number /= 10;
-		expo +=1;
+		expo += 1;
 	}
-	while (*number < 0)
+	while (*number < 1)
 	{
 		*number *= 10;
-		expo -=1;
+		expo -= 1;
 	}
 	return (expo);
 }

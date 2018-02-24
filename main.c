@@ -13,7 +13,7 @@ int		main(void)
 	double  num;
 	//int		*p;
 
-	num = 9.1;
+	num = 0.1;
 	//p = &num;
 	//char *str = "Привет";
 	x2 = ft_printf("Privet, Привет, %f, %e||\n", num, num);
