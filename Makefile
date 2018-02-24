@@ -5,14 +5,17 @@ LIB = ./libft/
 SRC = ./src/
 INCL = ./incl
 SRC_SRC = creators_core.c \
+		creators_adds.c \
 		format_numbers.c \
 		format_str.c \
+		format_floats.c \
 		ft_printf.c \
 		handle_format.c \
 		handle_line.c \
 		handlers.c \
 		scheme_new.c \
-		getters_core.c
+		getters_core.c \
+		getters_adds.c
 SRC_LIB = ft_lstprint.c	ft_striter.c ft_lstrm.c ft_striteri.c \
 	  ft_arrtolst.c ft_memalloc.c ft_strjoin.c ft_atoi.c \
 	  ft_memccpy.c ft_strlcat.c ft_atoi_base.c ft_memchr.c \

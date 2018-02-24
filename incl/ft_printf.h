@@ -27,6 +27,8 @@
 # define IS_X(n) (n) == 'x' || (n) == 'X'
 # define IS_C(n) (n) == 'c' || (n) == 'C'
 # define IS_S(n) (n) == 's' || (n) == 'S'
+# define IS_F(n) (n) == 'f' || (n) == 'F' || (n) == 'g'
+# define IS_E(n) (n) == 'e' || (n) == 'E' || (n) == 'G'
 
 # define F_MINUS	1
 # define F_PLUS 	2
@@ -82,6 +84,7 @@ char			*create_s(t_scheme *scheme, va_list ptr);
 /*
  **creators_adds.c
 */
+char			*create_fe(t_scheme *scheme, va_list ptr);
 
 /*
  **format _numbers.c
@@ -102,6 +105,7 @@ void			precision_str(t_scheme *scheme, char **str);
  **format_float.c
 */
 char			*create_float(t_scheme *scheme, long double number);
+char			*create_exponent(t_scheme *scheme, long double number);
 
 /*
  **getters_core.c

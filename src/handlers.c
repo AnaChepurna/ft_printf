@@ -48,8 +48,6 @@ int		handle_precision(const char *format, t_scheme *scheme, va_list ptr)
 			while (IS_NUMBER(format[i]))
 				i++;
 		}
-		if (scheme->flag & F_ZERO)
-			scheme->flag -= F_ZERO;
 	}
 	return (i);
 }
@@ -79,28 +77,28 @@ int		handle_size(const char *format, t_scheme *scheme)
 	int		i;
 
 	i = 0;
-	printf("handle_size ->%s\n", format);
-	if (ft_strnequ(format, "h", 1))
-		scheme->size = 'h';
-	else if (ft_strnequ(format, "hh", 2))
+	if (ft_strnequ(format, "hh", 2))
 	{
 		scheme->size = 'h' + 'h';
 		i++;
 	}
-	else if (ft_strnequ(format, "l", 1))
-		scheme->size = 'l';
+	else if (ft_strnequ(format, "h", 1))
+		scheme->size = 'h';
 	else if (ft_strnequ(format, "ll", 2))
 	{
 		scheme->size = 'l' + 'l';
 		i++;
 	}
+	else if (ft_strnequ(format, "l", 1))
+		scheme->size = 'l';
 	else if (ft_strnequ(format, "j", 1))
 		scheme->size = 'j';
 	else if (ft_strnequ(format, "z", 1))
 		scheme->size = 'z';
-	if (scheme->size)
-		i++;
-	return (i);
+	else if (ft_strnequ(format, "L", 1))
+		scheme->size = 'L';
+	printf("%i\n", i);
+	return (scheme->size ? ++i : i);
 }
 
 int		handle_type(const char *format, t_scheme *scheme)

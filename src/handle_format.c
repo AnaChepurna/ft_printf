@@ -23,6 +23,8 @@ static char	*create_format(t_scheme *scheme, va_list ptr)
 		return (create_p(scheme, ptr));
 	if (IS_S(scheme->type))
 		return (create_s(scheme, ptr));
+	if (IS_F(scheme->type) || IS_E(scheme->type))
+		return (create_fe(scheme, ptr));
 //////////////////
 	printf("NULL\n");
 	return (NULL);
