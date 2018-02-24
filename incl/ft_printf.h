@@ -28,18 +28,15 @@
 # define IS_C(n) (n) == 'c' || (n) == 'C'
 # define IS_S(n) (n) == 's' || (n) == 'S'
 
-typedef struct	s_flag
-{
-	int			minus;
-	int			plus;
-	int			space;
-	int			hash;
-	int			zero;
-}				t_flag;
+# define F_MINUS	1
+# define F_PLUS 	2
+# define F_SPACE	4
+# define F_HASH		8
+# define F_ZERO		16
 
 typedef struct	s_scheme
 {
-	t_flag		*flag;
+	int			flag;
 	int			width;
 	int			precision;
 	int			size;
@@ -70,12 +67,12 @@ int				handle_width(const char *format, t_scheme *scheme,
 		va_list ptr);
 int				handle_precision(const char *format, t_scheme *scheme,
 		va_list ptr);
-int				handle_flags(const char *format, t_flag *flag);
+int				handle_flags(const char *format, t_scheme *scheme);
 int				handle_size(const char *format, t_scheme *scheme);
 int				handle_type(const char *format, t_scheme *scheme);
 
 /*
- **creators.c
+ **creators_core.c
 */
 char			*create_di(t_scheme *scheme, va_list ptr);
 char			*create_oux(t_scheme *scheme, va_list ptr);
@@ -83,11 +80,15 @@ char			*create_p(t_scheme *scheme, va_list ptr);
 char			*create_s(t_scheme *scheme, va_list ptr);
 
 /*
+ **creators_adds.c
+*/
+
+/*
  **format _numbers.c
 */
 void			precision_number(t_scheme *scheme, char **str);
 void			width_number(t_scheme *scheme, char **str);
-void			sign_number(t_flag *flag, char **str);
+void			sign_number(t_scheme *scheme, char **str);
 void			add_base(t_scheme *scheme, char **str);
 
 /*

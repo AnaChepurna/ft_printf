@@ -12,19 +12,19 @@
 
 #include "ft_printf.h"
 
-int		handle_flags(const char *format, t_flag *flag)
+int		handle_flags(const char *format, t_scheme *scheme)
 {
 	printf("handle_flags ->%s\n", format);
 	if (*format == '-')
-		return (flag->minus = 1);
+		return (scheme->flag += F_MINUS);
 	if (*format == '+')
-		return (flag->plus = 1);
+		return (scheme->flag += F_PLUS);
 	if (*format == ' ')
-		return (flag->space = 1);
+		return (scheme->flag += F_SPACE);
 	if (*format == '#')
-		return (flag->hash = 1);
+		return (scheme->flag += F_HASH);
 	if (*format == '0')
-		return (flag->zero = 1);
+		return (scheme->flag += F_ZERO);
 	return (0);
 }
 
@@ -48,6 +48,8 @@ int		handle_precision(const char *format, t_scheme *scheme, va_list ptr)
 			while (IS_NUMBER(format[i]))
 				i++;
 		}
+		if (scheme->flag & F_ZERO)
+			scheme->flag -= F_ZERO;
 	}
 	return (i);
 }

@@ -10,7 +10,7 @@ void		width_str(t_scheme *scheme, char **str)
 	{
 		if ((line = ft_strnew(scheme->width)))
 		{
-			if (!scheme->flag->minus)
+			if (!(scheme->flag & F_MINUS))
 			{
 				printf ("width_str without minus\n");
 				ft_memset(line, ' ', scheme->width - len);

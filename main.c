@@ -13,13 +13,13 @@ int		main(void)
 	int  num;
 	//int		*p;
 
-	num = -777;
+	num = 777;
 	//p = &num;
 	char *str = "Привет";
-	x2 = ft_printf("Privet, Привет, %*.*i and of cause |%5.4s|\n", 30, 20,
+	x2 = ft_printf("Privet, Привет, %+0*.*i and of cause |%5.4s|\n", 30, 20,
 	num, str);
 	printf(CYAN);
-	x1 = printf("Privet, Привет, %*.*i and of cause |%5.4s|\n", 30, 20,
+	x1 = printf("Privet, Привет, %+0*.*i and of cause |%5.4s|\n", 30, 20,
 	num, str);
 	//printf("Privet, Привет, %Aou\n", -8.99999999999999999);
 	printf(RESET);

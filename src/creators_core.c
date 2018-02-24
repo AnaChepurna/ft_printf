@@ -18,8 +18,8 @@ char	*create_di(t_scheme *scheme, va_list ptr)
 
 
 	str = ft_itoa(get_i(scheme, ptr));
-	if (scheme->flag->plus || scheme->flag->space)
-		sign_number(scheme->flag, &str);
+	if ((scheme->flag & F_PLUS) || (scheme->flag & F_SPACE))
+		sign_number(scheme, &str);
 	if (scheme->precision)
 		precision_number(scheme, &str);
 	if (scheme->width)
@@ -39,7 +39,7 @@ char	*create_oux(t_scheme *scheme, va_list ptr)
 	else
 		base = 10;
 	str = ft_itoa_base(get_u(scheme, ptr), base);
-	if (scheme->flag->hash)
+	if (scheme->flag & F_HASH)
 		add_base(scheme, &str);
 	if (scheme->precision)
 		precision_number(scheme, &str);
@@ -80,18 +80,3 @@ char	*create_s(t_scheme *scheme, va_list ptr)
 		width_str(scheme, &str);
 	return (str);
 }
-
-/*char	*create_fage(t_scheme *scheme, va_list ptr)
-{
-	long double	number;
-	char		*line;
-
-	if (scheme->size == 'D')
-		number = va_list(ptr, long double);
-	else
-		number = va_list(ptr, double);
-	if (!scheme->precision)
-		scheme->precision = 6;
-	line = create_float(scheme, ptr);
-	return (line);
-} */

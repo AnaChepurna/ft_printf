@@ -59,7 +59,7 @@ void			width_number(t_scheme *scheme, char **str)
 	len = ft_strlen(*str);
 	if (len < scheme->width)
 	{
-		if (!scheme->flag->zero)
+		if (!(scheme->flag & F_ZERO))
 			width_str(scheme, str);
 		else if ((line = ft_strnew(scheme->width)))
 		{
@@ -74,7 +74,7 @@ void			width_number(t_scheme *scheme, char **str)
 	}
 }
 
-void			sign_number(t_flag *flag, char **str)
+void			sign_number(t_scheme *scheme, char **str)
 {
 	char	*line;
 
@@ -82,7 +82,7 @@ void			sign_number(t_flag *flag, char **str)
 	{
 		if ((line = ft_strnew(ft_strlen(*str) + 1)))
 		{
-			*line = flag->plus ? '+' : ' ';
+			*line = scheme->flag & F_PLUS ? '+' : ' ';
 			ft_strcpy(line + 1, *str);
 			free(*str);
 			*str = line;
