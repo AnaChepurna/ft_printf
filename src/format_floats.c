@@ -8,10 +8,8 @@ int			double_to_int(long double number)
 	while (number > 0)
 	{
 		number -= 0.1;
-		printf("%LF\n", number);
 		i++;
 	}
-	printf("%i\n", i);
 	return (i / 10);
 }
 
@@ -33,7 +31,6 @@ char		*create_float(t_scheme *scheme, long double number)
 	while (i <= scheme->precision)
 	{
 		number *= 10;
-		printf("%Lf. %i\n", number, (int)number);
 		line[len + i] = '0' + double_to_int(number);
 		number -= double_to_int(number);
 		i++;
@@ -59,7 +56,14 @@ char		*format_exponent(int expo)
 int			find_expo(long double  *number)
 {
 	int expo;
+	int sign;
 
+	sign = 1;
+	if (*number < 0)
+	{
+		*number = -*number;
+		sign = -1;
+	}
 	expo = 0;
 	while (*number > 10)
 	{
@@ -71,6 +75,7 @@ int			find_expo(long double  *number)
 		*number *= 10;
 		expo -= 1;
 	}
+	*number *= sign;
 	return (expo);
 }
 
