@@ -22,16 +22,21 @@ char		*create_float(t_scheme *scheme, long double number)
 
 	integer = ft_itoa(number);
 	len = ft_strlen(integer);
-	line = ft_strnew(len + scheme->precision);
+	printf("%s\n%i-------\n", integer, len);
+	line = ft_strnew(len + scheme->precision + (scheme->precision ? 1 : 0));
 	ft_strcpy(line, integer);
-	line[len] = '.';
+	printf("%s\n%i----%i---%s\n", line, scheme->precision, len, integer);
+	line[len] = scheme->precision ? '.' : '\0';
 	number = number > 0 ? number : -number;
-	number -= (int)number;
+	number -= (intmax_t)number;
+	printf("%s\n%i-------\n", line, scheme->precision);
 	i = 1;
 	while (i <= scheme->precision)
 	{
+		printf("%Lf\n", number);
 		number *= 10;
 		line[len + i] = '0' + double_to_int(number);
+		printf("%s\n", line);
 		number -= double_to_int(number);
 		i++;
 	}
@@ -65,7 +70,7 @@ int			find_expo(long double  *number)
 		sign = -1;
 	}
 	expo = 0;
-	while (*number > 10)
+	while (*number >= 10)
 	{
 		*number /= 10;
 		expo += 1;

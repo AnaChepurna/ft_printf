@@ -13,13 +13,15 @@ int		main(void)
 	double  num;
 	//int		*p;
 
-	num = 1.4;
+	num = -1000000000000.4;
 	//p = &num;
 	//char *str = "Привет";
 	x2 = ft_printf("Privet, Привет, %+10e, %f||\n", num, num);
 	printf(CYAN);
-	x1 = printf("Privet, Привет, %+10e, %.1a||\n", num, num);
+	x1 = printf("Privet, Привет, %+10e, %f||\n", num, num);
 	//printf("Privet, Привет, %Aou\n", -8.99999999999999999);
 	printf(RESET);
 	printf(MAGENTA"my = %i\nor = %i\n" RESET, x2, x1);
 }
+//66666 66666 666
+//187ae 147ae 148 

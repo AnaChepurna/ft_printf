@@ -20,7 +20,7 @@ t_scheme			*scheme_new(void)
 	{
 		res->flag = 0;
 		res->width = 0;
-		res->precision = 0;
+		res->precision = -1;
 		res->size = 0;
 		res->type = 0;
 	}

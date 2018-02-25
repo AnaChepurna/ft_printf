@@ -8,7 +8,7 @@ long double		get_f(t_scheme *scheme, va_list ptr)
 		number = va_arg(ptr, long double);
 	else
 		number = va_arg(ptr, double);
-	if (!scheme->precision)
+	if (scheme->precision == -1)
 		scheme->precision = 6;
 	return(number);
 }
