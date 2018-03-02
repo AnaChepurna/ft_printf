@@ -57,7 +57,7 @@ char	*create_p(t_scheme *scheme, va_list ptr)
 {
 	char	*str;
 
-	printf("trying to create p\n");
+	//printf("trying to create p\n");
 	str = ft_itoa_base(get_u(scheme, ptr), 16);
 	add_base(scheme, &str);
 	if (scheme->width)
@@ -69,12 +69,12 @@ char	*create_s(t_scheme *scheme, va_list ptr)
 {
 	char	*str;
 
-	printf("%c\n", scheme->type);
+	//printf("%c\n", scheme->type);
 	if (scheme->type == 's')
 		str = ft_strdup((char *)get_s(scheme, ptr));
 	else
 	{
-		printf("null????\n");
+		//printf("null????\n");
 		str = NULL;
 	}
 	if (scheme->precision > 0)

@@ -45,7 +45,7 @@ int				ft_printf(const char *restrict format, ...)
 			i += handle_line(format + i, &list);
 	}
 	va_end(ptr);
-	printf("end of handling\n");
+	//printf("end of handling\n");
 	symbols = 0;
 	print_list(list, &symbols);
 	ft_lstdel(&list, &ft_memclr);

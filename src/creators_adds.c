@@ -25,6 +25,10 @@ char	*create_fe(t_scheme *scheme, va_list ptr)
 			str = create_exponent(scheme, number);
 		else
 			str = create_hexfloat(scheme, number);
+		if ((scheme->flag & F_PLUS) || (scheme->flag & F_SPACE))
+			sign_number(scheme, &str);
+		if (scheme->width)
+			width_number(scheme, &str);
 	}
 	return(str);
 }
@@ -69,6 +73,7 @@ void	binary_format(unsigned char	c, char **line, int space)
 	free(*line);
 	*line = buf;
 	free(str);
+	scheme_del(&scheme);
 }
 
 char	*create_b(t_scheme *scheme, va_list ptr)
@@ -80,11 +85,13 @@ char	*create_b(t_scheme *scheme, va_list ptr)
 
 	number = get_u(scheme, ptr);
 	size = get_size(scheme);
-	printf("%s == %ju\n ^^^ whole number\n", ft_itoa_base(number, 2), number);
-	printf("%i\n", size);
+	//printf("%s == %ju\n ^^^ whole number\n", ft_itoa_base(number, 2), number);
+	//printf("%i\n", size);
 	str = (unsigned char *)&number;
 	line = ft_strdup("");
 	while(--size >= 0)
 		binary_format(str[size], &line, size != 0);
+	if (scheme->width)
+			width_number(scheme, &line);
 	return (line);
 }

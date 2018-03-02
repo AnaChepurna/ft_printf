@@ -9,6 +9,7 @@ SRC_SRC = creators_core.c \
 		format_numbers.c \
 		format_str.c \
 		format_floats.c \
+		format_floats2.c \
 		ft_printf.c \
 		handle_format.c \
 		handle_line.c \

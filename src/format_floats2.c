@@ -24,7 +24,7 @@ int		find_power(double long *number, int *sign)
 		if ((buf = *number * ++p) >= 1)
 			*number = buf;
 	}
-	printf("%Lf\n", *number);
+	//printf("%Lf\n", *number);
 	return (p);
 }
 
