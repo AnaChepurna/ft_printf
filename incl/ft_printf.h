@@ -22,13 +22,15 @@
 
 # define IS_NUMBER(c) (c) >= '0' && (c) <= '9'
 # define IS_DI(n) (n) == 'd' || (n) == 'D' || (n) == 'i'
-# define IS_O(n)  (n) == 'o' || (n) == 'O' 
+# define IS_O(n) (n) == 'o' || (n) == 'O' 
 # define IS_U(n) (n) == 'u' || (n) == 'U'
 # define IS_X(n) (n) == 'x' || (n) == 'X'
 # define IS_C(n) (n) == 'c' || (n) == 'C'
 # define IS_S(n) (n) == 's' || (n) == 'S'
 # define IS_F(n) (n) == 'f' || (n) == 'F' || (n) == 'g'
 # define IS_E(n) (n) == 'e' || (n) == 'E' || (n) == 'G'
+# define IS_A(n) (n) == 'a' || (n) == 'A'
+# define IS_B(n) (n) == 'b'
 
 # define F_MINUS	1
 # define F_PLUS 	2
@@ -85,6 +87,7 @@ char			*create_s(t_scheme *scheme, va_list ptr);
  **creators_adds.c
 */
 char			*create_fe(t_scheme *scheme, va_list ptr);
+char			*create_b(t_scheme *scheme, va_list ptr);
 
 /*
  **format _numbers.c

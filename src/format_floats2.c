@@ -24,6 +24,7 @@ int		find_power(double long *number, int *sign)
 		if ((buf = *number * ++p) >= 1)
 			*number = buf;
 	}
+	printf("%Lf\n", *number);
 	return (p);
 }
 
@@ -32,16 +33,16 @@ int		count_teil_hex(long double number)
 	int		len;
 
 	len = 1;
-	while (len > 14 && number > 0)
+	while (len < 14 && number > 0)
 	{
 		number *= 16;
-		number -= (intmax_t)number;
+		number -= double_to_int(number);
 		len++;
 	}
 	return (len);
 }
 
-char	*teil_hex(long double number)
+char	*teil_hex(long double number, int precision)
 {
 	char		*line;
 	int			i;
@@ -49,33 +50,33 @@ char	*teil_hex(long double number)
 	const char	*mask = "0123456789abcdef";
 
 	len = count_teil_hex(number);
-	i = 0;
-	if ((line = ft_strnew(len)))
+	if (precision >= 0 && len > precision)
+		len = precision;
+	if (len && (line = ft_strnew(len)))
 	{
+		i = 0;
 		line[i++] = '.';
 		while (i < len)
 		{
 			number *= 16;
 			line[i] = mask[double_to_int(number)];
-			number -= (intmax_t)number;
+			number -= double_to_int(number);
 			i++;
 		}
 	}
 	return (line);
 }
 
-char	*ftoa_hex(long double number)
+char	*ftoa_hex(long double number, int precision)
 {
 	char	*head;
 	char	*teil;
 	char	*line;
-	int		len;
 
 	head = ft_itoa_base(number, 16);
 	number = number > 0 ? number : -number;
 	number -= (intmax_t)number;
-	teil = teil_hex(number);
-	len = ft_strlen(head);
+	teil = teil_hex(number, precision);
 	line = ft_strjoin(head, teil);
 	free(head);
 	free(teil);
@@ -91,17 +92,16 @@ char	*create_hexfloat(t_scheme *scheme, long double number)
 	int		sign[2];
 
 	p = find_power(&number, sign);
-	return (line);
-	mantissa = ftoa_hex(number);
+	mantissa = ftoa_hex(number, scheme->precision);
 	power = ft_itoa_base(p, 16);
-	if ((line = ft_strlen(mantissa) + ft_strlen(power) + 4 + sign[0]))
+	p = ft_strlen(mantissa);
+	if ((line = ft_strnew(p + ft_strlen(power) + 4 + sign[0])))
 	{
-		p = ft_strlen(mantissa);
 		if (sign[0])
 			line[0] = '-';
 		ft_strcpy(line + sign[0], "0x");
 		ft_strcpy(line + sign[0] + 2, mantissa);
-		ft_strcpy(line + sign[0] + 2 + p, "")
+		ft_strcpy(line + sign[0] + 2 + p, "");
 		line[sign[0] + 2 + p] = 'p';
 		line[sign[0] + 3 + p] = sign[1] ? '-' : '+';
 		ft_strcpy(line + sign[0] + 4 + p, power);

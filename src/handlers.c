@@ -16,15 +16,15 @@ int		handle_flags(const char *format, t_scheme *scheme)
 {
 	printf("handle_flags ->%s\n", format);
 	if (*format == '-')
-		return (scheme->flag += F_MINUS);
+		return (scheme->flag = scheme->flag | F_MINUS);
 	if (*format == '+')
-		return (scheme->flag += F_PLUS);
+		return (scheme->flag = scheme->flag | F_PLUS);
 	if (*format == ' ')
-		return (scheme->flag += F_SPACE);
+		return (scheme->flag = scheme->flag | F_SPACE);
 	if (*format == '#')
-		return (scheme->flag += F_HASH);
+		return (scheme->flag = scheme->flag | F_HASH);
 	if (*format == '0')
-		return (scheme->flag += F_ZERO);
+		return (scheme->flag = scheme->flag | F_ZERO);
 	return (0);
 }
 
