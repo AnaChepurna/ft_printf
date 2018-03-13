@@ -16,11 +16,11 @@ static void		print_list(t_list *lst, int	*symbols)
 {
 	while (lst)
 	{
-		ft_putstr(BLUE);
+		//ft_putstr(BLUE);
 		ft_putstr((char *)lst->content);
 		*symbols += lst->content_size - 1;
 		lst = lst->next;
-		ft_putstr(RESET);
+		//ft_putstr(RESET);
 	}
 }	
 

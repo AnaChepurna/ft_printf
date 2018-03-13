@@ -21,10 +21,10 @@ char	*create_fe(t_scheme *scheme, va_list ptr)
 	{
 		if (IS_F(scheme->type))
 			str = create_float(scheme, number);
-		else if (IS_E(scheme->type))
+		else //if (IS_E(scheme->type))
 			str = create_exponent(scheme, number);
-		else
-			str = create_hexfloat(scheme, number);
+		//lse
+		//:	str = create_hexfloat(scheme, number);
 		if ((scheme->flag & F_PLUS) || (scheme->flag & F_SPACE))
 			sign_number(scheme, &str);
 		if (scheme->width)

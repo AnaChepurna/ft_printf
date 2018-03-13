@@ -24,7 +24,10 @@ int		handle_flags(const char *format, t_scheme *scheme)
 	if (*format == '#')
 		return (scheme->flag = scheme->flag | F_HASH);
 	if (*format == '0')
+	{
+		//printf("zero - %i | = %i\n", F_ZERO, scheme->flag | F_ZERO);
 		return (scheme->flag = scheme->flag | F_ZERO);
+	}
 	return (0);
 }
 
@@ -69,6 +72,7 @@ int		handle_width(const char *format, t_scheme *scheme, va_list ptr)
 		while (IS_NUMBER(format[i]))
 			i++;
 	}
+	//printf("www%i\n", scheme->width);
 	return (i);
 }
 

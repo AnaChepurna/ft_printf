@@ -34,10 +34,13 @@ void			precision_number(t_scheme *scheme, char **str)
 	char	*line;
 	int		sign;
 
+	if (!scheme->precision)
+		precision_str(scheme, str);
 	sign = sign_control(*str);
 	len = (int)ft_strlen(*str);
 	if (len - sign < scheme->precision)
 	{
+		printf("%i\n", scheme->precision);
 		if ((line = ft_strnew(scheme->precision + sign)))
 		{
 			if (sign)
@@ -59,7 +62,8 @@ void			width_number(t_scheme *scheme, char **str)
 	len = ft_strlen(*str);
 	if (len < scheme->width)
 	{
-		if (!(scheme->flag & F_ZERO))
+		//printf("%i\n", scheme->flag);
+		if (!(scheme->flag & F_ZERO) || scheme->flag & F_MINUS)
 			width_str(scheme, str);
 		else if ((line = ft_strnew(scheme->width)))
 		{

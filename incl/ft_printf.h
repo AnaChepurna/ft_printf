@@ -82,6 +82,7 @@ char			*create_di(t_scheme *scheme, va_list ptr);
 char			*create_oux(t_scheme *scheme, va_list ptr);
 char			*create_p(t_scheme *scheme, va_list ptr);
 char			*create_s(t_scheme *scheme, va_list ptr);
+char			*create_frm(t_scheme *scheme);
 
 /*
  **creators_adds.c
