@@ -17,8 +17,8 @@ int		main(void)
 	//p = &num;
 	//char *str = "Привет";
 	int a = 0;
-	int x = ft_printf("%05d\n", 42);
-	int x2 = printf("%05d\n", 42);
+	int x = ft_printf("%");
+	int x2 = printf("%");
 	//printf(CYAN);
 	//printf("%#-08x", 42);
 	//printf("Privet, Привет, %Aou\n", -8.99999999999999999);

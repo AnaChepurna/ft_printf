@@ -96,7 +96,7 @@ void			add_base(t_scheme *scheme, char **str)
 	char		*line;
 	int			n;
 
-	if (ft_strequ(*str, "0"))
+	if (scheme->type != 'p' && ft_strequ(*str, "0"))
 		return ;
 	n = 0;
 	if (scheme->type == 'p' || IS_X(scheme->type))
