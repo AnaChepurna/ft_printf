@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   format_str.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/16 15:47:31 by achepurn          #+#    #+#             */
+/*   Updated: 2018/03/16 15:47:32 by achepurn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 void		width_str(t_scheme *scheme, char **str)
@@ -12,7 +24,6 @@ void		width_str(t_scheme *scheme, char **str)
 		{
 			if (!(scheme->flag & F_MINUS))
 			{
-				//printf ("width_str without minus\n");
 				ft_memset(line, ' ', scheme->width - len);
 				ft_strcpy(line + scheme->width - len, *str);
 			}
@@ -41,8 +52,3 @@ void		precision_str(t_scheme *scheme, char **str)
 		}
 	}
 }
-
-/*int			char_number(wchar_t wc)
-{
-	
-}*/

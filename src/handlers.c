@@ -14,7 +14,6 @@
 
 int		handle_flags(const char *format, t_scheme *scheme)
 {
-	//printf("handle_flags ->%s\n", format);
 	if (*format == '-')
 		return (scheme->flag = scheme->flag | F_MINUS);
 	if (*format == '+')
@@ -24,10 +23,7 @@ int		handle_flags(const char *format, t_scheme *scheme)
 	if (*format == '#')
 		return (scheme->flag = scheme->flag | F_HASH);
 	if (*format == '0')
-	{
-		//printf("zero - %i | = %i\n", F_ZERO, scheme->flag | F_ZERO);
 		return (scheme->flag = scheme->flag | F_ZERO);
-	}
 	return (0);
 }
 
@@ -36,7 +32,6 @@ int		handle_precision(const char *format, t_scheme *scheme, va_list ptr)
 	int		i;
 
 	i = 0;
-	//printf("handle_precision ->%s\n", format);
 	if (format[i] == '.')
 	{
 		i++;
@@ -60,7 +55,6 @@ int		handle_width(const char *format, t_scheme *scheme, va_list ptr)
 	int		i;
 
 	i = 0;
-	//printf("handle_width ->%s\n", format);
 	if (format[i] == '*')
 	{
 		scheme->width = va_arg(ptr, size_t);
@@ -72,7 +66,6 @@ int		handle_width(const char *format, t_scheme *scheme, va_list ptr)
 		while (IS_NUMBER(format[i]))
 			i++;
 	}
-	//printf("www%i\n", scheme->width);
 	return (i);
 }
 
@@ -101,13 +94,11 @@ int		handle_size(const char *format, t_scheme *scheme)
 		scheme->size = 'z';
 	else if (ft_strnequ(format, "L", 1))
 		scheme->size = 'L';
-	//printf("%i\n", i);
 	return (scheme->size ? ++i : i);
 }
 
 int		handle_type(const char *format, t_scheme *scheme)
 {
-	//printf("handle_type ->%s\n", format);
 	scheme->type = *format;
 	return (1);
 }

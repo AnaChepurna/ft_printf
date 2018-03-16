@@ -62,7 +62,6 @@ void			width_number(t_scheme *scheme, char **str)
 	len = ft_strlen(*str);
 	if (len < scheme->width)
 	{
-		//printf("%i\n", scheme->flag);
 		if (!(scheme->flag & F_ZERO) || scheme->flag & F_MINUS)
 			width_str(scheme, str);
 		else if ((line = ft_strnew(scheme->width)))

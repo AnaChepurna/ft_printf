@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: achepurn <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/03/16 15:48:34 by achepurn          #+#    #+#              #
+#    Updated: 2018/03/16 15:48:36 by achepurn         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 CC = gcc
 CFLAG = -Wall -Wextra -Werror 
 NAME = libftprintf.a
@@ -46,8 +58,7 @@ $(NAME): $(OBJ)
 clean:
 	rm -f $(OBJ)
 
-fclean: 
-	rm $(NAME)
+fclean: clean
+	rm -f $(NAME)
 
-re: 
-	fclean dir all
+re: fclean all

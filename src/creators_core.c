@@ -33,7 +33,6 @@ char	*create_oux(t_scheme *scheme, va_list ptr)
 	char	*str;
 	int		base;
 
-//printf("%i\n", scheme->flag);
 	if (IS_O(scheme->type))
 		base = 8;
 	else if (IS_X(scheme->type))
@@ -42,7 +41,6 @@ char	*create_oux(t_scheme *scheme, va_list ptr)
 		base = 10;
 	if ((scheme->flag & F_ZERO) && (scheme->precision > 0))
 		scheme->flag = scheme->flag ^ F_ZERO;
-	//printf("%i\n - width = %i", scheme->flag, scheme->width);
 	str = ft_itoa_base(get_u(scheme, ptr), base);
 	if (scheme->flag & F_HASH)
 		add_base(scheme, &str);
@@ -59,7 +57,6 @@ char	*create_p(t_scheme *scheme, va_list ptr)
 {
 	char	*str;
 
-	//printf("trying to create p\n");
 	str = ft_itoa_base(get_u(scheme, ptr), 16);
 	add_base(scheme, &str);
 	if (scheme->width)
@@ -73,7 +70,6 @@ char	*create_s(t_scheme *scheme, va_list ptr)
 	char	*s;
 	char	c;
 
-	//printf("%c\n", scheme->type);
 	if (scheme->type == 's')
 	{
 		s = get_s(scheme, ptr);
@@ -98,5 +94,5 @@ char	*create_frm(t_scheme *scheme)
 	str = ft_strdup("%");
 	if (scheme->width)
 		width_str(scheme, &str);
-	return(str);
+	return (str);
 }

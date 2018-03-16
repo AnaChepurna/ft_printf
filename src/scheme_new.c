@@ -6,7 +6,7 @@
 /*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/23 16:47:54 by achepurn          #+#    #+#             */
-/*   Updated: 2018/01/12 18:19:11 by achepurn         ###   ########.fr       */
+/*   Updated: 2018/03/16 15:29:20 by achepurn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,4 @@ void				scheme_del(t_scheme **s)
 {
 	free(*s);
 	*s = NULL;
-}
-
-void		print_scheme(t_scheme *s)
-{
-	printf("--SCHEME:\n flag %i\n width %i\n precision = %i\n size %i\n type %i\n--\n", 
-		 s->flag, s->width, s->precision,
-		s->size, s->type);
 }

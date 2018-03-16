@@ -22,7 +22,7 @@
 
 # define IS_NUMBER(c) (c) >= '0' && (c) <= '9'
 # define IS_DI(n) (n) == 'd' || (n) == 'D' || (n) == 'i'
-# define IS_O(n) (n) == 'o' || (n) == 'O' 
+# define IS_O(n) (n) == 'o' || (n) == 'O'
 # define IS_U(n) (n) == 'u' || (n) == 'U'
 # define IS_X(n) (n) == 'x' || (n) == 'X'
 # define IS_C(n) (n) == 'c' || (n) == 'C'
@@ -52,7 +52,6 @@ typedef struct	s_scheme
 */
 t_scheme		*scheme_new(void);
 void			scheme_del(t_scheme **s);
-void			print_scheme(t_scheme *s);
 
 /*
  **handle_format.c
@@ -103,7 +102,6 @@ void			add_base(t_scheme *scheme, char **str);
 */
 void			width_str(t_scheme *scheme, char **str);
 void			precision_str(t_scheme *scheme, char **str);
-
 
 /*
  **format_float.c

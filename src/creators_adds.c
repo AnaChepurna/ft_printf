@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   creators_adds.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/16 15:47:46 by achepurn          #+#    #+#             */
+/*   Updated: 2018/03/16 15:47:48 by achepurn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 char	*handle_naninf(long double number)
@@ -36,19 +48,19 @@ char	*create_fe(t_scheme *scheme, va_list ptr)
 int		get_size(t_scheme *scheme)
 {
 	if (!scheme->size)
-		return(sizeof(unsigned int));
+		return (sizeof(unsigned int));
 	if (scheme->size == 'h')
-		return(sizeof(unsigned short));
+		return (sizeof(unsigned short));
 	if (scheme->size == 'h' + 'h')
-		return(sizeof(unsigned char));
+		return (sizeof(unsigned char));
 	if (scheme->size == 'l')
-		return(sizeof(unsigned long int));
+		return (sizeof(unsigned long int));
 	if (scheme->size == 'l' + 'l')
-		return(sizeof(unsigned long long int));
+		return (sizeof(unsigned long long int));
 	if (scheme->size == 'z')
-		return(sizeof(size_t));
+		return (sizeof(size_t));
 	if (scheme->size == 'j')
-		return(sizeof(uintmax_t));
+		return (sizeof(uintmax_t));
 	else
 		exit(1);
 }
@@ -85,11 +97,9 @@ char	*create_b(t_scheme *scheme, va_list ptr)
 
 	number = get_u(scheme, ptr);
 	size = get_size(scheme);
-	//printf("%s == %ju\n ^^^ whole number\n", ft_itoa_base(number, 2), number);
-	//printf("%i\n", size);
 	str = (unsigned char *)&number;
 	line = ft_strdup("");
-	while(--size >= 0)
+	while (--size >= 0)
 		binary_format(str[size], &line, size != 0);
 	if (scheme->width)
 			width_number(scheme, &line);

@@ -12,17 +12,15 @@
 
 #include "ft_printf.h"
 
-static void		print_list(t_list *lst, int	*symbols)
+static void		print_list(t_list *lst, int *symbols)
 {
 	while (lst)
 	{
-		//ft_putstr(BLUE);
 		ft_putstr((char *)lst->content);
 		*symbols += lst->content_size - 1;
 		lst = lst->next;
-		//ft_putstr(RESET);
 	}
-}	
+}
 
 int				ft_printf(const char *restrict format, ...)
 {
@@ -45,7 +43,6 @@ int				ft_printf(const char *restrict format, ...)
 			i += handle_line(format + i, &list);
 	}
 	va_end(ptr);
-	//printf("end of handling\n");
 	symbols = 0;
 	print_list(list, &symbols);
 	ft_lstdel(&list, &ft_memclr);

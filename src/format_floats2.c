@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   format_floats2.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/16 15:45:27 by achepurn          #+#    #+#             */
+/*   Updated: 2018/03/16 15:45:29 by achepurn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int		find_power(double long *number, int *sign)
@@ -24,7 +36,6 @@ int		find_power(double long *number, int *sign)
 		if ((buf = *number * ++p) >= 1)
 			*number = buf;
 	}
-	//printf("%Lf\n", *number);
 	return (p);
 }
 

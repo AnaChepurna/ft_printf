@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   format_floats.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/16 15:48:05 by achepurn          #+#    #+#             */
+/*   Updated: 2018/03/16 15:48:07 by achepurn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int			double_to_int(long double number)
@@ -22,21 +34,16 @@ char		*create_float(t_scheme *scheme, long double number)
 
 	integer = ft_itoa(number);
 	len = ft_strlen(integer);
-	//printf("%s\n%i-------\n", integer, len);
 	line = ft_strnew(len + scheme->precision + (scheme->precision ? 1 : 0));
 	ft_strcpy(line, integer);
-	//printf("%s\n%i----%i---%s\n", line, scheme->precision, len, integer);
 	line[len] = scheme->precision ? '.' : '\0';
 	number = number > 0 ? number : -number;
 	number -= (intmax_t)number;
-	//printf("%s\n%i-------\n", line, scheme->precision);
 	i = 1;
 	while (i <= scheme->precision)
 	{
-		//printf("%Lf\n", number);
 		number *= 10;
 		line[len + i] = '0' + double_to_int(number);
-		//printf("%s\n", line);
 		number -= double_to_int(number);
 		i++;
 	}
@@ -58,7 +65,7 @@ char		*format_exponent(int expo)
 	return (res);
 }
 
-int			find_expo(long double  *number)
+int			find_expo(long double *number)
 {
 	int expo;
 	int sign;
@@ -104,5 +111,5 @@ char		*create_exponent(t_scheme *scheme, long double number)
 	}
 	free(mantissa);
 	free(exponent);
-	return(line);
+	return (line);
 }
