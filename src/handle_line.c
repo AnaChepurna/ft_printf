@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int		handle_line(const char *format, t_list **list)
+int		handle_line(const char *format, int *symbols)
 {
 	int		i;
 	char	*str;
@@ -24,7 +24,8 @@ int		handle_line(const char *format, t_list **list)
 	if (i)
 	{
 		str = ft_strsub(format, 0, i);
-		ft_lstaddend(list, ft_lstnew(str, i + 1));
+		ft_putstr(str);
+		*symbols += i;
 		free(str);
 	}
 	return (i);

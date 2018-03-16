@@ -40,7 +40,6 @@ void			precision_number(t_scheme *scheme, char **str)
 	len = (int)ft_strlen(*str);
 	if (len - sign < scheme->precision)
 	{
-		printf("%i\n", scheme->precision);
 		if ((line = ft_strnew(scheme->precision + sign)))
 		{
 			if (sign)

@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-char	*create_di(t_scheme *scheme, va_list ptr)
+void	create_di(int *symbols, t_scheme *scheme, va_list ptr)
 {
 	char	*str;
 
@@ -25,10 +25,12 @@ char	*create_di(t_scheme *scheme, va_list ptr)
 		precision_number(scheme, &str);
 	if (scheme->width)
 		width_number(scheme, &str);
-	return (str);
+	ft_putstr(str);
+	*symbols += ft_strlen(str);
+	free(str);
 }
 
-char	*create_oux(t_scheme *scheme, va_list ptr)
+void	create_oux(int *symbols, t_scheme *scheme, va_list ptr)
 {
 	char	*str;
 	int		base;
@@ -50,10 +52,12 @@ char	*create_oux(t_scheme *scheme, va_list ptr)
 		width_number(scheme, &str);
 	if (scheme->type == 'X')
 		ft_strcase(str, UP);
-	return (str);
+	ft_putstr(str);
+	*symbols += ft_strlen(str);
+	free(str);
 }
 
-char	*create_p(t_scheme *scheme, va_list ptr)
+void	create_p(int *symbols, t_scheme *scheme, va_list ptr)
 {
 	char	*str;
 
@@ -61,38 +65,44 @@ char	*create_p(t_scheme *scheme, va_list ptr)
 	add_base(scheme, &str);
 	if (scheme->width)
 		width_str(scheme, &str);
-	return (str);
+	ft_putstr(str);
+	*symbols += ft_strlen(str);
+	free(str);
 }
 
-char	*create_s(t_scheme *scheme, va_list ptr)
+void	create_s(int *symbols, t_scheme *scheme, va_list ptr)
 {
 	char	*str;
 	char	*s;
-	char	c;
 
 	if (scheme->type == 's')
 	{
 		s = get_s(scheme, ptr);
 		str = s ? ft_strdup(s) : ft_strdup("(null)");
 	}
-	else
-	{
-		c = get_c(scheme, ptr);
-		str = ft_strdup(&c);
-	}
 	if (scheme->precision > 0)
 		precision_str(scheme, &str);
 	if (scheme->width)
 		width_str(scheme, &str);
-	return (str);
+	ft_putstr(str);
+	*symbols += ft_strlen(str);
+	free(str);
 }
 
-char	*create_frm(t_scheme *scheme)
+void	create_c(int *symbols, t_scheme *scheme, va_list ptr)
 {
 	char	*str;
+	char	c;
+	size_t	i;
 
-	str = ft_strdup("%");
+	str = ft_strdup("!");
+	c = get_c(scheme, ptr);
 	if (scheme->width)
 		width_str(scheme, &str);
-	return (str);
+	i = 0;
+	while (str[i] && str[i + 1])
+		ft_putchar(str[i++]);
+	ft_putchar(c);
+	*symbols += ft_strlen(str);
+	free(str);
 }

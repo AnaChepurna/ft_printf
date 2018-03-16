@@ -56,12 +56,12 @@ void			scheme_del(t_scheme **s);
 /*
  **handle_format.c
 */
-int				handle_format(const char *format, t_list **list, va_list ptr);
+int				handle_format(const char *format, int *symbols, va_list ptr);
 
 /*
  **handle_line.c
 */
-int				handle_line(const char *format, t_list **list);
+int				handle_line(const char *format, int *symbols);
 
 /*
  **handlers.c
@@ -77,17 +77,17 @@ int				handle_type(const char *format, t_scheme *scheme);
 /*
  **creators_core.c
 */
-char			*create_di(t_scheme *scheme, va_list ptr);
-char			*create_oux(t_scheme *scheme, va_list ptr);
-char			*create_p(t_scheme *scheme, va_list ptr);
-char			*create_s(t_scheme *scheme, va_list ptr);
-char			*create_frm(t_scheme *scheme);
+void			create_di(int *symbols, t_scheme *scheme, va_list ptr);
+void			create_oux(int *symbols, t_scheme *scheme, va_list ptr);
+void			create_p(int *symbols, t_scheme *scheme, va_list ptr);
+void			create_s(int *symbols, t_scheme *scheme, va_list ptr);
+void			create_c(int *symbols, t_scheme *scheme, va_list ptr);
 
 /*
  **creators_adds.c
 */
-char			*create_fe(t_scheme *scheme, va_list ptr);
-char			*create_b(t_scheme *scheme, va_list ptr);
+void			create_fe(int *symbols, t_scheme *scheme, va_list ptr);
+void			create_b(int *symbols, t_scheme *scheme, va_list ptr);
 
 /*
  **format _numbers.c
@@ -114,6 +114,13 @@ int				double_to_int(long double number);
  **format_float2s.c
 */
 char			*create_hexfloat(t_scheme *scheme, long double number);
+
+/*
+ **format_adds.c
+*/
+char			*handle_naninf(long double number);
+int				get_size(t_scheme *scheme);
+void			binary_format(unsigned char	c, char **line, int space);
 
 /*
  **getters_core.c
