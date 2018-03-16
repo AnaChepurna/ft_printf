@@ -34,8 +34,6 @@ void			precision_number(t_scheme *scheme, char **str)
 	char	*line;
 	int		sign;
 
-	if (!scheme->precision)
-		precision_str(scheme, str);
 	sign = sign_control(*str);
 	len = (int)ft_strlen(*str);
 	if (len - sign < scheme->precision)

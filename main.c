@@ -16,13 +16,14 @@ int		main(void)
 	//num = 335298840;
 	//p = &num;
 	//char *str = "Привет";
-	ft_printf("%c\n", NULL);
-	printf("%c\n", NULL);
+	int a = 0;
+	int x = ft_printf("%05d\n", 42);
+	int x2 = printf("%05d\n", 42);
 	//printf(CYAN);
 	//printf("%#-08x", 42);
 	//printf("Privet, Привет, %Aou\n", -8.99999999999999999);
 	//printf(RESET);
-	//printf(MAGENTA"my = %i\nor = %i\n" RESET, x2, x1);
+	printf(MAGENTA"my = %i\nor = %i\n" RESET, x, x2);
 }
 //66666 66666 666
 //187ae 147ae 148 ./

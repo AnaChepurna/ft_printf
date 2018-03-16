@@ -14,14 +14,13 @@
 
 int				ft_printf(const char *restrict format, ...)
 {
-	t_list			*list;
 	va_list			ptr;
 	int				symbols;
 	int				i;
 
 	va_start(ptr, format);
 	i = 0;
-	list = NULL;
+	symbols = 0;
 	while (format[i])
 	{
 		if (format[i] == '%')

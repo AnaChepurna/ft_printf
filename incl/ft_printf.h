@@ -21,7 +21,7 @@
 # define MAGENTA	"\x1B[35m"
 
 # define IS_NUMBER(c) (c) >= '0' && (c) <= '9'
-# define IS_DI(n) (n) == 'd' || (n) == 'D' || (n) == 'i'
+# define IS_I(n) (n) == 'd' || (n) == 'D' || (n) == 'i'
 # define IS_O(n) (n) == 'o' || (n) == 'O'
 # define IS_U(n) (n) == 'u' || (n) == 'U'
 # define IS_X(n) (n) == 'x' || (n) == 'X'

@@ -28,6 +28,8 @@ intmax_t	get_i(t_scheme *scheme, va_list ptr)
 		number = va_arg(ptr, long long int);
 	else if (scheme->size == 'j')
 		number = va_arg(ptr, intmax_t);
+	else if (scheme->size == 'z')
+		number = va_arg(ptr, ssize_t);
 	else
 		exit(1);
 	return (number);
