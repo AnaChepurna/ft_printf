@@ -22,10 +22,10 @@ void	create_fe(int *symbols, t_scheme *scheme, va_list ptr)
 	{
 		if (IS_F(scheme->type))
 			str = create_float(scheme, number);
-		else //if (IS_E(scheme->type))
+		else if (IS_E(scheme->type))
 			str = create_exponent(scheme, number);
-		//lse
-		//:	str = create_hexfloat(scheme, number);
+		else
+			str = create_hexfloat(scheme, number);
 		if ((scheme->flag & F_PLUS) || (scheme->flag & F_SPACE))
 			sign_number(scheme, &str);
 		if (scheme->width)
@@ -49,9 +49,11 @@ void	create_b(int *symbols, t_scheme *scheme, va_list ptr)
 	line = ft_strdup("");
 	while (--size >= 0)
 		binary_format(str[size], &line, size != 0);
+	if (scheme->precision > -1)
+		binary_precision(scheme, &line);
 	if (scheme->width)
 		width_number(scheme, &line);
-	ft_putstr((char *)str);
+	ft_putstr((char *)line);
 	*symbols += ft_strlen((char *)str);
 	free(line);
 }

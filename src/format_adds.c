@@ -31,6 +31,34 @@ int		get_size(t_scheme *scheme)
 		exit(1);
 }
 
+void	binary_precision(t_scheme *scheme, char **str)
+{
+	char	*buf;
+	int		size;
+	size_t	i;
+
+	size = get_size(scheme);
+	while (scheme->precision > size)
+	{
+		buf = ft_strjoin("00000000 ", *str);
+		free(*str);
+		*str = buf;
+		size++;
+	}
+	i = 0;
+	while (scheme->precision < size)
+	{
+		i += size > 1 ? 9 : 8;
+		size--;
+	}
+	if (i)
+	{
+		buf = ft_strdup(*str + i);
+		free(*str);
+		*str = buf;
+	}
+}
+
 void	binary_format(unsigned char	c, char **line, int space)
 {
 	t_scheme	*scheme;

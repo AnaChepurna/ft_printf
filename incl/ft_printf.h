@@ -114,6 +114,7 @@ int				double_to_int(long double number);
  **format_float2s.c
 */
 char			*create_hexfloat(t_scheme *scheme, long double number);
+char			*ft_ftoa(long double number, int precision, int base);
 
 /*
  **format_adds.c
@@ -121,6 +122,7 @@ char			*create_hexfloat(t_scheme *scheme, long double number);
 char			*handle_naninf(long double number);
 int				get_size(t_scheme *scheme);
 void			binary_format(unsigned char	c, char **line, int space);
+void			binary_precision(t_scheme *scheme, char **str);
 
 /*
  **getters_core.c

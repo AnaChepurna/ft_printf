@@ -99,7 +99,7 @@ void			add_base(t_scheme *scheme, char **str)
 	if (scheme->type != 'p' && ft_strequ(*str, "0"))
 		return ;
 	n = 0;
-	if (scheme->type == 'p' || IS_X(scheme->type))
+	if (scheme->type == 'p' || IS_X(scheme->type) || IS_A(scheme->type))
 		n = 2;
 	else if (IS_O(scheme->type))
 		n = 1;

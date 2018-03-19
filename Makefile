@@ -28,7 +28,8 @@ SRC_SRC = creators_core.c \
 		scheme_new.c \
 		getters_core.c \
 		getters_adds.c \
-		format_adds.c
+		format_adds.c \
+		format_floats2.c
 SRC_LIB = ft_lstprint.c	ft_striter.c ft_lstrm.c ft_striteri.c \
 	  ft_arrtolst.c ft_memalloc.c ft_strjoin.c ft_atoi.c \
 	  ft_memccpy.c ft_strlcat.c ft_atoi_base.c ft_memchr.c \
