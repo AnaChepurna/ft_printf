@@ -22,8 +22,6 @@ long double		get_f(t_scheme *scheme, va_list ptr)
 		number = va_arg(ptr, double);
 	if (scheme->precision == -1 && !(IS_A(scheme->type)))
 		scheme->precision = 6;
-	if (scheme->precision == -1 && (IS_A(scheme->type)))
-		scheme->precision = 14;
 	return (number);
 }
 

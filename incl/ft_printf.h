@@ -45,7 +45,10 @@ typedef struct	s_scheme
 	int			precision;
 	int			size;
 	int			type;
+	int			order;
 }				t_scheme;
+
+void			print_scheme(t_scheme *scheme);
 
 /*
  **cheme_new.c

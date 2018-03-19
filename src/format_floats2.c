@@ -33,9 +33,7 @@ char	*teil_ftoa(long double number, int precision, int base)
 	int			len;
 	const char	*mask = "0123456789abcdefghijklmnopqrstuvwxyz";
 
-	len = count_teil(number, base);
-	if (precision >= 0 && len > precision)
-		len = precision;
+	len = (precision < 0) ? count_teil(number, base) : precision + 1;
 	if (len && (line = ft_strnew(len)))
 	{
 		i = 0;

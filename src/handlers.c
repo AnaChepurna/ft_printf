@@ -66,6 +66,12 @@ int		handle_width(const char *format, t_scheme *scheme, va_list ptr)
 		while (IS_NUMBER(format[i]))
 			i++;
 	}
+	if (format[i] == '$')
+	{
+		scheme->order = scheme->width;
+		scheme->width = 0;
+		i++;
+	}
 	return (i);
 }
 

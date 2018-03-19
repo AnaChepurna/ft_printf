@@ -46,6 +46,16 @@ static void		create_format(int *symbols, t_scheme *scheme, va_list ptr)
 		create_n(symbols, ptr);
 }
 
+void			print_scheme(t_scheme *scheme)
+{
+	printf("flags = %i\n", scheme->flag);
+	printf("width = %i\n", scheme->width);
+	printf("preci = %i\n", scheme->precision);
+	printf("size  = %c\n", (char)scheme->size);
+	printf("type  = %c\n", (char)scheme->type);
+	printf("order = %i\n", scheme->order);
+}
+
 int				handle_format(const char *format, int *symbols, va_list ptr)
 {
 	t_scheme	*scheme;
@@ -56,9 +66,16 @@ int				handle_format(const char *format, int *symbols, va_list ptr)
 	while (handle_flags(format + i, scheme))
 		i++;
 	i += handle_width(format + i, scheme, ptr);
+	if (scheme->order)
+	{
+		while (handle_flags(format + i, scheme))
+			i++;
+		i += handle_width(format + i, scheme, ptr);
+	}
 	i += handle_precision(format + i, scheme, ptr);
 	i += handle_size(format + i, scheme);
 	i += handle_type(format + i, scheme);
+	//print_scheme(scheme);
 	create_format(symbols, scheme, ptr);
 	scheme_del(&scheme);
 	return (i);

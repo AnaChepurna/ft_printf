@@ -29,7 +29,7 @@ void	create_fe(int *symbols, t_scheme *scheme, va_list ptr)
 		if ((scheme->flag & F_PLUS) || (scheme->flag & F_SPACE))
 			sign_number(scheme, &str);
 		if (scheme->width)
-			width_number(scheme, &str);
+			width_str(scheme, &str);
 	}
 	ft_putstr(str);
 	*symbols += ft_strlen(str);

@@ -25,9 +25,9 @@ int main(void)
 	char *str = "Привет!!!";
 	char c = *str;
 
-	int x1 = printf("%c, %c, %C, %C, %lc, %C\n", 't', NULL, NULL, L't', L't', L'Т');
-	int x2 = ft_printf("%c, %c, %C, %C, %lc, %C\n", 't', NULL, NULL, L't', L't', L'Т');
-	//int x2 = ft_printf("%f, $love %C %c\n", d, wchar, c);
+	printf("%2$10a, %01$+30.3a\n", 3.14, 678.55555565);
 
-	printf("%i - %i\n", x1, x2);
+	ft_printf("%10a, %0+30.3a\n", 3.14, 678.55555565);
+	
+	//printf("%i - %i\n", x1, x2);
 }
