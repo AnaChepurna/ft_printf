@@ -18,15 +18,12 @@
 int main(void)
 {
 	double d = -1.55;
+	int	n;
+	int n2;
 
-	printf("%f, %e, %a\n", d, d, d);
+	printf("%f, %e, %a%n\n", d, d, d, &n);
 
-	char	str[8];
-	int i = 0;
-	while (i < 8)
-	{
-		str[i] = ((long long int *)&d)[8 - i];
-		i++;
-	}
-	ft_printf("%f, %e, %a\n", d, d, d);
+	ft_printf("%f, %e, %a%n\n", d, d, d, &n2);
+
+	printf("%i, %i\n", n, n2);
 }

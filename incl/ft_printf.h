@@ -88,6 +88,7 @@ void			create_c(int *symbols, t_scheme *scheme, va_list ptr);
 */
 void			create_fe(int *symbols, t_scheme *scheme, va_list ptr);
 void			create_b(int *symbols, t_scheme *scheme, va_list ptr);
+void			create_n(int *symbols, va_list ptr);
 
 /*
  **format _numbers.c
@@ -114,7 +115,6 @@ int				double_to_int(long double number);
  **format_float2s.c
 */
 char			*create_hexfloat(t_scheme *scheme, long double number);
-char			*ft_ftoa(long double number, int precision, int base);
 
 /*
  **format_adds.c
@@ -136,5 +136,6 @@ void			*get_s(t_scheme *scheme, va_list prt);
  **getters_adds.c
 */
 long double		get_f(t_scheme *scheme, va_list ptr);
+int				*get_n(va_list prt);
 
 #endif

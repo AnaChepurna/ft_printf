@@ -42,6 +42,8 @@ static void		create_format(int *symbols, t_scheme *scheme, va_list ptr)
 		create_fe(symbols, scheme, ptr);
 	if (IS_B(scheme->type))
 		create_b(symbols, scheme, ptr);
+	if (scheme->type == 'n')
+		create_n(symbols, ptr);
 }
 
 int				handle_format(const char *format, int *symbols, va_list ptr)

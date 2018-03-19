@@ -57,3 +57,11 @@ void	create_b(int *symbols, t_scheme *scheme, va_list ptr)
 	*symbols += ft_strlen((char *)str);
 	free(line);
 }
+
+void	create_n(int *symbols, va_list ptr)
+{
+	int		*n;
+
+	n = get_n(ptr);
+	*n = *symbols;
+}

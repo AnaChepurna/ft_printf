@@ -26,3 +26,8 @@ long double		get_f(t_scheme *scheme, va_list ptr)
 		scheme->precision = 14;
 	return (number);
 }
+
+int				*get_n(va_list prt)
+{
+	return(va_arg(prt, int *));
+}
