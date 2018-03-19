@@ -20,10 +20,14 @@ int main(void)
 	double d = -1.55;
 	int	n;
 	int n2;
+	wchar_t wchar = L'r';
+	wchar_t *wstr = L"oh nice!";
+	char *str = "Привет!!!";
+	char c = *str;
 
-	printf("%f, %e, %a%n\n", d, d, d, &n);
+	int x1 = printf("%c, %c, %C, %C, %lc, %C\n", 't', NULL, NULL, L't', L't', L'Т');
+	int x2 = ft_printf("%c, %c, %C, %C, %lc, %C\n", 't', NULL, NULL, L't', L't', L'Т');
+	//int x2 = ft_printf("%f, $love %C %c\n", d, wchar, c);
 
-	ft_printf("%f, %e, %a%n\n", d, d, d, &n2);
-
-	printf("%i, %i\n", n, n2);
+	printf("%i - %i\n", x1, x2);
 }

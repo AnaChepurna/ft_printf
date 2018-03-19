@@ -78,7 +78,7 @@ void		*get_s(t_scheme *scheme, va_list ptr)
 
 	if (scheme->type == 'S' || scheme->size == 'l')
 		pointer = va_arg(ptr, wchar_t *);
-	if (scheme->type == 'c' || scheme->size == 0)
+	if (scheme->type == 's' || scheme->size == 0)
 		pointer = va_arg(ptr, char *);
 	else
 		exit(1);

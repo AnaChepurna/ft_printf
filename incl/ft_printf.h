@@ -123,6 +123,7 @@ char			*handle_naninf(long double number);
 int				get_size(t_scheme *scheme);
 void			binary_format(unsigned char	c, char **line, int space);
 void			binary_precision(t_scheme *scheme, char **str);
+char			*create_wstr(wchar_t *ptr);
 
 /*
  **getters_core.c

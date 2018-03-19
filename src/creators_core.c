@@ -79,12 +79,21 @@ void	create_p(int *symbols, t_scheme *scheme, va_list ptr)
 void	create_s(int *symbols, t_scheme *scheme, va_list ptr)
 {
 	char	*str;
-	char	*s;
+	void	*s;
 
-	if (scheme->type == 's')
+	s = get_s(scheme, ptr);
+	if (!s)
+		str = ft_strdup("(null)");
+	else if (scheme->type == 's')
+		str = ft_strdup((char *)s);
+	else
 	{
-		s = get_s(scheme, ptr);
-		str = s ? ft_strdup(s) : ft_strdup("(null)");
+		str = create_wstr((wchar_t *)s);
+		if (!str)
+		{
+			*symbols = -1;
+			return ;
+		}
 	}
 	if (scheme->precision > 0)
 		precision_str(scheme, &str);
@@ -98,25 +107,26 @@ void	create_s(int *symbols, t_scheme *scheme, va_list ptr)
 void	create_c(int *symbols, t_scheme *scheme, va_list ptr)
 {
 	char	*str;
-	char	c;
-	size_t	i;
+	wchar_t	c;
+	size_t	i[2];
 
 	str = ft_strdup("!");
 	c = get_c(scheme, ptr);
-	if (scheme->width)
-		width_str(scheme, &str);
-	if (scheme->flag & F_MINUS)
-	{
-		ft_putchar(c);
-		ft_putstr(str + 1);
-	}
+	if ((scheme->type == 'C' || scheme->size == 'l') && !ft_isascii((int)c))
+		*symbols = -1;
 	else
 	{
-		i = 0;
-		while (str[i] && str[i + 1])
-			ft_putchar(str[i++]);
-		ft_putchar(c);
+		if (scheme->width)
+			width_str(scheme, &str);
+		i[0] = ft_strlen(str);
+		if (scheme->flag & F_MINUS)
+			str[0] = (char)c;
+		else
+			str[i[0] - 1] = (char)c;
+		i[1] = 0;
+		while (i[1] < i[0])
+			ft_putchar(str[i[1]++]);
+		*symbols += i[0];
 	}
-	*symbols += ft_strlen(str);
 	free(str);
 }

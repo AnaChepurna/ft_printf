@@ -81,3 +81,27 @@ void	binary_format(unsigned char	c, char **line, int space)
 	free(str);
 	scheme_del(&scheme);
 }
+
+char	*create_wstr(wchar_t *ptr)
+{
+	int		i;
+	char	*res;
+
+	i = 0;
+	while (ptr[i])
+	{
+		if (!ft_isascii((int)ptr[i]))
+			return (NULL);
+		i++;
+	}
+	if ((res = ft_strnew(i)))
+	{
+		i = 0;
+		while (ptr[i])
+		{
+			res[i] = (char)ptr[i];
+			i++;
+		}
+	}
+	return (res);
+}

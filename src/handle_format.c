@@ -28,21 +28,21 @@ static void		create_format(int *symbols, t_scheme *scheme, va_list ptr)
 {
 	if (scheme->type == '%')
 		create_frm(symbols, scheme);
-	if (IS_I(scheme->type))
+	else if (IS_I(scheme->type))
 		create_di(symbols, scheme, ptr);
-	if (IS_O(scheme->type) || IS_X(scheme->type) || IS_U(scheme->type))
+	else if (IS_O(scheme->type) || IS_X(scheme->type) || IS_U(scheme->type))
 		create_oux(symbols, scheme, ptr);
-	if (scheme->type == 'p')
+	else if (scheme->type == 'p')
 		create_p(symbols, scheme, ptr);
-	if (IS_S(scheme->type))
-		create_s(symbols, scheme, ptr);
-	if (IS_C(scheme->type))
+	else if (IS_S(scheme->type))
+		(create_s(symbols, scheme, ptr));
+	else if (IS_C(scheme->type))
 		create_c(symbols, scheme, ptr);
-	if (IS_F(scheme->type) || IS_E(scheme->type) || IS_A(scheme->type))
+	else if (IS_F(scheme->type) || IS_E(scheme->type) || IS_A(scheme->type))
 		create_fe(symbols, scheme, ptr);
-	if (IS_B(scheme->type))
+	else if (IS_B(scheme->type))
 		create_b(symbols, scheme, ptr);
-	if (scheme->type == 'n')
+	else if (scheme->type == 'n')
 		create_n(symbols, ptr);
 }
 

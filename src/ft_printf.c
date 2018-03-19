@@ -21,7 +21,7 @@ int				ft_printf(const char *restrict format, ...)
 	va_start(ptr, format);
 	i = 0;
 	symbols = 0;
-	while (format[i])
+	while (format[i] && symbols > -1)
 	{
 		if (format[i] == '%')
 		{
