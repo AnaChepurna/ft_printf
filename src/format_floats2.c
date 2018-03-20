@@ -6,7 +6,7 @@
 /*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 15:45:27 by achepurn          #+#    #+#             */
-/*   Updated: 2018/03/16 15:45:29 by achepurn         ###   ########.fr       */
+/*   Updated: 2018/03/20 11:06:10 by achepurn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*teil_ftoa(long double number, int precision, int base)
 	const char	*mask = "0123456789abcdefghijklmnopqrstuvwxyz";
 
 	len = (precision < 0) ? count_teil(number, base) : precision + 1;
-	if (len && (line = ft_strnew(len)))
+	if ((line = ft_strnew(len)) && len)
 	{
 		i = 0;
 		line[i++] = '.';

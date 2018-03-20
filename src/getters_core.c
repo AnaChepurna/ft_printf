@@ -6,7 +6,7 @@
 /*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 15:29:04 by achepurn          #+#    #+#             */
-/*   Updated: 2018/03/16 15:29:06 by achepurn         ###   ########.fr       */
+/*   Updated: 2018/03/20 11:27:54 by achepurn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ uintmax_t	get_u(t_scheme *scheme, va_list ptr)
 	else if (scheme->size == 'l' + 'l')
 		number = va_arg(ptr, unsigned long long int);
 	else if (scheme->size == 'h')
-		number = (short int)va_arg(ptr, unsigned int);
+		number = (unsigned short)va_arg(ptr, unsigned int);
 	else if (scheme->size == 'h' + 'h')
 		number = (unsigned char)va_arg(ptr, unsigned int);
 	else if (scheme->size == 'z')
