@@ -13,7 +13,7 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "../ft_printf.h"
+# include "../libftprintf.h"
 
 # define CYAN		"\x1B[36m"
 # define BLUE		"\x1B[34m"
