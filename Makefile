@@ -6,7 +6,7 @@
 #    By: achepurn <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/16 15:48:34 by achepurn          #+#    #+#              #
-#    Updated: 2018/03/22 19:57:54 by achepurn         ###   ########.fr        #
+#    Updated: 2018/03/22 20:33:27 by achepurn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+#	ranlib $(NAME)
 
 %.o: %.c 
 	$(CC) -c $(CFLAG) -I $(INCL) $< -o $@
