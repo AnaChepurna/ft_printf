@@ -65,10 +65,8 @@ wchar_t		get_c(t_scheme *scheme, va_list ptr)
 
 	if (scheme->size == 'l' || scheme->type == 'C')
 		symbol = (wchar_t)va_arg(ptr, wint_t);
-	else if (scheme->size == 0)
-		symbol = (unsigned char)va_arg(ptr, int);
 	else
-		exit(1);
+		symbol = (unsigned char)va_arg(ptr, int);
 	return (symbol);
 }
 

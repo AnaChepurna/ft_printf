@@ -65,3 +65,22 @@ void	create_n(int *symbols, va_list ptr)
 	n = get_n(ptr);
 	*n = *symbols;
 }
+
+void	create_blanc(int *symbols, t_scheme *scheme)
+{
+	char	*str;
+
+	str = ft_strdup("!");
+	if (scheme->width)
+		width_str(scheme, &str);
+	if (scheme->flag & F_MINUS)
+		ft_putstr(str + 1);
+	else
+		str[i[0] - 1] = (char)c;
+	i[1] = 0;
+	while (i[1] < i[0])
+		ft_putchar(str[i[1]++]);
+	*symbols += i[0];
+	}
+	free(str);
+}
