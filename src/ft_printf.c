@@ -21,7 +21,9 @@ int				ft_printf(const char *restrict format, ...)
 	va_start(ptr, format);
 	i = 0;
 	symbols = 0;
-	while (format[i] && symbols > -1)
+	i++;
+	symbols++;
+	/*while (format[i] && symbols > -1)
 	{
 		if (format[i] == '%')
 		{
@@ -30,7 +32,8 @@ int				ft_printf(const char *restrict format, ...)
 		}
 		else
 			i += handle_line(format + i, &symbols);
-	}
+	} */
+	ft_putstr("wow");
 	va_end(ptr);
 	return (symbols);
 }
