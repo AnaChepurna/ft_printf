@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void		create_frm(int *symbols, t_scheme *scheme)
+/*static void		create_frm(int *symbols, t_scheme *scheme)
 {
 	char	*str;
 
@@ -22,7 +22,7 @@ static void		create_frm(int *symbols, t_scheme *scheme)
 	ft_putstr(str);
 	*symbols += ft_strlen(str);
 	free(str);
-}
+}*/
 
 static void		create_format(int *symbols, t_scheme *scheme, va_list ptr)
 {
