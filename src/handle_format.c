@@ -30,10 +30,10 @@ static void		create_format(int *symbols, t_scheme *scheme, va_list ptr)
 	// 	create_frm(symbols, scheme);
 	if (IS_I(scheme->type))
 		create_di(symbols, scheme, ptr);
-	// else if (IS_O(scheme->type) || IS_X(scheme->type) || IS_U(scheme->type))
-	// 	create_oux(symbols, scheme, ptr);
-	// else if (scheme->type == 'p')
-	// 	create_p(symbols, scheme, ptr);
+	 else if (IS_O(scheme->type) || IS_X(scheme->type) || IS_U(scheme->type))
+	 	create_oux(symbols, scheme, ptr);
+	 else if (scheme->type == 'p')
+	 	create_p(symbols, scheme, ptr);
 	// else if (IS_S(scheme->type))
 	// 	(create_s(symbols, scheme, ptr));
 	// else if (IS_C(scheme->type))

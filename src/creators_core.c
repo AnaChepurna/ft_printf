@@ -19,16 +19,16 @@ void	create_di(int *symbols, t_scheme *scheme, va_list ptr)
 
 	number = get_i(scheme, ptr);
 	str = ft_itoa(number);
-	if ((scheme->flag & F_ZERO) && (scheme->precision > -1))
-		scheme->flag = scheme->flag ^ F_ZERO;
-	if ((scheme->flag & F_PLUS) || (scheme->flag & F_SPACE))
-		sign_number(scheme, &str);
-	if (scheme->precision > 0)
-		precision_number(scheme, &str);
-	if (!scheme->precision && !number)
-		precision_str(scheme, &str);
-	if (scheme->width)
-		width_number(scheme, &str);
+	// if ((scheme->flag & F_ZERO) && (scheme->precision > -1))
+	// 	scheme->flag = scheme->flag ^ F_ZERO;
+	// if ((scheme->flag & F_PLUS) || (scheme->flag & F_SPACE))
+	// 	sign_number(scheme, &str);
+	// if (scheme->precision > 0)
+	// 	precision_number(scheme, &str);
+	// if (!scheme->precision && !number)
+	// 	precision_str(scheme, &str);
+	// if (scheme->width)
+	// 	width_number(scheme, &str);
 	ft_putstr(str);
 	*symbols += ft_strlen(str);
 	free(str);
@@ -48,16 +48,16 @@ void	create_oux(int *symbols, t_scheme *scheme, va_list ptr)
 		scheme->flag = scheme->flag ^ F_ZERO;
 	number = get_u(scheme, ptr);
 	str = ft_itoa_base(number, base);
-	if (scheme->flag & F_HASH)
-		add_base(scheme, &str);
-	if (scheme->precision > 0)
-		precision_number(scheme, &str);
-	if (!scheme->precision && !number && !((IS_O(scheme->type)) && scheme->flag & F_HASH))
-		precision_str(scheme, &str);
-	if (scheme->width)
-		width_number(scheme, &str);
-	if (scheme->type == 'X')
-		ft_strcase(str, UP);
+	// if (scheme->flag & F_HASH)
+	// 	add_base(scheme, &str);
+	// if (scheme->precision > 0)
+	// 	precision_number(scheme, &str);
+	// if (!scheme->precision && !number && !((IS_O(scheme->type)) && scheme->flag & F_HASH))
+	// 	precision_str(scheme, &str);
+	// if (scheme->width)
+	// 	width_number(scheme, &str);
+	// if (scheme->type == 'X')
+	// 	ft_strcase(str, UP);
 	ft_putstr(str);
 	*symbols += ft_strlen(str);
 	free(str);
@@ -68,9 +68,9 @@ void	create_p(int *symbols, t_scheme *scheme, va_list ptr)
 	char	*str;
 
 	str = ft_itoa_base(get_u(scheme, ptr), 16);
-	add_base(scheme, &str);
-	if (scheme->width)
-		width_str(scheme, &str);
+	// add_base(scheme, &str);
+	// if (scheme->width)
+	// 	width_str(scheme, &str);
 	ft_putstr(str);
 	*symbols += ft_strlen(str);
 	free(str);
