@@ -28,7 +28,7 @@ static void		create_format(int *symbols, t_scheme *scheme, va_list ptr)
 {
 	// if (scheme->type == '%')
 	// 	create_frm(symbols, scheme);
-	else if (IS_I(scheme->type))
+	if (IS_I(scheme->type))
 		create_di(symbols, scheme, ptr);
 	// else if (IS_O(scheme->type) || IS_X(scheme->type) || IS_U(scheme->type))
 	// 	create_oux(symbols, scheme, ptr);
