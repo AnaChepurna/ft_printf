@@ -66,7 +66,7 @@ void	create_n(int *symbols, va_list ptr)
 	*n = *symbols;
 }
 
-void	create_blanc(int *symbols, t_scheme *scheme)
+/*void	create_blanc(int *symbols, t_scheme *scheme)
 {
 	char	*str;
 
@@ -83,4 +83,4 @@ void	create_blanc(int *symbols, t_scheme *scheme)
 	*symbols += i[0];
 	}
 	free(str);
-}
+} */
