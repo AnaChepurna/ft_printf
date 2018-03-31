@@ -19,16 +19,16 @@ void	create_di(int *symbols, t_scheme *scheme, va_list ptr)
 
 	number = get_i(scheme, ptr);
 	str = ft_itoa(number);
-	// if ((scheme->flag & F_ZERO) && (scheme->precision > -1))
-	// 	scheme->flag = scheme->flag ^ F_ZERO;
-	// if ((scheme->flag & F_PLUS) || (scheme->flag & F_SPACE))
-	// 	sign_number(scheme, &str);
-	// if (scheme->precision > 0)
-	// 	precision_number(scheme, &str);
-	// if (!scheme->precision && !number)
-	// 	precision_str(scheme, &str);
-	// if (scheme->width)
-	// 	width_number(scheme, &str);
+	if ((scheme->flag & F_ZERO) && (scheme->precision > -1))
+		scheme->flag = scheme->flag ^ F_ZERO;
+	if ((scheme->flag & F_PLUS) || (scheme->flag & F_SPACE))
+		sign_number(scheme, &str);
+	if (scheme->precision > 0)
+		precision_number(scheme, &str);
+	if (!scheme->precision && !number)
+		precision_str(scheme, &str);
+	if (scheme->width)
+		width_number(scheme, &str);
 	ft_putstr(str);
 	*symbols += ft_strlen(str);
 	free(str);
