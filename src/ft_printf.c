@@ -33,7 +33,7 @@ int				ft_printf(const char *restrict format, ...)
 		else
 			i += handle_line(format + i, &symbols);
 	}
-	ft_putstr(format);
+	//ft_putstr(format);
 	va_end(ptr);
 	return (symbols);
 }

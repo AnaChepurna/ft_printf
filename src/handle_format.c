@@ -26,24 +26,26 @@ static void		create_frm(int *symbols, t_scheme *scheme)
 
 static void		create_format(int *symbols, t_scheme *scheme, va_list ptr)
 {
-	if (scheme->type == '%')
-		create_frm(symbols, scheme);
+	// if (scheme->type == '%')
+	// 	create_frm(symbols, scheme);
 	else if (IS_I(scheme->type))
 		create_di(symbols, scheme, ptr);
-	else if (IS_O(scheme->type) || IS_X(scheme->type) || IS_U(scheme->type))
-		create_oux(symbols, scheme, ptr);
-	else if (scheme->type == 'p')
-		create_p(symbols, scheme, ptr);
-	else if (IS_S(scheme->type))
-		(create_s(symbols, scheme, ptr));
-	else if (IS_C(scheme->type))
-		create_c(symbols, scheme, ptr);
-	else if (IS_F(scheme->type) || IS_E(scheme->type) || IS_A(scheme->type))
-		create_fe(symbols, scheme, ptr);
-	else if (IS_B(scheme->type))
-		create_b(symbols, scheme, ptr);
-	else if (scheme->type == 'n')
-		create_n(symbols, ptr);
+	// else if (IS_O(scheme->type) || IS_X(scheme->type) || IS_U(scheme->type))
+	// 	create_oux(symbols, scheme, ptr);
+	// else if (scheme->type == 'p')
+	// 	create_p(symbols, scheme, ptr);
+	// else if (IS_S(scheme->type))
+	// 	(create_s(symbols, scheme, ptr));
+	// else if (IS_C(scheme->type))
+	// 	create_c(symbols, scheme, ptr);
+	// else if (IS_F(scheme->type) || IS_E(scheme->type) || IS_A(scheme->type))
+	// 	create_fe(symbols, scheme, ptr);
+	// else if (IS_B(scheme->type))
+	// 	create_b(symbols, scheme, ptr);
+	// else if (scheme->type == 'n')
+	// 	create_n(symbols, ptr);
+	else
+		ft_putstr("nope");
 }
 
 void			print_scheme(t_scheme *scheme)
@@ -76,7 +78,7 @@ int				handle_format(const char *format, int *symbols, va_list ptr)
 	i += handle_size(format + i, scheme);
 	i += handle_type(format + i, scheme);
 	//print_scheme(scheme);
-	//create_format(symbols, scheme, ptr);
+	create_format(symbols, scheme, ptr);
 	scheme_del(&scheme);
 	return (i);
 }
