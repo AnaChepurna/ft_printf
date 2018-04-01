@@ -12,31 +12,31 @@
 
 #include "ft_printf.h"
 
-/*static void		create_frm(int *symbols, t_scheme *scheme)
+static void		create_frm(int *symbols, t_scheme *scheme)
 {
 	char	*str;
 
 	str = ft_strdup("%");
-	if (scheme->width)
-		width_str(scheme, &str);
+	// if (scheme->width)
+	// 	width_str(scheme, &str);
 	ft_putstr(str);
 	*symbols += ft_strlen(str);
 	free(str);
-}*/
+}
 
 static void		create_format(int *symbols, t_scheme *scheme, va_list ptr)
 {
-	// if (scheme->type == '%')
-	// 	create_frm(symbols, scheme);
-	if (IS_I(scheme->type))
+	if (scheme->type == '%')
+	 	create_frm(symbols, scheme);
+	else if (IS_I(scheme->type))
 		create_di(symbols, scheme, ptr);
-	 else if (IS_O(scheme->type) || IS_X(scheme->type) || IS_U(scheme->type))
+	else if (IS_O(scheme->type) || IS_X(scheme->type) || IS_U(scheme->type))
 	 	create_oux(symbols, scheme, ptr);
-	 else if (scheme->type == 'p')
+	else if (scheme->type == 'p')
 	 	create_p(symbols, scheme, ptr);
-	 else if (IS_S(scheme->type))
+	else if (IS_S(scheme->type))
 	 	(create_s(symbols, scheme, ptr));
-	 else if (IS_C(scheme->type))
+	else if (IS_C(scheme->type))
 	 	create_c(symbols, scheme, ptr);
 	// else if (IS_F(scheme->type) || IS_E(scheme->type) || IS_A(scheme->type))
 	// 	create_fe(symbols, scheme, ptr);
