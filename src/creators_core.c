@@ -78,55 +78,59 @@ void	create_p(int *symbols, t_scheme *scheme, va_list ptr)
 
 void	create_s(int *symbols, t_scheme *scheme, va_list ptr)
 {
-	char	*str;
+	//char	*str;
 	void	*s;
 
 	s = get_s(scheme, ptr);
-	if (!s)
-		str = ft_strdup("(null)");
-	else if (scheme->type == 's')
-		str = ft_strdup((char *)s);
-	else
-	{
-		str = create_wstr((wchar_t *)s);
-		if (!str)
-		{
-			*symbols = -1;
-			return ;
-		}
-	}
-	if (scheme->precision > 0)
-		precision_str(scheme, &str);
-	if (scheme->width)
-		width_str(scheme, &str);
-	ft_putstr(str);
-	*symbols += ft_strlen(str);
-	free(str);
+	ft_putstr((char *)s);
+	// if (!s)
+	// 	str = ft_strdup("(null)");
+	// else if (scheme->type == 's')
+	// 	str = ft_strdup((char *)s);
+	// else
+	// {
+	// 	str = create_wstr((wchar_t *)s);
+	// 	if (!str)
+	// 	{
+	// 		*symbols = -1;
+	// 		return ;
+	// 	}
+	// }
+	// if (scheme->precision > 0)
+	// 	precision_str(scheme, &str);
+	// if (scheme->width)
+	// 	width_str(scheme, &str);
+	// ft_putstr(str);
+	// *symbols += ft_strlen(str);
+	// free(str);
+	(void)symbols;
 }
 
 void	create_c(int *symbols, t_scheme *scheme, va_list ptr)
 {
-	char	*str;
+	//char	*str;
 	wchar_t	c;
-	size_t	i[2];
+	//size_t	i[2];
 
-	str = ft_strdup("!");
+	//str = ft_strdup("!");
 	c = get_c(scheme, ptr);
-	if ((scheme->type == 'C' || scheme->size == 'l') && !ft_isascii((int)c))
-		*symbols = -1;
-	else
-	{
-		if (scheme->width)
-			width_str(scheme, &str);
-		i[0] = ft_strlen(str);
-		if (scheme->flag & F_MINUS)
-			str[0] = (char)c;
-		else
-			str[i[0] - 1] = (char)c;
-		i[1] = 0;
-		while (i[1] < i[0])
-			ft_putchar(str[i[1]++]);
-		*symbols += i[0];
-	}
-	free(str);
+	// if ((scheme->type == 'C' || scheme->size == 'l') && !ft_isascii((int)c))
+	// 	*symbols = -1;
+	// else
+	// {
+	// 	if (scheme->width)
+	// 		width_str(scheme, &str);
+	// 	i[0] = ft_strlen(str);
+	// 	if (scheme->flag & F_MINUS)
+	// 		str[0] = (char)c;
+	// 	else
+	// 		str[i[0] - 1] = (char)c;
+	// 	i[1] = 0;
+	// 	while (i[1] < i[0])
+	// 		ft_putchar(str[i[1]++]);
+	// 	*symbols += i[0];
+	// }
+	// free(str);
+	ft_putchar(c);
+	(void)symbols;
 }
