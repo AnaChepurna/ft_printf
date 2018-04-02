@@ -17,6 +17,7 @@ static void		create_frm(int *symbols, t_scheme *scheme)
 	char	*str;
 
 	str = ft_strdup("%");
+	(void)scheme;
 	// if (scheme->width)
 	// 	width_str(scheme, &str);
 	ft_putstr(str);
@@ -38,12 +39,12 @@ static void		create_format(int *symbols, t_scheme *scheme, va_list ptr)
 	 	(create_s(symbols, scheme, ptr));
 	else if (IS_C(scheme->type))
 	 	create_c(symbols, scheme, ptr);
-	// else if (IS_F(scheme->type) || IS_E(scheme->type) || IS_A(scheme->type))
-	// 	create_fe(symbols, scheme, ptr);
+	else if (IS_F(scheme->type) || IS_E(scheme->type) || IS_A(scheme->type))
+		create_fe(symbols, scheme, ptr);
 	// else if (IS_B(scheme->type))
 	// 	create_b(symbols, scheme, ptr);
-	// else if (scheme->type == 'n')
-	// 	create_n(symbols, ptr);
+	else if (scheme->type == 'n')
+		create_n(symbols, ptr);
 	else
 		ft_putstr("nope");
 }
