@@ -22,14 +22,15 @@ void	create_fe(int *symbols, t_scheme *scheme, va_list ptr)
 	{
 		if (IS_F(scheme->type))
 			str = create_float(scheme, number);
-		else if (IS_E(scheme->type))
-			str = create_exponent(scheme, number);
+		// else if (IS_E(scheme->type))
+		// 	str = create_exponent(scheme, number);
 		else
-			str = create_hexfloat(scheme, number);
-		if ((scheme->flag & F_PLUS) || (scheme->flag & F_SPACE))
-			sign_number(scheme, &str);
-		if (scheme->width)
-			width_str(scheme, &str);
+			str = ft_strdup("nope");
+			// str = create_hexfloat(scheme, number);
+		// if ((scheme->flag & F_PLUS) || (scheme->flag & F_SPACE))
+		// 	sign_number(scheme, &str);
+		// if (scheme->width)
+		// 	width_str(scheme, &str);
 	}
 	ft_putstr(str);
 	*symbols += ft_strlen(str);
