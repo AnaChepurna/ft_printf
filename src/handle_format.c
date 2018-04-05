@@ -41,8 +41,8 @@ static void		create_format(int *symbols, t_scheme *scheme, va_list ptr)
 	 	create_c(symbols, scheme, ptr);
 	else if (IS_F(scheme->type)) //|| IS_E(scheme->type) || IS_A(scheme->type))
 	 	create_fe(symbols, scheme, ptr);
-	else if (IS_E(scheme->type))
-		create_fe(symbols, scheme, ptr);
+	// else if (IS_E(scheme->type))
+	// 	create_fe(symbols, scheme, ptr);
 	// else if (IS_B(scheme->type))
 	// 	create_b(symbols, scheme, ptr);
 	else if (scheme->type == 'n')
