@@ -53,12 +53,12 @@ char		*create_float(t_scheme *scheme, long double number)
 
 char		*format_exponent(int expo)
 {
-	t_scheme	*scheme;
+	//t_scheme	*scheme;
 	char		*res;
 
-	scheme = scheme_new();
-	scheme->precision = 2;
-	scheme->flag += F_PLUS;
+	//scheme = scheme_new();
+	//scheme->precision = 2;
+	//scheme->flag += F_PLUS;
 	res = ft_itoa(expo);
 	//sign_number(scheme, &res);
 	//precision_number(scheme, &res);
@@ -67,28 +67,30 @@ char		*format_exponent(int expo)
 
 int			find_expo(long double *number)
 {
-	int expo;
-	int sign;
+	// int expo;
+	// int sign;
 
-	sign = 1;
-	if (*number < 0)
-	{
-		*number = -*number;
-		sign = -1;
-	}
-	expo = 0;
-	while (*number >= 10)
-	{
-		*number /= 10;
-		expo += 1;
-	}
-	while (*number < 1)
-	{
-		*number *= 10;
-		expo -= 1;
-	}
-	*number *= sign;
-	return (expo);
+	// sign = 1;
+	// if (*number < 0)
+	// {
+	// 	*number = -*number;
+	// 	sign = -1;
+	// }
+	// expo = 0;
+	// while (*number >= 10)
+	// {
+	// 	*number /= 10;
+	// 	expo += 1;
+	// }
+	// while (*number < 1)
+	// {
+	// 	*number *= 10;
+	// 	expo -= 1;
+	// }
+	// *number *= sign;
+	// return (expo);
+	(void)number;
+	return (12);
 }
 
 char		*create_exponent(t_scheme *scheme, long double number)
