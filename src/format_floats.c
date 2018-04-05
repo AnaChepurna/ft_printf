@@ -61,7 +61,7 @@ char		*format_exponent(int expo)
 	scheme->flag += F_PLUS;
 	res = ft_itoa(expo);
 	sign_number(scheme, &res);
-	precision_number(scheme, &res);
+	//precision_number(scheme, &res);
 	return (res);
 }
 
