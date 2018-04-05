@@ -20,12 +20,12 @@ void	create_fe(int *symbols, t_scheme *scheme, va_list ptr)
 	number = get_f(scheme, ptr);
 	if (!(str = handle_naninf(number)))
 	{
-		if (IS_F(scheme->type))
+		// if (IS_F(scheme->type))
 			str = create_float(scheme, number);
 		//else if (IS_E(scheme->type))
 		//	str = create_float(scheme, number);//create_exponent(scheme, number);
-		else
-			str = ft_strdup("nope");
+		// else
+		// 	str = ft_strdup("nope");
 			// str = create_hexfloat(scheme, number);
 		// if ((scheme->flag & F_PLUS) || (scheme->flag & F_SPACE))
 		// 	sign_number(scheme, &str);
