@@ -27,7 +27,7 @@
 # define IS_X(n) (n) == 'x' || (n) == 'X'
 # define IS_C(n) (n) == 'c' || (n) == 'C'
 # define IS_S(n) (n) == 's' || (n) == 'S'
-# define IS_F(n) (n) == 'f' || (n) == 'F' //|| (n) == 'g'
+# define IS_F(n) (n) == 'f' || (n) == 'F' || (n) == 'g'
 # define IS_E(n) (n) == 'e' || (n) == 'E' //|| (n) == 'G'
 # define IS_A(n) (n) == 'a' || (n) == 'A'
 # define IS_B(n) (n) == 'b'
