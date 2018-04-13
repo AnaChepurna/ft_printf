@@ -12,13 +12,20 @@
 
 #include "ft_printf.h"
 
-void	create_di(int *symbols, t_scheme *scheme, va_list ptr)
+void	create_di(t_scheme *scheme, va_list ptr)
 {
 	char		*str;
 	intmax_t	number;
+	int		len;
 
 	number = get_i(scheme, ptr);
 	str = ft_itoa(number);
+	scheme->str = str;
+	len = ft_strlen(scheme->str);
+	len = scheme->precision <= len ? len : scheme->precision;
+	if ((scheme->flag & SIGN) || (scheme->flag & F_PLUS) || (scheme->flag & F_SPACE))
+		len++;
+	scheme->len = len;
 	// if ((scheme->flag & F_ZERO) && (scheme->precision > -1))
 	// 	scheme->flag = scheme->flag ^ F_ZERO;
 	// if ((scheme->flag & F_PLUS) || (scheme->flag & F_SPACE))
@@ -29,9 +36,9 @@ void	create_di(int *symbols, t_scheme *scheme, va_list ptr)
 	// 	precision_str(scheme, &str);
 	// if (scheme->width)
 	// 	width_number(scheme, &str);
-	ft_putstr(str);
-	*symbols += ft_strlen(str);
-	free(str);
+	// ft_putstr(str);
+	// *symbols += ft_strlen(str);
+	// free(str);
 }
 
 void	create_oux(int *symbols, t_scheme *scheme, va_list ptr)

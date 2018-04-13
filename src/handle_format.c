@@ -12,53 +12,86 @@
 
 #include "ft_printf.h"
 
-static void		create_frm(int *symbols, t_scheme *scheme)
-{
-	char	*str;
-
-	str = ft_strdup("%");
-	(void)scheme;
-	// if (scheme->width)
-	// 	width_str(scheme, &str);
-	ft_putstr(str);
-	*symbols += ft_strlen(str);
-	free(str);
-}
-
-static void		create_format(int *symbols, t_scheme *scheme, va_list ptr)
+static void		create_format(t_scheme *scheme, va_list ptr)
 {
 	if (scheme->type == '%')
-	 	create_frm(symbols, scheme);
+	 	scheme->str = ft_strdup("%");
 	else if (IS_I(scheme->type))
-		create_di(symbols, scheme, ptr);
-	else if (IS_O(scheme->type) || IS_X(scheme->type) || IS_U(scheme->type))
-	 	create_oux(symbols, scheme, ptr);
-	else if (scheme->type == 'p')
-	 	create_p(symbols, scheme, ptr);
-	else if (IS_S(scheme->type))
-	 	(create_s(symbols, scheme, ptr));
-	else if (IS_C(scheme->type))
-	 	create_c(symbols, scheme, ptr);
-	else if (IS_F(scheme->type) || IS_E(scheme->type) || IS_A(scheme->type))
-	 	create_fe(symbols, scheme, ptr);
+		create_di(scheme, ptr);
+
+	// else if (IS_O(scheme->type) || IS_X(scheme->type) || IS_U(scheme->type))
+	//  	create_oux(symbols, scheme, ptr);
+	// else if (scheme->type == 'p')
+	//  	create_p(symbols, scheme, ptr);
+	// else if (IS_S(scheme->type))
+	//  	(create_s(symbols, scheme, ptr));
+	// else if (IS_C(scheme->type))
+	//  	create_c(symbols, scheme, ptr);
+	// else if (IS_F(scheme->type) || IS_E(scheme->type) || IS_A(scheme->type))
+	//  	create_fe(symbols, scheme, ptr);
 	// else if (IS_E(scheme->type))
 	// 	ft_putnbr((int)get_f(scheme, ptr));
 	// else if (IS_B(scheme->type))
 	// 	create_b(symbols, scheme, ptr);
-	else if (scheme->type == 'n')
-		create_n(symbols, ptr);
+	// else if (scheme->type == 'n')
+	// 	create_n(symbols, ptr);
 	else
-		ft_putstr("nope");
+		scheme->str = ft_strdup("n");
 }
 
-void			print_scheme(t_scheme *scheme)
+// void			print_scheme(t_scheme *scheme)
+// {
+// 	printf("flags = %i\n", scheme->flag);
+// 	printf("width = %i\n", scheme->width);
+// 	printf("preci = %i\n", scheme->precision);
+// 	printf("size  = %c\n", (char)scheme->size);
+// 	printf("type  = %c\n", (char)scheme->type);
+// 	printf("order = %i\n", scheme->order);
+// }
+
+static void		put_format(t_scheme *scheme)
 {
-	printf("flags = %i\n", scheme->flag);
-	printf("width = %i\n", scheme->width);
-	printf("preci = %i\n", scheme->precision);
-	printf("size  = %c\n", (char)scheme->size);
-	printf("type  = %c\n", (char)scheme->type);
-	printf("order = %i\n", scheme->order);
+	int	len;
+	int	i;
+
+	len = ft_strlen(scheme->str);
+	if (scheme->precision > -1 && len > scheme->precision)
+		len = scheme->precision;
+	i = 0;
+	while (i < len)
+	{
+		if (len < scheme->precision)
+		{
+			(scheme->precision)--;
+			ft_putchar('0');
+		}
+		else
+			ft_putchar(scheme->str[i++]);
+	}
+}
+
+// void			create_len(t_scheme *scheme)
+// {
+// 	if ((scheme->flag & SIGN) || (scheme->flag & F_PLUS) || scheme->flag & F_SPACE)
+// 		scheme->len++;
+
+// }
+
+void			print_format(int *symbols, t_scheme *scheme)
+{
+	while (scheme->width > scheme->len)
+	{
+		ft_putstr(" ");
+		(scheme->len)++;
+	}
+	if (scheme->flag & SIGN)
+		ft_putstr("-");
+	else if (scheme->flag & F_SPACE)
+		ft_putstr(" ");
+	else if (scheme->flag & F_PLUS)
+		ft_putstr("+");
+	put_format(scheme);
+	symbols += scheme->len;
 }
 
 int				handle_format(const char *format, int *symbols, va_list ptr)
@@ -81,7 +114,8 @@ int				handle_format(const char *format, int *symbols, va_list ptr)
 	i += handle_size(format + i, scheme);
 	i += handle_type(format + i, scheme);
 	//print_scheme(scheme);
-	create_format(symbols, scheme, ptr);
+	create_format(scheme, ptr);
+	print_format(symbols, scheme);
 	scheme_del(&scheme);
 	return (i);
 }

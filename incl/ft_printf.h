@@ -37,6 +37,7 @@
 # define F_SPACE	4
 # define F_HASH		8
 # define F_ZERO		16
+# define SIGN		32
 
 typedef struct	s_scheme
 {
@@ -46,6 +47,8 @@ typedef struct	s_scheme
 	int			size;
 	int			type;
 	int			order;
+	char		*str;
+	int			len;
 }				t_scheme;
 
 void			print_scheme(t_scheme *scheme);
@@ -80,7 +83,7 @@ int				handle_type(const char *format, t_scheme *scheme);
 /*
  **creators_core.c
 */
-void			create_di(int *symbols, t_scheme *scheme, va_list ptr);
+void			create_di(t_scheme *scheme, va_list ptr);
 void			create_oux(int *symbols, t_scheme *scheme, va_list ptr);
 void			create_p(int *symbols, t_scheme *scheme, va_list ptr);
 void			create_s(int *symbols, t_scheme *scheme, va_list ptr);

@@ -24,12 +24,15 @@ t_scheme			*scheme_new(void)
 		res->size = 0;
 		res->type = 0;
 		res->order = 0;
+		res->str = NULL;
 	}
 	return (res);
 }
 
 void				scheme_del(t_scheme **s)
 {
+	if ((*s)->str)
+		free((*s)->str);
 	free(*s);
 	*s = NULL;
 }
