@@ -18,11 +18,10 @@ static void		create_format(t_scheme *scheme, va_list ptr)
 	 	scheme->str = ft_strdup("%");
 	else if (IS_I(scheme->type))
 		create_di(scheme, ptr);
-
-	// else if (IS_O(scheme->type) || IS_X(scheme->type) || IS_U(scheme->type))
-	//  	create_oux(symbols, scheme, ptr);
-	// else if (scheme->type == 'p')
-	//  	create_p(symbols, scheme, ptr);
+	else if (IS_O(scheme->type) || IS_X(scheme->type) || IS_U(scheme->type))
+	  	create_oux(scheme, ptr);
+	else if (scheme->type == 'p')
+	  	create_p(symbols, scheme, ptr);
 	// else if (IS_S(scheme->type))
 	//  	(create_s(symbols, scheme, ptr));
 	// else if (IS_C(scheme->type))
@@ -90,6 +89,12 @@ void			print_format(int *symbols, t_scheme *scheme)
 		ft_putstr(" ");
 	else if (scheme->flag & F_PLUS)
 		ft_putstr("+");
+	if (scheme->flag & ALT1)
+		ft_putstr("0");
+	if (scheme->flag & ALT2 && scheme->type == 'X')
+		ft_putstr("X");
+	else if (scheme->flag & ALT2)
+		ft_putstr("x");
 	put_format(scheme);
 	symbols += scheme->len;
 }

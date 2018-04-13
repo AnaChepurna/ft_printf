@@ -38,6 +38,8 @@
 # define F_HASH		8
 # define F_ZERO		16
 # define SIGN		32
+# define ALT1		64
+# define ALT2		128
 
 typedef struct	s_scheme
 {
@@ -84,7 +86,7 @@ int				handle_type(const char *format, t_scheme *scheme);
  **creators_core.c
 */
 void			create_di(t_scheme *scheme, va_list ptr);
-void			create_oux(int *symbols, t_scheme *scheme, va_list ptr);
+void			create_oux(t_scheme *scheme, va_list ptr);
 void			create_p(int *symbols, t_scheme *scheme, va_list ptr);
 void			create_s(int *symbols, t_scheme *scheme, va_list ptr);
 void			create_c(int *symbols, t_scheme *scheme, va_list ptr);

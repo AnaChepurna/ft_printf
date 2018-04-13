@@ -41,11 +41,12 @@ void	create_di(t_scheme *scheme, va_list ptr)
 	// free(str);
 }
 
-void	create_oux(int *symbols, t_scheme *scheme, va_list ptr)
+void	create_oux(t_scheme *scheme, va_list ptr)
 {
 	char		*str;
 	int			base;
 	uintmax_t	number;
+	int		len;
 
 	if (IS_O(scheme->type))
 		base = 8;
@@ -55,6 +56,21 @@ void	create_oux(int *symbols, t_scheme *scheme, va_list ptr)
 		scheme->flag = scheme->flag ^ F_ZERO;
 	number = get_u(scheme, ptr);
 	str = ft_itoa_base(number, base);
+	scheme->str = str;
+	len = ft_strlen(scheme->str);
+	len = scheme->precision <= len ? len : scheme->precision;
+	if (scheme->flag & F_HASH && base == 8)
+	{
+		scheme->flag += ALT1;
+		len++;
+	}
+	else if (scheme->flag & F_HASH && base == 16)
+	{
+		scheme->flag += ALT1;
+		scheme->flag += ALT2;
+		len += 2;
+	}
+	scheme->len = len;
 	// if (scheme->flag & F_HASH)
 	// 	add_base(scheme, &str);
 	// if (scheme->precision > 0)
@@ -65,9 +81,9 @@ void	create_oux(int *symbols, t_scheme *scheme, va_list ptr)
 	// 	width_number(scheme, &str);
 	// if (scheme->type == 'X')
 	// 	ft_strcase(str, UP);
-	ft_putstr(str);
-	*symbols += ft_strlen(str);
-	free(str);
+	// ft_putstr(str);
+	// *symbols += ft_strlen(str);
+	// free(str);
 }
 
 void	create_p(int *symbols, t_scheme *scheme, va_list ptr)
