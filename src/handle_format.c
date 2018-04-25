@@ -127,7 +127,7 @@ int				handle_format(const char *format, int *symbols, va_list ptr)
 	i += handle_precision(format + i, scheme, ptr);
 	i += handle_size(format + i, scheme);
 	i += handle_type(format + i, scheme);
-	print_scheme(scheme);
+	//print_scheme(scheme);
 	create_format(scheme, ptr);
 	print_format(symbols, scheme);
 	scheme_del(&scheme);
