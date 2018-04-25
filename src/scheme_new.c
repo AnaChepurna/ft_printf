@@ -25,6 +25,7 @@ t_scheme			*scheme_new(void)
 		res->type = 0;
 		res->order = 0;
 		res->str = NULL;
+		res->len = 1;
 	}
 	return (res);
 }
