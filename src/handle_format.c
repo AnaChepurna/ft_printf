@@ -131,6 +131,5 @@ int				handle_format(const char *format, int *symbols, va_list ptr)
 	create_format(scheme, ptr);
 	print_format(symbols, scheme);
 	scheme_del(&scheme);
-	ft_putstr("LOOOOOOOOK!!!");
 	return (i);
 }
