@@ -96,14 +96,14 @@ void			print_format(int *symbols, t_scheme *scheme)
 		ft_putstr("X");
 	else if (scheme->flag & ALT2)
 		ft_putstr("x");
-	while (scheme->width > scheme->len)
-	{
-		if (scheme->flag & F_ZERO)
-			ft_putstr("0");
-		else
-			ft_putstr(" ");
-		(scheme->len)++;
-	}
+	// while (scheme->width > scheme->len)
+	// {
+	// 	if (scheme->flag & F_ZERO)
+	// 		ft_putstr("0");
+	// 	else
+	// 		ft_putstr(" ");
+	// 	(scheme->len)++;
+	// }
 	put_format(scheme);
 	symbols += scheme->len;
 }
