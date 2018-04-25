@@ -21,7 +21,7 @@ static void		create_format(t_scheme *scheme, va_list ptr)
 	else if (IS_O(scheme->type) || IS_X(scheme->type) || IS_U(scheme->type))
 	  	create_oux(scheme, ptr);
 	else if (scheme->type == 'p')
-	  	create_p(symbols, scheme, ptr);
+	  	create_p(scheme, ptr);
 	// else if (IS_S(scheme->type))
 	//  	(create_s(symbols, scheme, ptr));
 	// else if (IS_C(scheme->type))

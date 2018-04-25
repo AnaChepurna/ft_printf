@@ -86,7 +86,7 @@ void	create_oux(t_scheme *scheme, va_list ptr)
 	// free(str);
 }
 
-void	create_p(int *symbols, t_scheme *scheme, va_list ptr)
+void	create_p(t_scheme *scheme, va_list ptr)
 {
 	char	*str;
 
@@ -94,9 +94,13 @@ void	create_p(int *symbols, t_scheme *scheme, va_list ptr)
 	// add_base(scheme, &str);
 	// if (scheme->width)
 	// 	width_str(scheme, &str);
-	ft_putstr(str);
-	*symbols += ft_strlen(str);
-	free(str);
+	scheme->str = str;
+	scheme->len = ft_strlen(str) + 2;
+	scheme->flag += ALT1;
+	scheme->flag += ALT2;
+// 	ft_putstr(str);
+// 	*symbols += ft_strlen(str);
+// 	free(str);
 }
 
 void	create_s(int *symbols, t_scheme *scheme, va_list ptr)
