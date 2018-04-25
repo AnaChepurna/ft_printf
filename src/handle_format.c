@@ -78,8 +78,12 @@ static void		put_format(t_scheme *scheme)
 
 void			print_format(int *symbols, t_scheme *scheme)
 {
-	while (scheme->width > (scheme->len)++ && !(scheme->flag & F_ZERO))
+	while (scheme->width > scheme->len && !(scheme->flag & F_ZERO)
+		&& !(scheme->flag & F_MINUS))
+	{
+		(scheme->len)++;
 		ft_putstr(" ");
+	}
 	if (scheme->flag & SIGN)
 		ft_putstr("-");
 	else if (scheme->flag & F_SPACE)
@@ -92,6 +96,13 @@ void			print_format(int *symbols, t_scheme *scheme)
 		ft_putstr("X");
 	else if (scheme->flag & ALT2)
 		ft_putstr("x");
+	while (scheme->width > scheme->len)
+	{
+		if (scheme->flag & F_ZERO)
+			ft_putstr("0");
+		else
+			ft_putstr(" ");
+	}
 	put_format(scheme);
 	symbols += scheme->len;
 }
