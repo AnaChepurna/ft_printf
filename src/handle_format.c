@@ -90,7 +90,7 @@ void			print_format(int *symbols, t_scheme *scheme)
 		ft_putstr(" ");
 	else if (scheme->flag & F_PLUS)
 		ft_putstr("+");
-	if (!ft_strequ(scheme->str, "0"))
+	if (scheme->type == 'p' || !ft_strequ(scheme->str, "0"))
 	{
 		if (scheme->flag & ALT1)
 			ft_putstr("0");
@@ -99,15 +99,17 @@ void			print_format(int *symbols, t_scheme *scheme)
 		else if (scheme->flag & ALT2)
 			ft_putstr("x");
 	}
-	while (scheme->width > scheme->len)
+	while (scheme->width > scheme->len && scheme->flag & F_ZERO)
 	{
-		if (scheme->flag & F_ZERO)
-			ft_putstr("0");
-		else
-			ft_putstr(" ");
+		ft_putstr("0");
 		(scheme->len)++;
 	}
 	put_format(scheme);
+	while (scheme->width > scheme->len)
+	{
+		ft_putstr(" ");
+		(scheme->len)++;
+	}
 	symbols += scheme->len;
 }
 
