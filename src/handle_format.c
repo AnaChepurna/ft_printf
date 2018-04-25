@@ -78,8 +78,8 @@ static void		put_format(t_scheme *scheme)
 
 void			print_format(int *symbols, t_scheme *scheme)
 {
-	while (scheme->width > scheme->len) //&& !(scheme->flag & F_ZERO)
-	// 	&& !(scheme->flag & F_MINUS))
+	while (scheme->width > scheme->len && !(scheme->flag & F_ZERO)
+	 	&& !(scheme->flag & F_MINUS))
 	{
 		(scheme->len)++;
 		ft_putstr(" ");
