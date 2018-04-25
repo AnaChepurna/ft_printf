@@ -57,6 +57,8 @@ void	create_oux(t_scheme *scheme, va_list ptr)
 	number = get_u(scheme, ptr);
 	str = ft_itoa_base(number, base);
 	scheme->str = str;
+	if (scheme->type == 'X')
+		ft_strcase(str, UP);
 	len = ft_strlen(scheme->str);
 	len = scheme->precision <= len ? len : scheme->precision;
 	if (scheme->flag & F_HASH && base == 8)

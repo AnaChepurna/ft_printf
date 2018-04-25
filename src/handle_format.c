@@ -80,7 +80,10 @@ void			print_format(int *symbols, t_scheme *scheme)
 {
 	while (scheme->width > scheme->len)
 	{
-		ft_putstr(" ");
+		if (scheme->flag & F_ZERO)
+			ft_putstr("0");
+		else
+			ft_putstr(" ");
 		(scheme->len)++;
 	}
 	if (scheme->flag & SIGN)
