@@ -90,20 +90,23 @@ void			print_format(int *symbols, t_scheme *scheme)
 		ft_putstr(" ");
 	else if (scheme->flag & F_PLUS)
 		ft_putstr("+");
-	if (scheme->flag & ALT1)
-		ft_putstr("0");
-	if (scheme->flag & ALT2 && scheme->type == 'X')
-		ft_putstr("X");
-	else if (scheme->flag & ALT2)
-		ft_putstr("x");
-	// while (scheme->width > scheme->len)
-	// {
-	// 	if (scheme->flag & F_ZERO)
-	// 		ft_putstr("0");
-	// 	else
-	// 		ft_putstr(" ");
-	// 	(scheme->len)++;
-	// }
+	if (!ft_strequ(scheme->str, "0"))
+	{
+		if (scheme->flag & ALT1)
+			ft_putstr("0");
+		if (scheme->flag & ALT2 && scheme->type == 'X')
+			ft_putstr("X");
+		else if (scheme->flag & ALT2)
+			ft_putstr("x");
+	}
+	while (scheme->width > scheme->len)
+	{
+		if (scheme->flag & F_ZERO)
+			ft_putstr("0");
+		else
+			ft_putstr(" ");
+		(scheme->len)++;
+	}
 	put_format(scheme);
 	symbols += scheme->len;
 }
