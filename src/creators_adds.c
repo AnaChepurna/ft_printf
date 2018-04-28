@@ -20,11 +20,11 @@ void	create_fe(t_scheme *scheme, va_list ptr)
 	number = get_f(scheme, ptr);
 	if (!(str = handle_naninf(number)))
 	{
-		if (IS_F(scheme->type))
+		//if (IS_F(scheme->type))
 			str = create_float(scheme, number);
-		else if (IS_E(scheme->type))
-			str = create_exponent(scheme, number);
-		// else
+		// else if (IS_E(scheme->type))
+		// 	str = create_exponent(scheme, number);
+		// // else
 		// 	str = ft_strdup("nope");
 			// str = create_hexfloat(scheme, number);
 		// if ((scheme->flag & F_PLUS) || (scheme->flag & F_SPACE))
