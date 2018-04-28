@@ -26,8 +26,8 @@ static void		create_format(t_scheme *scheme, va_list ptr)
 	 	(create_s(scheme, ptr));
 	else if (IS_C(scheme->type))
 	  	create_c(scheme, ptr);
-	// else if (IS_F(scheme->type) || IS_E(scheme->type) || IS_A(scheme->type))
-	//  	create_fe(symbols, scheme, ptr);
+	else if (IS_F(scheme->type) || IS_E(scheme->type) || IS_A(scheme->type))
+	  	create_fe(scheme, ptr);
 	// else if (IS_E(scheme->type))
 	// 	ft_putnbr((int)get_f(scheme, ptr));
 	// else if (IS_B(scheme->type))

@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	create_fe(int *symbols, t_scheme *scheme, va_list ptr)
+void	create_fe(t_scheme *scheme, va_list ptr)
 {
 	char		*str;
 	long double	number;
@@ -32,9 +32,12 @@ void	create_fe(int *symbols, t_scheme *scheme, va_list ptr)
 		// if (scheme->width)
 		// 	width_str(scheme, &str);
 	}
-	ft_putstr(str);
-	*symbols += ft_strlen(str);
-	free(str);
+	// ft_putstr(str);
+	// *symbols += ft_strlen(str);
+	// free(str);
+	scheme->str = str;
+	scheme->precision = -1;
+	scheme->len = ft_strlen(str);
 }
 
 void	create_b(int *symbols, t_scheme *scheme, va_list ptr)

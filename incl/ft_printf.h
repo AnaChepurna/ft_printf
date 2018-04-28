@@ -94,7 +94,7 @@ void			create_c(t_scheme *scheme, va_list ptr);
 /*
  **creators_adds.c
 */
-void			create_fe(int *symbols, t_scheme *scheme, va_list ptr);
+void			create_fe(t_scheme *scheme, va_list ptr);
 void			create_b(int *symbols, t_scheme *scheme, va_list ptr);
 void			create_n(int *symbols, va_list ptr);
 
