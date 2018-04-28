@@ -85,28 +85,29 @@ char		*format_exponent(int expo)
 
 int			find_expo(long double *number)
 {
-	int expo;
-	int sign;
+	// int expo;
+	// int sign;
 
-	sign = 1;
-	if (*number < 0)
-	{
-		*number = -*number;
-		sign = -1;
-	}
-	expo = 0;
-	while (*number >= 10)
-	{
-		*number /= 10;
-		expo += 1;
-	}
-	while (*number < 1)
-	{
-		*number *= 10;
-		expo -= 1;
-	}
-	*number *= sign;
-	return (expo);
+	// sign = 1;
+	// if (*number < 0)
+	// {
+	// 	*number = -*number;
+	// 	sign = -1;
+	// }
+	// expo = 0;
+	// while (*number >= 10)
+	// {
+	// 	*number /= 10;
+	// 	expo += 1;
+	// }
+	// while (*number < 1)
+	// {
+	// 	*number *= 10;
+	// 	expo -= 1;
+	// }
+	// *number *= sign;
+	// return (expo);
+	return (12);
 }
 
 char		*create_exponent(t_scheme *scheme, long double number)
