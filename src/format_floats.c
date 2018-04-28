@@ -111,16 +111,16 @@ int			find_expo(long double *number)
 
 char		*create_exponent(t_scheme *scheme, long double number)
 {
-	//int		expo;
+	int		expo;
 	char	*mantissa;
 	char	*exponent;
 	//char	*line;
 	//size_t	len;
 
-	//expo = find_expo(&number);
+	expo = find_expo(&number);
 	mantissa = create_float(scheme, number);
 	//(void)expo;
-	exponent = "+";//format_exponent(expo);
+	exponent = format_exponent(expo);
 	// len = ft_strlen(mantissa);
 	// if ((line = ft_strnew(len + ft_strlen(exponent) + 1)))
 	// {
