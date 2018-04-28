@@ -57,30 +57,30 @@ char		*create_float(t_scheme *scheme, long double number)
 char		*format_exponent(int expo)
 {
 	char		*res;
-	// char		*line;
-	// int			pos;
-	// int			len;
+	char		*line;
+	int			pos;
+	int			len;
 
-	// pos = expo < 0 ? 0 : 1;
-	// expo = expo < 0 ? -expo : expo;
-	// len = 3;
+	pos = expo < 0 ? 0 : 1;
+	expo = expo < 0 ? -expo : expo;
+	len = 3;
 	res =  ft_itoa(expo);
-	// while (expo > 99)
-	// {
-	// 	len++;
-	// 	expo /= 10;
-	// }
-	// if ((line = ft_strnew(len)))
-	// {
-	// 	line[0] = pos ? '+' : '-';
-	// 	pos = 1;
-	// 	if (ft_strlen(res) < 2)
-	// 		line[pos++] = '0';
-	// 	ft_strcpy(line + pos, res);
-	// }
-	// free(res);
-	// return (line);
-	 return(res);
+	while (expo > 99)
+	{
+		len++;
+		expo /= 10;
+	}
+	if ((line = ft_strnew(len)))
+	{
+		line[0] = pos ? '+' : '-';
+		pos = 1;
+		if (ft_strlen(res) < 2)
+			line[pos++] = '0';
+		ft_strcpy(line + pos, res);
+	}
+	free(res);
+	return (line);
+	 // return(res);
 }
 
 int			find_expo(long double *number)
