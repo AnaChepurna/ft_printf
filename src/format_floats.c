@@ -14,7 +14,7 @@
 
 intmax_t			double_to_int(long double number)
 {
-	number += 0.00001;
+	number += 0.0001;
 	return ((intmax_t)number);
 	// int		i;
 
