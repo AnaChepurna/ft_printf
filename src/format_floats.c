@@ -14,17 +14,17 @@
 
 int			double_to_int(long double number)
 {
-	number += 0.00001;
-	return ((int)number);
-	// int		i;
+	// number += 0.00001;
+	// return ((int)number);
+	int		i;
 
-	// i = 0;
-	// while (number > 0)
-	// {
-	// 	number -= 0.1;
-	// 	i++;
-	// }
-	// return (i / 10);
+	i = 0;
+	while (number > 0)
+	{
+		number -= 0.1;
+		i++;
+	}
+	return (i / 10);
 }
 
 char		*create_float(t_scheme *scheme, long double number)
