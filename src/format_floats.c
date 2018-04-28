@@ -93,11 +93,11 @@ int			find_expo(long double *number)
 		*number /= 10;
 		expo += 1;
 	}
-	// while (*number < 1)
-	// {
-	// 	*number *= 10;
-	// 	expo -= 1;
-	// }
+	while (*number < 1)
+	{
+		*number *= 10;
+		expo -= 1;
+	}
 	return (expo);
 }
 
