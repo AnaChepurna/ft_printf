@@ -114,20 +114,20 @@ char		*create_exponent(t_scheme *scheme, long double number)
 	int		expo;
 	char	*mantissa;
 	char	*exponent;
-	char	*line;
-	size_t	len;
+	//char	*line;
+	//size_t	len;
 
 	expo = find_expo(&number);
 	mantissa = create_float(scheme, number);
 	exponent = format_exponent(expo);
-	len = ft_strlen(mantissa);
-	if ((line = ft_strnew(len + ft_strlen(exponent) + 1)))
-	{
-		ft_strcpy(line, mantissa);
-		line[len] = 'e';
-		ft_strcpy(line + len + 1, exponent);
-	}
-	free(mantissa);
-	free(exponent);
-	return (line);
+	// len = ft_strlen(mantissa);
+	// if ((line = ft_strnew(len + ft_strlen(exponent) + 1)))
+	// {
+	// 	ft_strcpy(line, mantissa);
+	// 	line[len] = 'e';
+	// 	ft_strcpy(line + len + 1, exponent);
+	// }
+	// free(mantissa);
+	// free(exponent);
+	return (ft_strjoin(mantissa, exponent));
 }
