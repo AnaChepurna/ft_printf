@@ -89,7 +89,7 @@ void			create_di(t_scheme *scheme, va_list ptr);
 void			create_oux(t_scheme *scheme, va_list ptr);
 void			create_p(t_scheme *scheme, va_list ptr);
 void			create_s(t_scheme *scheme, va_list ptr);
-void			create_c(int *symbols, t_scheme *scheme, va_list ptr);
+void			create_c(t_scheme *scheme, va_list ptr);
 
 /*
  **creators_adds.c

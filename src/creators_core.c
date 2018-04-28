@@ -138,7 +138,7 @@ void	create_s(t_scheme *scheme, va_list ptr)
 	//(void)symbols;
 }
 
-void	create_c(int *symbols, t_scheme *scheme, va_list ptr)
+void	create_c(t_scheme *scheme, va_list ptr)
 {
 	//char	*str;
 	wchar_t	c;
@@ -146,6 +146,8 @@ void	create_c(int *symbols, t_scheme *scheme, va_list ptr)
 
 	//str = ft_strdup("!");
 	c = get_c(scheme, ptr);
+	if ((scheme->str = ft_strnew(1)))
+		(scheme->str)[0] = (char)c;
 	// if ((scheme->type == 'C' || scheme->size == 'l') && !ft_isascii((int)c))
 	// 	*symbols = -1;
 	// else
@@ -163,6 +165,6 @@ void	create_c(int *symbols, t_scheme *scheme, va_list ptr)
 	// 	*symbols += i[0];
 	// }
 	// free(str);
-	ft_putchar(c);
-	(void)symbols;
+	// ft_putchar(c);
+	// (void)symbols;
 }
