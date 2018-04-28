@@ -105,13 +105,16 @@ void	create_p(t_scheme *scheme, va_list ptr)
 // 	free(str);
 }
 
-void	create_s(int *symbols, t_scheme *scheme, va_list ptr)
+void	create_s(t_scheme *scheme, va_list ptr)
 {
 	//char	*str;
 	void	*s;
 
 	s = get_s(scheme, ptr);
-	ft_putstr((char *)s);
+	scheme->str = ft_strdup((char *)s);
+	scheme->len = ft_strlen(scheme->str);
+	//ft_putstr((char *)s);
+
 	// if (!s)
 	// 	str = ft_strdup("(null)");
 	// else if (scheme->type == 's')
@@ -132,7 +135,7 @@ void	create_s(int *symbols, t_scheme *scheme, va_list ptr)
 	// ft_putstr(str);
 	// *symbols += ft_strlen(str);
 	// free(str);
-	(void)symbols;
+	//(void)symbols;
 }
 
 void	create_c(int *symbols, t_scheme *scheme, va_list ptr)

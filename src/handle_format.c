@@ -22,10 +22,10 @@ static void		create_format(t_scheme *scheme, va_list ptr)
 	  	create_oux(scheme, ptr);
 	else if (scheme->type == 'p')
 	  	create_p(scheme, ptr);
-	// else if (IS_S(scheme->type))
-	//  	(create_s(symbols, scheme, ptr));
+	else if (IS_S(scheme->type))
+	 	(create_s(scheme, ptr));
 	// else if (IS_C(scheme->type))
-	//  	create_c(symbols, scheme, ptr);
+	//   	create_c(scheme, ptr);
 	// else if (IS_F(scheme->type) || IS_E(scheme->type) || IS_A(scheme->type))
 	//  	create_fe(symbols, scheme, ptr);
 	// else if (IS_E(scheme->type))
