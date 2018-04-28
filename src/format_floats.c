@@ -122,6 +122,6 @@ char		*create_exponent(t_scheme *scheme, long double number)
 	// }
 	// free(mantissa);
 	// free(exponent);
-	(void)exponent;
-	return (mantissa);
+	//(void)exponent;
+	return (ft_strjoin(mantissa, exponent));
 }
