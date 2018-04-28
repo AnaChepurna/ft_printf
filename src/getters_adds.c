@@ -27,6 +27,8 @@ long double		get_f(t_scheme *scheme, va_list ptr)
 		number = -number;
 		scheme->flag += SIGN;
 	}
+	if (number == 2147484000.0)
+		ft_putstr("alarm!");
 	return (number);
 }
 
