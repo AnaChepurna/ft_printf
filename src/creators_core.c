@@ -111,7 +111,12 @@ void	create_s(t_scheme *scheme, va_list ptr)
 	void	*s;
 
 	s = get_s(scheme, ptr);
-	scheme->str = ft_strdup((char *)s);
+	if (!s && scheme->precision < 6 && scheme->precision > -1)
+		scheme->str = ft_strdup("");
+	else if (!s)
+		scheme->str = ft_strdup("(null)");
+	else
+		scheme->str = ft_strdup((char *)s);
 	scheme->len = scheme->precision > -1 ? scheme->precision : ft_strlen(scheme->str);
 	//ft_putstr((char *)s);
 
