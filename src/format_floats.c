@@ -32,13 +32,13 @@ char		*create_float(t_scheme *scheme, long double number)
 	int		i;
 	int		len;
 
-	integer = ft_itoa(number);
+	integer = ft_itoa(double_to_int(number));
 	len = ft_strlen(integer);
 	line = ft_strnew(len + scheme->precision + (scheme->precision ? 1 : 0));
 	ft_strcpy(line, integer);
 	line[len] = scheme->precision ? '.' : '\0';
 	number = number > 0 ? number : -number;
-	number -= (intmax_t)number;
+	number -= double_to_int(number);
 	i = 1;
 	while (i <= scheme->precision)
 	{
@@ -53,65 +53,77 @@ char		*create_float(t_scheme *scheme, long double number)
 
 char		*format_exponent(int expo)
 {
-	//t_scheme	*scheme;
 	char		*res;
+	char		*line;
+	int			pos;
+	int			len;
 
-	//scheme = scheme_new();
-	//scheme->precision = 2;
-	//scheme->flag += F_PLUS;
-	res = ft_itoa(expo);
-	//sign_number(scheme, &res);
-	//precision_number(scheme, &res);
-	return (res);
+	pos = expo < 0 ? 0 : 1;
+	expo = expo < 0 ? -expo : expo;
+	len = 3;
+	res =  ft_itoa(expo);
+	while (expo > 99)
+	{
+		len++;
+		expo /= 10;
+	}
+	if ((line = ft_strnew(len)))
+	{
+		line[0] = pos ? '+' : '-';
+		pos = 1;
+		if (ft_strlen(res) < 2)
+			line[pos++] = '0';
+		ft_strcpy(line + pos, res);
+	}
+	free(res);
+	return (line);
 }
 
 int			find_expo(long double *number)
 {
-	// int expo;
-	// int sign;
+	int expo;
+	int sign;
 
-	// sign = 1;
-	// if (*number < 0)
-	// {
-	// 	*number = -*number;
-	// 	sign = -1;
-	// }
-	// expo = 0;
-	// while (*number >= 10)
-	// {
-	// 	*number /= 10;
-	// 	expo += 1;
-	// }
-	// while (*number < 1)
-	// {
-	// 	*number *= 10;
-	// 	expo -= 1;
-	// }
-	// *number *= sign;
-	// return (expo);
-	(void)number;
-	return (12);
+	sign = 1;
+	if (*number < 0)
+	{
+		*number = -*number;
+		sign = -1;
+	}
+	expo = 0;
+	while (*number >= 10)
+	{
+		*number /= 10;
+		expo += 1;
+	}
+	while (*number < 1)
+	{
+		*number *= 10;
+		expo -= 1;
+	}
+	*number *= sign;
+	return (expo);
 }
 
 char		*create_exponent(t_scheme *scheme, long double number)
 {
-	//int		expo;
+	int		expo;
 	char	*mantissa;
-	//char	*exponent;
-	//char	*line;
-	//size_t	len;
+	char	*exponent;
+	char	*line;
+	size_t	len;
 
-	//expo = find_expo(&number);
+	expo = find_expo(&number);
 	mantissa = create_float(scheme, number);
-	//exponent = format_exponent(expo);
-	// len = ft_strlen(mantissa);
-	// if ((line = ft_strnew(len + ft_strlen(exponent) + 1)))
-	// {
-	// 	ft_strcpy(line, mantissa);
-	// 	line[len] = 'e';
-	// 	ft_strcpy(line + len + 1, exponent);
-	// }
-	// free(mantissa);
-	//free(exponent);
-	return (mantissa);
+	exponent = format_exponent(expo);
+	len = ft_strlen(mantissa);
+	if ((line = ft_strnew(len + ft_strlen(exponent) + 1)))
+	{
+		ft_strcpy(line, mantissa);
+		line[len] = 'e';
+		ft_strcpy(line + len + 1, exponent);
+	}
+	free(mantissa);
+	free(exponent);
+	return (line);
 }
