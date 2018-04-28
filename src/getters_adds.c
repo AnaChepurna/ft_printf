@@ -27,8 +27,6 @@ long double		get_f(t_scheme *scheme, va_list ptr)
 		number = -number;
 		scheme->flag += SIGN;
 	}
-	if (number > 2147483000.0 && number <= 2147483800.0)
-		ft_putstr("alarm!");
 	return (number);
 }
 

@@ -14,7 +14,8 @@
 
 intmax_t			double_to_int(long double number)
 {
-	number += 0.001;
+	//number += 0.1;
+	//printf("%.10Lf\n", number);
 	return ((intmax_t)number);
 	// int		i;
 
@@ -27,6 +28,26 @@ intmax_t			double_to_int(long double number)
 	// return (i / 10);
 }
 
+void		round_float(t_scheme *scheme, long double *number)
+{
+	long double num;
+	int i;
+	int ten;
+
+	num = *number;
+	i = 0;
+	ten = 1;
+	while (i < scheme->precision)
+	{
+		num *= 10;
+		num -= (intmax_t)num;
+		i++;
+		ten *= 10;
+	}
+	if (num - (intmax_t)num >= 0.5)
+		*number += 1.0 / ten;
+}
+
 char		*create_float(t_scheme *scheme, long double number)
 {
 	char	*integer;
@@ -35,19 +56,22 @@ char		*create_float(t_scheme *scheme, long double number)
 	int		len;
 
 	//integer = ft_itoa(number);
-	integer = ft_itoa(double_to_int(number));
+	round_float(scheme, &number);
+	integer = ft_itoa((intmax_t)number);
 	len = ft_strlen(integer);
 	line = ft_strnew(len + scheme->precision + (scheme->precision ? 1 : 0));
 	ft_strcpy(line, integer);
 	line[len] = scheme->precision ? '.' : '\0';
 	number = number > 0 ? number : -number;
-	number -= double_to_int(number);
+	number -= (intmax_t)number;
 	i = 1;
 	while (i <= scheme->precision)
 	{
 		number *= 10;
-		line[len + i] = '0' + double_to_int(number);
-		number -= double_to_int(number);
+		// if (i == scheme->precision && number - (intmax_t)number > 0.41)
+		// 	number += 1.0;
+		line[len + i] = '0' + (intmax_t)number;
+		number -= (intmax_t)number;
 		i++;
 	}
 	free(integer);
