@@ -23,7 +23,7 @@ void	create_fe(t_scheme *scheme, va_list ptr)
 		if (IS_F(scheme->type))
 			str = create_float(scheme, number);
 		else if (IS_E(scheme->type))
-			str = create_exponent(scheme, number);
+			str = create_float(scheme, number);//create_exponent(scheme, number);
 		// // else
 		// 	str = ft_strdup("nope");
 			// str = create_hexfloat(scheme, number);
