@@ -12,10 +12,10 @@
 
 #include "ft_printf.h"
 
-int			double_to_int(long double number)
+intmax_t			double_to_int(long double number)
 {
 	number += 0.00001;
-	return ((int)number);
+	return ((intmax_t)number);
 	// int		i;
 
 	// i = 0;
@@ -34,14 +34,14 @@ char		*create_float(t_scheme *scheme, long double number)
 	int		i;
 	int		len;
 
-	integer = ft_itoa(number);
-	//integer = ft_itoa(double_to_int(number));
+	//integer = ft_itoa(number);
+	integer = ft_itoa(double_to_int(number));
 	len = ft_strlen(integer);
 	line = ft_strnew(len + scheme->precision + (scheme->precision ? 1 : 0));
 	ft_strcpy(line, integer);
 	line[len] = scheme->precision ? '.' : '\0';
 	number = number > 0 ? number : -number;
-	number -= (intmax_t)number;//double_to_int(number);
+	number -= double_to_int(number);
 	i = 1;
 	while (i <= scheme->precision)
 	{

@@ -117,7 +117,7 @@ void			precision_str(t_scheme *scheme, char **str);
 */
 char			*create_float(t_scheme *scheme, long double number);
 char			*create_exponent(t_scheme *scheme, long double number);
-int				double_to_int(long double number);
+intmax_t		double_to_int(long double number);
 
 /*
  **format_float2s.c
