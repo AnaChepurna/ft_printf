@@ -54,7 +54,7 @@ char		*create_float(t_scheme *scheme, long double number)
 	return (line);
 }
 
-char		*format_exponent(int expo)
+char		*format_exponent(t_scheme *scheme, int expo)
 {
 	char		*res;
 	char		*line;
@@ -72,8 +72,9 @@ char		*format_exponent(int expo)
 	}
 	if ((line = ft_strnew(len)))
 	{
-		line[0] = pos ? '+' : '-';
-		pos = 1;
+		line[0] = scheme->type;
+		line[1] = pos ? '+' : '-';
+		pos = 2;
 		if (ft_strlen(res) < 2)
 			line[pos++] = '0';
 		ft_strcpy(line + pos, res);
@@ -112,7 +113,7 @@ char		*create_exponent(t_scheme *scheme, long double number)
 	expo = find_expo(&number);
 	mantissa = create_float(scheme, number);
 	//(void)expo;
-	exponent = format_exponent(expo);
+	exponent = format_exponent(scheme, expo);
 	// len = ft_strlen(mantissa);
 	// if ((line = ft_strnew(len + ft_strlen(exponent) + 1)))
 	// {
