@@ -122,17 +122,17 @@ int			find_expo(long double *number)
 	// {
 		while (*number >= 10.0)
 		{
-			*number *= 10;
+			*number /= 10;
 			expo += 1;
 		}
 	// }
 	// else if (*number < 1.0)
 	// {
-		// while (*number < 1.0)
-		// {
-		// 	*number *= 10;
-		// 	expo -= 1;
-		// }
+		while (*number < 1.0 && *number != 0.0)
+		{
+			*number *= 10;
+			expo -= 1;
+		}
 	// }
 	return (expo);
 }
