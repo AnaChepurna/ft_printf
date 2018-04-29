@@ -120,10 +120,18 @@ int			find_expo(long double *number)
 	expo = 0;
 	// if (*number >= 10)
 	// {
-		while (*number >= 10.0)
+		while (*number >= 10.0 || *number < 1.0)
 		{
+			if (*number >= 10.0)
+			{
 			*number /= 10;
 			expo += 1;
+			}
+			else
+			{
+				*number *= 10;
+		 	expo -= 1;
+			}
 		}
 	// }
 	// else if (*number < 1.0)
