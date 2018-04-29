@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void		create_format(t_scheme *scheme, va_list ptr)
+static void		create_format(int *symbols, t_scheme *scheme, va_list ptr)
 {
 	if (scheme->type == '%')
 	 	scheme->str = ft_strdup("%");
@@ -32,8 +32,8 @@ static void		create_format(t_scheme *scheme, va_list ptr)
 	// 	ft_putnbr((int)get_f(scheme, ptr));
 	// else if (IS_B(scheme->type))
 	// 	create_b(symbols, scheme, ptr);
-	// else if (scheme->type == 'n')
-	// 	create_n(symbols, ptr);
+	else if (scheme->type == 'n')
+		create_n(symbols, ptr);
 	else
 		scheme->str = ft_strdup("n");
 }
@@ -133,8 +133,9 @@ int				handle_format(const char *format, int *symbols, va_list ptr)
 	i += handle_size(format + i, scheme);
 	i += handle_type(format + i, scheme);
 	//print_scheme(scheme);
-	create_format(scheme, ptr);
-	print_format(symbols, scheme);
+	create_format(symbols, scheme, ptr);
+	if (scheme->type != 'n')
+		print_format(symbols, scheme);
 	scheme_del(&scheme);
 	return (i);
 }
