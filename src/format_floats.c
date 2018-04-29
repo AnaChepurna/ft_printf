@@ -46,8 +46,11 @@ void		round_float(t_scheme *scheme, long double *number)
 	}
 	if (num - (intmax_t)num >= 0.5)
 		*number += 1.0 / ten;
-	ten *= 10;
-	*number += 1.0 / ten;
+	else
+	{
+		ten *= 10;
+		*number += 1.0 / ten;
+	}
 }
 
 char		*create_float(t_scheme *scheme, long double number)
@@ -117,19 +120,19 @@ int			find_expo(long double *number)
 	expo = 0;
 	// if (*number >= 10)
 	// {
-		while (*number >= 10)
+		while (*number >= 10.0)
 		{
 			*number /= 10;
 			expo += 1;
 		}
 	// }
-	// else if (*number < 1)
+	// else if (*number < 1.0)
 	// {
-	// 	while (*number < 1)
-	// 	{
-	// 		*number *= 10;
-	// 		expo -= 1;
-	// 	}
+		while (*number < 1.0)
+		{
+			*number *= 10;
+			expo -= 1;
+		}
 	// }
 	return (expo);
 }
