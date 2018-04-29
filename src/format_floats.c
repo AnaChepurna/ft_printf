@@ -46,6 +46,8 @@ void		round_float(t_scheme *scheme, long double *number)
 	}
 	if (num - (intmax_t)num >= 0.5)
 		*number += 1.0 / ten;
+	ten *= 10;
+	*number += 1.0 / ten;
 }
 
 char		*create_float(t_scheme *scheme, long double number)
@@ -113,16 +115,22 @@ int			find_expo(long double *number)
 	int expo;
 
 	expo = 0;
-	while (*number >= 10)
+	if (*number >= 10)
 	{
-		*number /= 10;
-		expo += 1;
+		while (*number >= 10)
+		{
+			*number /= 10;
+			expo += 1;
+		}
 	}
-	// while (*number < 1)
-	// {
-	// 	*number *= 10;
-	// 	expo -= 1;
-	// }
+	else if (*number < 1)
+	{
+		while (*number < 1)
+		{
+			*number *= 10;
+			expo -= 1;
+		}
+	}
 	return (expo);
 }
 
@@ -131,7 +139,7 @@ char		*create_exponent(t_scheme *scheme, long double number)
 	int		expo;
 	char	*mantissa;
 	char	*exponent;
-	//char	*line;
+	char	*line;
 	//size_t	len;
 
 	expo = find_expo(&number);
@@ -145,8 +153,9 @@ char		*create_exponent(t_scheme *scheme, long double number)
 	// 	line[len] = 'e';
 	// 	ft_strcpy(line + len + 1, exponent);
 	// }
-	// free(mantissa);
-	// free(exponent);
+	line = ft_strjoin(mantissa, exponent);
+	free(mantissa);
+	free(exponent);
 	//(void)exponent;
-	return (ft_strjoin(mantissa, exponent));
+	return (line);
 }
