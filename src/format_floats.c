@@ -128,11 +128,11 @@ int			find_expo(long double *number)
 	// }
 	// else if (*number < 1.0)
 	// {
-		while (*number < 1.0)
-		{
-			*number *= 10;
-			expo -= 1;
-		}
+		// while (*number < 1.0)
+		// {
+		// 	*number *= 10;
+		// 	expo -= 1;
+		// }
 	// }
 	return (expo);
 }
