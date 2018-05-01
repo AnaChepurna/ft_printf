@@ -28,9 +28,9 @@ static void		create_format(int *symbols, t_scheme *scheme, va_list ptr)
 	  	create_c(scheme, ptr);
 	else if (IS_F(scheme->type) || IS_E(scheme->type) || IS_A(scheme->type))
 	  	create_fe(scheme, ptr);
-	// else if (IS_E(scheme->type))
-	// 	ft_putnbr((int)get_f(scheme, ptr));
-	// else if (IS_B(scheme->type))
+	  else if (IS_G(scheme->type))
+	  	create_g(scheme, ptr);
+	//else if (IS_B(scheme->type))
 	// 	create_b(symbols, scheme, ptr);
 	else if (scheme->type == 'n')
 		create_n(symbols, ptr);
@@ -68,13 +68,6 @@ static void		put_format(t_scheme *scheme)
 			ft_putchar(scheme->str[i++]);
 	}
 }
-
-// void			create_len(t_scheme *scheme)
-// {
-// 	if ((scheme->flag & SIGN) || (scheme->flag & F_PLUS) || scheme->flag & F_SPACE)
-// 		scheme->len++;
-
-// }
 
 void			print_format(int *symbols, t_scheme *scheme)
 {

@@ -24,7 +24,7 @@ void	create_fe(t_scheme *scheme, va_list ptr)
 			str = create_float(scheme, number);
 		else if (IS_E(scheme->type))
 			str = create_exponent(scheme, number);
-		else
+		else if (IS_A(scheme->type))
 		{
 			str = create_hexfloat(scheme, number);
 			if (scheme->type == 'A')
@@ -35,6 +35,42 @@ void	create_fe(t_scheme *scheme, va_list ptr)
 	scheme->str = str;
 	scheme->precision = -1;
 	scheme->len = ft_strlen(str);
+	if ((scheme->flag & SIGN) || (scheme->flag & F_PLUS) || (scheme->flag & F_SPACE))
+		scheme->len++;
+}
+
+void	create_g(t_scheme *scheme, va_list ptr)
+{
+	long double number;
+	long double num;;
+
+	number = get_f(scheme, ptr);
+	if (!(scheme->str = handle_naninf(number)))
+	{
+		num = number;
+		num = find_expo(&num);
+		if (number - (intmax_t)number == 0 && num < scheme->precision)
+			scheme->str = ft_itoa(number);
+		else
+		{
+			if (num >= scheme-> precision || num < -4)
+				scheme->str = create_exponent(scheme, number);
+			else
+			{
+				scheme->str = create_float(scheme, number);
+				if (ft_strlen(scheme->str) > scheme->precision)
+				{
+					free(scheme->str);
+					scheme->str = create_exponent(scheme, number);
+				}
+				// num = ft_strlen(scheme->str);
+				// while ((scheme->str)[(int)--num] == '0')
+				// 	(scheme->str)[(int)num] = '\0';
+			}
+		}
+	}
+	scheme->len = ft_strlen(scheme->str);
+	scheme->precision = -1;
 	if ((scheme->flag & SIGN) || (scheme->flag & F_PLUS) || (scheme->flag & F_SPACE))
 		scheme->len++;
 }

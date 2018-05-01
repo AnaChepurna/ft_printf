@@ -27,9 +27,10 @@
 # define IS_X(n) (n) == 'x' || (n) == 'X'
 # define IS_C(n) (n) == 'c' || (n) == 'C'
 # define IS_S(n) (n) == 's' || (n) == 'S'
-# define IS_F(n) (n) == 'f' || (n) == 'F' || (n) == 'g'
-# define IS_E(n) (n) == 'e' || (n) == 'E' //|| (n) == 'G'
+# define IS_F(n) (n) == 'f' || (n) == 'F'
+# define IS_E(n) (n) == 'e' || (n) == 'E'
 # define IS_A(n) (n) == 'a' || (n) == 'A'
+# define IS_G(n) (n) == 'g' || (n) == 'G'
 # define IS_B(n) (n) == 'b'
 
 # define F_MINUS	1
@@ -95,6 +96,7 @@ void			create_c(t_scheme *scheme, va_list ptr);
  **creators_adds.c
 */
 void			create_fe(t_scheme *scheme, va_list ptr);
+void			create_g(t_scheme *scheme, va_list ptr);
 void			create_b(int *symbols, t_scheme *scheme, va_list ptr);
 void			create_n(int *symbols, va_list ptr);
 
@@ -117,7 +119,7 @@ void			precision_str(t_scheme *scheme, char **str);
 */
 char			*create_float(t_scheme *scheme, long double number);
 char			*create_exponent(t_scheme *scheme, long double number);
-intmax_t		double_to_int(long double number);
+int				find_expo(long double *number);
 
 /*
  **format_float2s.c
