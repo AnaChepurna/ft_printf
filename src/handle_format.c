@@ -94,7 +94,7 @@ void			print_format(int *symbols, t_scheme *scheme)
 	{
 		if (scheme->flag & ALT1)
 			ft_putstr("0");
-		if (scheme->flag & ALT2 && scheme->type == 'X')
+		if (scheme->type == 'A' || (scheme->flag & ALT2 && scheme->type == 'X'))
 			ft_putstr("X");
 		else if (scheme->flag & ALT2)
 			ft_putstr("x");

@@ -67,20 +67,18 @@ char	*ft_ftoa(long double number, int precision, int base)
 	return (line);
 }
 
-char	*compile_hexfloat(char *mantissa, char *exponent, int *sign)
+char	*compile_hexfloat(char *mantissa, char *exponent, int sign)
 {
 	char	*line;
 	size_t	len_m;
 
 	len_m = ft_strlen(mantissa);
-	if ((line = ft_strnew(sign[0] + len_m + 2 + ft_strlen(exponent))))
+	if ((line = ft_strnew(len_m + 2 + ft_strlen(exponent))))
 	{
-		if (sign[0])
-			line[0] = '-';
-		ft_strcpy(line + sign[0], mantissa);
-		ft_strcpy(line + sign[0] + len_m, "p");
-		line[sign[0] + len_m + 1] = sign[1] ? '-' : '+';
-		ft_strcpy(line + sign[0] + len_m + 2, exponent);
+		ft_strcpy(line, mantissa);
+		ft_strcpy(line + len_m, "p");
+		line[len_m + 1] = sign ? '-' : '+';
+		ft_strcpy(line + len_m + 2, exponent);
 	}
 	free(mantissa);
 	free(exponent);
@@ -92,10 +90,8 @@ char	*create_hexfloat(t_scheme *scheme, long double number)
 	int 	rank;
 	char	*mantissa;
 	char	*exponent;
-	int		sign[2];
+	int		sign;
 
-	sign[0] = number < 0 ? 1 : 0;
-	number = number < 0 ? -number : number;
 	rank = 0;
 	while (number >= 2)
 	{
@@ -107,9 +103,8 @@ char	*create_hexfloat(t_scheme *scheme, long double number)
 		number = number * (double)2;
 		rank--;
 	}
-	sign[1] = rank < 0 ? 1 : 0;
+	sign = rank < 0 ? 1 : 0;
 	mantissa = ft_ftoa(number, scheme->precision, 16);
-	add_base(scheme, &mantissa);
 	exponent = ft_itoa_base(rank, 10);
 	return (compile_hexfloat(mantissa, exponent, sign));
 }

@@ -29,6 +29,7 @@ void	create_fe(t_scheme *scheme, va_list ptr)
 			str = create_hexfloat(scheme, number);
 			if (scheme->type == 'A')
 				ft_strcase(str, UP);
+			scheme->flag += ALT1 + ALT2;
 		}
 	}
 	scheme->str = str;
