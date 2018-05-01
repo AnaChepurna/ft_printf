@@ -15,7 +15,7 @@
 static void		create_format(int *symbols, t_scheme *scheme, va_list ptr)
 {
 	if (scheme->type == '%')
-	 	scheme->str = ft_strdup("%");
+		create_blanc(scheme);
 	else if (IS_I(scheme->type))
 		create_di(scheme, ptr);
 	else if (IS_O(scheme->type) || IS_X(scheme->type) || IS_U(scheme->type))

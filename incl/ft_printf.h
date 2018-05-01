@@ -99,6 +99,7 @@ void			create_fe(t_scheme *scheme, va_list ptr);
 void			create_g(t_scheme *scheme, va_list ptr);
 void			create_b(int *symbols, t_scheme *scheme, va_list ptr);
 void			create_n(int *symbols, va_list ptr);
+void 			create_blanc(t_scheme *scheme);
 
 /*
  **format_float.c

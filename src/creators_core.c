@@ -46,6 +46,8 @@ void	create_oux(t_scheme *scheme, va_list ptr)
 	scheme->len = ft_strlen(scheme->str);
 	scheme->len = scheme->precision <= scheme->len ?
 	scheme->len : scheme->precision;
+	if (scheme->len > scheme->precision)
+		scheme->precision = -1;
 	if (scheme->flag & F_HASH && base == 8)
 	{
 		scheme->flag += ALT1;

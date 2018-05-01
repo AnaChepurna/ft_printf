@@ -69,6 +69,14 @@ void	create_g(t_scheme *scheme, va_list ptr)
 		scheme->len++;
 }
 
+void create_blanc(t_scheme *scheme)
+{
+	scheme->precision = -1;
+	if (scheme->flag & F_SPACE)
+		scheme->flag -= F_SPACE;
+	scheme->str = ft_strdup("%");
+}
+
 // void	create_b(int *symbols, t_scheme *scheme, va_list ptr)
 // {
 // 	uintmax_t		number;
