@@ -24,6 +24,8 @@ void	create_fe(t_scheme *scheme, va_list ptr)
 			str = create_float(scheme, number);
 		else if (IS_E(scheme->type))
 			str = create_exponent(scheme, number);
+		else
+			str = create_hexfloat(scheme, number);
 		// // else
 		// 	str = ft_strdup("nope");
 			// str = create_hexfloat(scheme, number);
@@ -38,6 +40,8 @@ void	create_fe(t_scheme *scheme, va_list ptr)
 	scheme->str = str;
 	scheme->precision = -1;
 	scheme->len = ft_strlen(str);
+	if ((scheme->flag & SIGN) || (scheme->flag & F_PLUS) || (scheme->flag & F_SPACE))
+		scheme->len++;
 }
 
 void	create_b(int *symbols, t_scheme *scheme, va_list ptr)
