@@ -54,19 +54,12 @@ void	create_g(t_scheme *scheme, va_list ptr)
 		else
 		{
 			scheme->precision -= 3;
-			if (num >= scheme-> precision || num < -4)
+			if (num >= scheme->precision || num < -4)
 				scheme->str = create_exponent(scheme, number);
 			else
 			{
+				scheme->precision += 2 - (int)num;
 				scheme->str = create_float(scheme, number);
-				if (ft_strlen(scheme->str) > scheme->precision + 3)
-				{
-					free(scheme->str);
-					scheme->str = create_exponent(scheme, number);
-				}
-				// num = ft_strlen(scheme->str);
-				// while ((scheme->str)[(int)--num] == '0')
-				// 	(scheme->str)[(int)num] = '\0';
 			}
 		}
 	}
