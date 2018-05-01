@@ -59,7 +59,7 @@ char	*ft_ftoa(long double number, int precision, int base)
 	num = (intmax_t)number;
 	head = ft_itoa_base(num, base);
 	number -= num;
-	teil = teil_ftoa(number, precision, 10);
+	teil = teil_ftoa(number, precision, base);
 	line = ft_strjoin(head, teil);
 	free(head);
 	free(teil);
@@ -109,6 +109,6 @@ char	*create_hexfloat(t_scheme *scheme, long double number)
 	sign[1] = rank < 0 ? 1 : 0;
 	mantissa = ft_ftoa(number, scheme->precision, 16);
 	add_base(scheme, &mantissa);
-	exponent = ft_itoa_base(rank, 16);
+	exponent = ft_itoa_base(rank, 10);
 	return (compile_hexfloat(mantissa, exponent, sign));
 }
