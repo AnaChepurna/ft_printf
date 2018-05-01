@@ -26,27 +26,12 @@ void	create_di(t_scheme *scheme, va_list ptr)
 	if ((scheme->flag & SIGN) || (scheme->flag & F_PLUS) || (scheme->flag & F_SPACE))
 		len++;
 	scheme->len = len;
-	// if ((scheme->flag & F_ZERO) && (scheme->precision > -1))
-	// 	scheme->flag = scheme->flag ^ F_ZERO;
-	// if ((scheme->flag & F_PLUS) || (scheme->flag & F_SPACE))
-	// 	sign_number(scheme, &str);
-	// if (scheme->precision > 0)
-	// 	precision_number(scheme, &str);
-	// if (!scheme->precision && !number)
-	// 	precision_str(scheme, &str);
-	// if (scheme->width)
-	// 	width_number(scheme, &str);
-	// ft_putstr(str);
-	// *symbols += ft_strlen(str);
-	// free(str);
 }
 
 void	create_oux(t_scheme *scheme, va_list ptr)
 {
-	char		*str;
 	int			base;
 	uintmax_t	number;
-	int		len;
 
 	if (IS_O(scheme->type))
 		base = 8;
@@ -55,37 +40,21 @@ void	create_oux(t_scheme *scheme, va_list ptr)
 	if ((scheme->flag & F_ZERO) && (scheme->precision > -1))
 		scheme->flag = scheme->flag ^ F_ZERO;
 	number = get_u(scheme, ptr);
-	str = ft_itoa_base(number, base);
-	scheme->str = str;
+	scheme->str = ft_itoa_base(number, base);
 	if (scheme->type == 'X')
-		ft_strcase(str, UP);
-	len = ft_strlen(scheme->str);
-	len = scheme->precision <= len ? len : scheme->precision;
+		ft_strcase(scheme->str, UP);
+	scheme->len = ft_strlen(scheme->str);
+	scheme->len = scheme->precision <= scheme->len ? scheme->len : scheme->precision;
 	if (scheme->flag & F_HASH && base == 8)
 	{
 		scheme->flag += ALT1;
-		len++;
+		scheme->len++;
 	}
 	else if (scheme->flag & F_HASH && base == 16)
 	{
-		scheme->flag += ALT1;
-		scheme->flag += ALT2;
-		len += 2;
+		scheme->flag += ALT1 + ALT2;
+		scheme->len += 2;
 	}
-	scheme->len = len;
-	// if (scheme->flag & F_HASH)
-	// 	add_base(scheme, &str);
-	// if (scheme->precision > 0)
-	// 	precision_number(scheme, &str);
-	// if (!scheme->precision && !number && !((IS_O(scheme->type)) && scheme->flag & F_HASH))
-	// 	precision_str(scheme, &str);
-	// if (scheme->width)
-	// 	width_number(scheme, &str);
-	// if (scheme->type == 'X')
-	// 	ft_strcase(str, UP);
-	// ft_putstr(str);
-	// *symbols += ft_strlen(str);
-	// free(str);
 }
 
 void	create_p(t_scheme *scheme, va_list ptr)
@@ -93,21 +62,14 @@ void	create_p(t_scheme *scheme, va_list ptr)
 	char	*str;
 
 	str = ft_itoa_base(get_u(scheme, ptr), 16);
-	// add_base(scheme, &str);
-	// if (scheme->width)
-	// 	width_str(scheme, &str);
 	scheme->str = str;
 	scheme->len = ft_strlen(str) + 2;
 	scheme->flag += ALT1;
 	scheme->flag += ALT2;
-// 	ft_putstr(str);
-// 	*symbols += ft_strlen(str);
-// 	free(str);
 }
 
 void	create_s(t_scheme *scheme, va_list ptr)
 {
-	//char	*str;
 	void	*s;
 
 	s = get_s(scheme, ptr);
@@ -118,58 +80,13 @@ void	create_s(t_scheme *scheme, va_list ptr)
 	else
 		scheme->str = ft_strdup((char *)s);
 	scheme->len = scheme->precision > -1 ? scheme->precision : ft_strlen(scheme->str);
-	//ft_putstr((char *)s);
-
-	// if (!s)
-	// 	str = ft_strdup("(null)");
-	// else if (scheme->type == 's')
-	// 	str = ft_strdup((char *)s);
-	// else
-	// {
-	// 	str = create_wstr((wchar_t *)s);
-	// 	if (!str)
-	// 	{
-	// 		*symbols = -1;
-	// 		return ;
-	// 	}
-	// }
-	// if (scheme->precision > 0)
-	// 	precision_str(scheme, &str);
-	// if (scheme->width)
-	// 	width_str(scheme, &str);
-	// ft_putstr(str);
-	// *symbols += ft_strlen(str);
-	// free(str);
-	//(void)symbols;
 }
 
 void	create_c(t_scheme *scheme, va_list ptr)
 {
-	//char	*str;
 	wchar_t	c;
-	//size_t	i[2];
 
-	//str = ft_strdup("!");
 	c = get_c(scheme, ptr);
 	if ((scheme->str = ft_strnew(1)))
 		(scheme->str)[0] = (char)c;
-	// if ((scheme->type == 'C' || scheme->size == 'l') && !ft_isascii((int)c))
-	// 	*symbols = -1;
-	// else
-	// {
-	// 	if (scheme->width)
-	// 		width_str(scheme, &str);
-	// 	i[0] = ft_strlen(str);
-	// 	if (scheme->flag & F_MINUS)
-	// 		str[0] = (char)c;
-	// 	else
-	// 		str[i[0] - 1] = (char)c;
-	// 	i[1] = 0;
-	// 	while (i[1] < i[0])
-	// 		ft_putchar(str[i[1]++]);
-	// 	*symbols += i[0];
-	// }
-	// free(str);
-	// ft_putchar(c);
-	// (void)symbols;
 }
