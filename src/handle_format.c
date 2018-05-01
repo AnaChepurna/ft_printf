@@ -30,8 +30,6 @@ static void		create_format(int *symbols, t_scheme *scheme, va_list ptr)
 	  	create_fe(scheme, ptr);
 	  else if (IS_G(scheme->type))
 	  	create_g(scheme, ptr);
-	//else if (IS_B(scheme->type))
-	// 	create_b(symbols, scheme, ptr);
 	else if (scheme->type == 'n')
 		create_n(symbols, ptr);
 	else
@@ -103,7 +101,7 @@ void			print_format(int *symbols, t_scheme *scheme)
 		ft_putstr(" ");
 		(scheme->len)++;
 	}
-	symbols += scheme->len;
+	*symbols += scheme->len;
 }
 
 int				handle_format(const char *format, int *symbols, va_list ptr)
@@ -125,7 +123,6 @@ int				handle_format(const char *format, int *symbols, va_list ptr)
 	i += handle_precision(format + i, scheme, ptr);
 	i += handle_size(format + i, scheme);
 	i += handle_type(format + i, scheme);
-	//print_scheme(scheme);
 	create_format(symbols, scheme, ptr);
 	if (scheme->type != 'n')
 		print_format(symbols, scheme);

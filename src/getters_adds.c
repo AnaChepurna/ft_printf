@@ -14,7 +14,7 @@
 
 long double		get_f(t_scheme *scheme, va_list ptr)
 {
-	long double	number;
+	long double		number;
 
 	// if (scheme->type == 'F' || scheme->size == 'L')
 	// 	number = va_arg(ptr, long double);
@@ -34,5 +34,5 @@ long double		get_f(t_scheme *scheme, va_list ptr)
 
 int				*get_n(va_list prt)
 {
-	return(va_arg(prt, int *));
+	return (va_arg(prt, int *));
 }

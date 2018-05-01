@@ -101,20 +101,6 @@ void			create_b(int *symbols, t_scheme *scheme, va_list ptr);
 void			create_n(int *symbols, va_list ptr);
 
 /*
- **format _numbers.c
-*/
-void			precision_number(t_scheme *scheme, char **str);
-void			width_number(t_scheme *scheme, char **str);
-void			sign_number(t_scheme *scheme, char **str);
-void			add_base(t_scheme *scheme, char **str);
-
-/*
- **format _str.c
-*/
-void			width_str(t_scheme *scheme, char **str);
-void			precision_str(t_scheme *scheme, char **str);
-
-/*
  **format_float.c
 */
 char			*create_float(t_scheme *scheme, long double number);

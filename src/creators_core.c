@@ -16,14 +16,15 @@ void	create_di(t_scheme *scheme, va_list ptr)
 {
 	char		*str;
 	intmax_t	number;
-	int		len;
+	int			len;
 
 	number = get_i(scheme, ptr);
 	str = ft_itoa(number);
 	scheme->str = str;
 	len = ft_strlen(scheme->str);
 	len = scheme->precision <= len ? len : scheme->precision;
-	if ((scheme->flag & SIGN) || (scheme->flag & F_PLUS) || (scheme->flag & F_SPACE))
+	if ((scheme->flag & SIGN) || (scheme->flag & F_PLUS) ||
+		(scheme->flag & F_SPACE))
 		len++;
 	scheme->len = len;
 }
@@ -33,9 +34,8 @@ void	create_oux(t_scheme *scheme, va_list ptr)
 	int			base;
 	uintmax_t	number;
 
-	if (IS_O(scheme->type))
-		base = 8;
-	else
+	base = 8;
+	if (!(IS_O(scheme->type)))
 		base = (IS_X(scheme->type)) ? 16 : 10;
 	if ((scheme->flag & F_ZERO) && (scheme->precision > -1))
 		scheme->flag = scheme->flag ^ F_ZERO;
@@ -44,7 +44,8 @@ void	create_oux(t_scheme *scheme, va_list ptr)
 	if (scheme->type == 'X')
 		ft_strcase(scheme->str, UP);
 	scheme->len = ft_strlen(scheme->str);
-	scheme->len = scheme->precision <= scheme->len ? scheme->len : scheme->precision;
+	scheme->len = scheme->precision <= scheme->len ?
+	scheme->len : scheme->precision;
 	if (scheme->flag & F_HASH && base == 8)
 	{
 		scheme->flag += ALT1;
@@ -79,7 +80,8 @@ void	create_s(t_scheme *scheme, va_list ptr)
 		scheme->str = ft_strdup("(null)");
 	else
 		scheme->str = ft_strdup((char *)s);
-	scheme->len = scheme->precision > -1 ? scheme->precision : ft_strlen(scheme->str);
+	scheme->len = scheme->precision > -1 ?
+	scheme->precision : ft_strlen(scheme->str);
 }
 
 void	create_c(t_scheme *scheme, va_list ptr)

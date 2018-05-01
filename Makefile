@@ -18,8 +18,6 @@ SRC = ./src/
 INCL = ./incl
 SRC_SRC = creators_core.c \
 		creators_adds.c \
-		format_numbers.c \
-		format_str.c \
 		format_floats.c \
 		ft_printf.c \
 		handle_format.c \

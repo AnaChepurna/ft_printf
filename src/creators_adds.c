@@ -69,27 +69,27 @@ void	create_g(t_scheme *scheme, va_list ptr)
 		scheme->len++;
 }
 
-void	create_b(int *symbols, t_scheme *scheme, va_list ptr)
-{
-	uintmax_t		number;
-	int				size;
-	unsigned char	*str;
-	char			*line;
+// void	create_b(int *symbols, t_scheme *scheme, va_list ptr)
+// {
+// 	uintmax_t		number;
+// 	int				size;
+// 	unsigned char	*str;
+// 	char			*line;
 
-	number = get_u(scheme, ptr);
-	size = get_size(scheme);
-	str = (unsigned char *)&number;
-	line = ft_strdup("");
-	while (--size >= 0)
-		binary_format(str[size], &line, size != 0);
-	if (scheme->precision > -1)
-		binary_precision(scheme, &line);
-	if (scheme->width)
-		width_number(scheme, &line);
-	ft_putstr((char *)line);
-	*symbols += ft_strlen((char *)str);
-	free(line);
-}
+// 	number = get_u(scheme, ptr);
+// 	size = get_size(scheme);
+// 	str = (unsigned char *)&number;
+// 	line = ft_strdup("");
+// 	while (--size >= 0)
+// 		binary_format(str[size], &line, size != 0);
+// 	if (scheme->precision > -1)
+// 		binary_precision(scheme, &line);
+// 	if (scheme->width)
+// 		width_number(scheme, &line);
+// 	ft_putstr((char *)line);
+// 	*symbols += ft_strlen((char *)str);
+// 	free(line);
+// }
 
 void	create_n(int *symbols, va_list ptr)
 {

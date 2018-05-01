@@ -82,12 +82,12 @@ char	*compile_hexfloat(char *mantissa, char *exponent, int sign)
 	}
 	free(mantissa);
 	free(exponent);
-	return(line);
+	return (line);
 }
 
 char	*create_hexfloat(t_scheme *scheme, long double number)
 {
-	int 	rank;
+	int		rank;
 	char	*mantissa;
 	char	*exponent;
 	int		sign;

@@ -15,8 +15,8 @@
 void		round_float(t_scheme *scheme, long double *number)
 {
 	long double num;
-	int i;
-	int ten;
+	int			i;
+	int			ten;
 
 	num = *number;
 	i = 0;
@@ -58,12 +58,10 @@ char		*create_float(t_scheme *scheme, long double number)
 		line[len + i] = '0' + (intmax_t)number;
 		number -= (intmax_t)number;
 	}
+	i = ft_strlen(line);
 	if (IS_G(scheme->type))
-	{
-		i = ft_strlen(line);
 		while (line[--i] == '0')
 			line[i] = '\0';
-	}
 	free(integer);
 	return (line);
 }
@@ -78,7 +76,7 @@ char		*format_exponent(t_scheme *scheme, int expo)
 	pos = expo < 0 ? 0 : 1;
 	expo = expo < 0 ? -expo : expo;
 	len = 3;
-	res =  ft_itoa(expo);
+	res = ft_itoa(expo);
 	while (expo > 99)
 	{
 		len++;
