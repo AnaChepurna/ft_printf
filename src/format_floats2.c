@@ -59,7 +59,7 @@ char	*ft_ftoa(long double number, int precision, int base)
 	num = (intmax_t)number;
 	head = ft_itoa_base(num, base);
 	number -= num;
-	teil = teil_ftoa(number, precision, base);
+	teil = teil_ftoa(number, precision, 10);
 	line = ft_strjoin(head, teil);
 	free(head);
 	free(teil);
