@@ -49,7 +49,7 @@ char		*create_float(t_scheme *scheme, long double number)
 	len = ft_strlen(integer);
 	line = ft_strnew(len + scheme->precision + (scheme->precision ? 1 : 0));
 	ft_strcpy(line, integer);
-	line[len] = scheme->precision ? '.' : '\0';
+	line[len] = scheme->precision > 0 ? '.' : '\0';
 	number -= (intmax_t)number;
 	i = 0;
 	while (++i <= scheme->precision)
