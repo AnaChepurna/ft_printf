@@ -22,6 +22,10 @@ void	create_di(t_scheme *scheme, va_list ptr)
 	str = ft_itoa(number);
 	scheme->str = str;
 	len = ft_strlen(scheme->str);
+	if (len > scheme->precision && number)
+		scheme->precision = -1;
+	if (ft_strequ(scheme->str, "-9223372036854775808"))
+		scheme->flag -= SIGN;
 	len = scheme->precision <= len ? len : scheme->precision;
 	if ((scheme->flag & SIGN) || (scheme->flag & F_PLUS) ||
 		(scheme->flag & F_SPACE))
@@ -46,14 +50,14 @@ void	create_oux(t_scheme *scheme, va_list ptr)
 	scheme->len = ft_strlen(scheme->str);
 	scheme->len = scheme->precision <= scheme->len ?
 	scheme->len : scheme->precision;
-	if (scheme->len > scheme->precision)
+	if (scheme->len > scheme->precision && number)
 		scheme->precision = -1;
 	if (scheme->flag & F_HASH && base == 8)
 	{
 		scheme->flag += ALT1;
 		scheme->len++;
 	}
-	else if (scheme->flag & F_HASH && base == 16)
+	else if (scheme->flag & F_HASH && base == 16 && number)
 	{
 		scheme->flag += ALT1 + ALT2;
 		scheme->len += 2;
@@ -82,8 +86,9 @@ void	create_s(t_scheme *scheme, va_list ptr)
 		scheme->str = ft_strdup("(null)");
 	else
 		scheme->str = ft_strdup((char *)s);
-	scheme->len = scheme->precision > -1 ?
-	scheme->precision : ft_strlen(scheme->str);
+	// scheme->len = scheme->precision > -1 ?
+	// scheme->precision : ft_strlen(scheme->str);
+	scheme->len = ft_strlen(scheme->str);
 }
 
 void	create_c(t_scheme *scheme, va_list ptr)

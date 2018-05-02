@@ -34,7 +34,7 @@ intmax_t	get_i(t_scheme *scheme, va_list ptr)
 		exit(1);
 	if (number < 0)
 	{
-		number = -number;
+		number = number * -1;
 		scheme->flag += SIGN;
 	}
 	return (number);

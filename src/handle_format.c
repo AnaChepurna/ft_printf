@@ -12,6 +12,23 @@
 
 #include "ft_printf.h"
 
+void	stabilize(t_scheme *scheme)
+{
+	if (scheme->flag & F_ZERO && scheme->flag & F_MINUS)
+		scheme->flag -= F_ZERO;
+	if (scheme->flag & F_SPACE && scheme->flag & F_PLUS)
+		scheme->flag -= F_SPACE;
+	if (IS_C(scheme->type))
+		scheme->precision = -1;
+	if (IS_U(scheme->type))
+	{
+		if (scheme->flag & F_SPACE)
+			scheme->flag -= F_SPACE;
+		if (scheme->flag & F_PLUS)
+			scheme->flag -= F_PLUS;
+	}
+}
+
 static void		create_format(int *symbols, t_scheme *scheme, va_list ptr)
 {
 	if (scheme->type == '%')
@@ -52,9 +69,16 @@ static void		put_format(t_scheme *scheme)
 	int	i;
 
 	len = ft_strlen(scheme->str);
+	//printf("len %i\n", len);
+	//print_scheme(scheme);
 	if (scheme->precision > -1 && len > scheme->precision)
+	{
+		// scheme->len -= len - scheme->precision;
 		len = scheme->precision;
+	}
+	//printf("precision = %i, need to print %i\n", scheme->precision, len);
 	i = 0;
+	//printf("len %i\n", len);
 	while (i < len)
 	{
 		if (len < scheme->precision)
@@ -69,6 +93,10 @@ static void		put_format(t_scheme *scheme)
 
 void			print_format(int *symbols, t_scheme *scheme)
 {
+	 int len;
+
+	if (scheme->precision > -1 && (len = ft_strlen(scheme->str)) > scheme->precision)
+	 	scheme->len -= len - scheme->precision;
 	while (scheme->width > scheme->len && !(scheme->flag & F_ZERO)
 	 	&& !(scheme->flag & F_MINUS))
 	{
@@ -81,7 +109,7 @@ void			print_format(int *symbols, t_scheme *scheme)
 		ft_putstr(" ");
 	else if (scheme->flag & F_PLUS)
 		ft_putstr("+");
-	if (scheme->type == 'p' || !ft_strequ(scheme->str, "0"))
+	if (scheme->type == 'p' || !ft_strequ(scheme->str, "0") || IS_O(scheme->type))
 	{
 		if (scheme->flag & ALT1)
 			ft_putstr("0");
@@ -123,6 +151,8 @@ int				handle_format(const char *format, int *symbols, va_list ptr)
 	i += handle_precision(format + i, scheme, ptr);
 	i += handle_size(format + i, scheme);
 	i += handle_type(format + i, scheme);
+	stabilize(scheme);
+	//print_scheme(scheme);
 	create_format(symbols, scheme, ptr);
 	if (scheme->type != 'n')
 		print_format(symbols, scheme);
