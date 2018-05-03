@@ -52,7 +52,7 @@ void	create_oux(t_scheme *scheme, va_list ptr)
 	scheme->len : scheme->precision;
 	if (scheme->len > scheme->precision && number)
 		scheme->precision = -1;
-	if (scheme->flag & F_HASH && base == 8)
+	if (scheme->flag & F_HASH && base == 8 && number)
 	{
 		scheme->flag += ALT1;
 		scheme->len++;
@@ -98,4 +98,5 @@ void	create_c(t_scheme *scheme, va_list ptr)
 	c = get_c(scheme, ptr);
 	if ((scheme->str = ft_strnew(1)))
 		(scheme->str)[0] = (char)c;
+	scheme->len = 1;
 }

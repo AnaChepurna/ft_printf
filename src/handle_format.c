@@ -76,6 +76,8 @@ static void		put_format(t_scheme *scheme)
 		// scheme->len -= len - scheme->precision;
 		len = scheme->precision;
 	}
+	if ((IS_C(scheme->type)) && !len)
+		len = 1;
 	//printf("precision = %i, need to print %i\n", scheme->precision, len);
 	i = 0;
 	//printf("len %i\n", len);
