@@ -11,6 +11,24 @@ char	*handle_naninf(long double number)
 	return (NULL);
 }
 
+void	stabilize_oux(t_scheme *scheme, uintmax_t number)
+{
+	if (!scheme->precision && !number && (IS_O(scheme->type)) && scheme->flag & F_HASH)
+		scheme->precision = 1;
+	else if (scheme->len > scheme->precision && number)
+		scheme->precision = -1;
+	if (scheme->flag & F_HASH && (IS_O(scheme->type)) && number)
+	{
+		scheme->flag += ALT1;
+		scheme->len++;
+	}
+	else if (scheme->flag & F_HASH && (IS_X(scheme->type)) && number)
+	{
+		scheme->flag += ALT1 + ALT2;
+		scheme->len += 2;
+	}
+}
+
 // int		get_size(t_scheme *scheme)
 // {
 // 	if (!scheme->size)

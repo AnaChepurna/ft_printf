@@ -50,20 +50,7 @@ void	create_oux(t_scheme *scheme, va_list ptr)
 	scheme->len = ft_strlen(scheme->str);
 	scheme->len = scheme->precision <= scheme->len ?
 	scheme->len : scheme->precision;
-	if (!scheme->precision && !number && (IS_O(scheme->type)) && scheme->flag & F_HASH)
-		scheme->precision = 1;
-	else if (scheme->len > scheme->precision && number)
-		scheme->precision = -1;
-	if (scheme->flag & F_HASH && base == 8 && number)
-	{
-		scheme->flag += ALT1;
-		scheme->len++;
-	}
-	else if (scheme->flag & F_HASH && base == 16 && number)
-	{
-		scheme->flag += ALT1 + ALT2;
-		scheme->len += 2;
-	}
+	stabilize_oux(scheme, number);
 }
 
 void	create_p(t_scheme *scheme, va_list ptr)
@@ -88,8 +75,6 @@ void	create_s(t_scheme *scheme, va_list ptr)
 		scheme->str = ft_strdup("(null)");
 	else
 		scheme->str = ft_strdup((char *)s);
-	// scheme->len = scheme->precision > -1 ?
-	// scheme->precision : ft_strlen(scheme->str);
 	scheme->len = ft_strlen(scheme->str);
 }
 

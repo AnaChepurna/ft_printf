@@ -135,5 +135,12 @@ void			*get_s(t_scheme *scheme, va_list prt);
 */
 long double		get_f(t_scheme *scheme, va_list ptr);
 int				*get_n(va_list prt);
+void			stabilize_oux(t_scheme *scheme, uintmax_t number);
+
+/*
+ **print.c
+*/
+void			print_scheme(t_scheme *scheme);
+void			print_format(int *symbols, t_scheme *scheme);
 
 #endif
