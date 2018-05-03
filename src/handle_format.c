@@ -19,7 +19,13 @@ void	stabilize(t_scheme *scheme)
 	if (scheme->flag & F_SPACE && scheme->flag & F_PLUS)
 		scheme->flag -= F_SPACE;
 	if (IS_C(scheme->type))
+	{
 		scheme->precision = -1;
+		if (scheme->flag & F_SPACE)
+			scheme->flag -= F_SPACE;
+		if (scheme->flag & F_PLUS)
+			scheme->flag -= F_PLUS;
+	}
 	if (IS_U(scheme->type))
 	{
 		if (scheme->flag & F_SPACE)
@@ -50,7 +56,7 @@ static void		create_format(int *symbols, t_scheme *scheme, va_list ptr)
 	else if (scheme->type == 'n')
 		create_n(symbols, ptr);
 	else
-		scheme->str = ft_strdup("n");
+		scheme->str = ft_strdup("");
 }
 
 void			print_scheme(t_scheme *scheme)
@@ -69,18 +75,11 @@ static void		put_format(t_scheme *scheme)
 	int	i;
 
 	len = ft_strlen(scheme->str);
-	//printf("len %i\n", len);
-	//print_scheme(scheme);
 	if (scheme->precision > -1 && len > scheme->precision)
-	{
-		// scheme->len -= len - scheme->precision;
 		len = scheme->precision;
-	}
 	if ((IS_C(scheme->type)) && !len)
 		len = 1;
-	//printf("precision = %i, need to print %i\n", scheme->precision, len);
 	i = 0;
-	//printf("len %i\n", len);
 	while (i < len)
 	{
 		if (len < scheme->precision)

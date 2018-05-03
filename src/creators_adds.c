@@ -75,6 +75,7 @@ void create_blanc(t_scheme *scheme)
 	if (scheme->flag & F_SPACE)
 		scheme->flag -= F_SPACE;
 	scheme->str = ft_strdup("%");
+	scheme->len = ft_strlen(scheme->str);
 }
 
 // void	create_b(int *symbols, t_scheme *scheme, va_list ptr)

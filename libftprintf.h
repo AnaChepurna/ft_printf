@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <wchar.h>
 # include <math.h>
+# include <locale.h>
 
 int				ft_printf(const char *restrict format, ...);
 

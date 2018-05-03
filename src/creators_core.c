@@ -50,7 +50,9 @@ void	create_oux(t_scheme *scheme, va_list ptr)
 	scheme->len = ft_strlen(scheme->str);
 	scheme->len = scheme->precision <= scheme->len ?
 	scheme->len : scheme->precision;
-	if (scheme->len > scheme->precision && number)
+	if (!scheme->precision && !number && (IS_O(scheme->type)) && scheme->flag & F_HASH)
+		scheme->precision = 1;
+	else if (scheme->len > scheme->precision && number)
 		scheme->precision = -1;
 	if (scheme->flag & F_HASH && base == 8 && number)
 	{
@@ -98,5 +100,7 @@ void	create_c(t_scheme *scheme, va_list ptr)
 	c = get_c(scheme, ptr);
 	if ((scheme->str = ft_strnew(1)))
 		(scheme->str)[0] = (char)c;
-	scheme->len = 1;
+	scheme->len = ft_strlen(scheme->str);
+	if (!c)
+		scheme->len = 1;
 }

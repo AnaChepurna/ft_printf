@@ -2,8 +2,9 @@
 
 int main(int argc, char const *argv[])
 {
-
-	ft_printf("%c\n", NULL);
-	printf("%c\n", NULL);
+	setlocale(LC_ALL, "");
+	ft_printf("%C\n", L'Л');
+	printf("%lc\n", L'Л');
+	//printf("%c\n", NULL);
 	return 0;
 }
