@@ -60,6 +60,8 @@ int		handle_width(const char *format, t_scheme *scheme, va_list ptr)
 	if (format[i] == '*')
 	{
 		scheme->width = va_arg(ptr, size_t);
+		if (scheme->width < 0)
+			scheme->width = 0;
 		i++;
 	}
 	else
