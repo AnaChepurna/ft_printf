@@ -80,8 +80,8 @@ void	create_s(t_scheme *scheme, va_list ptr)
 		scheme->str = get_strunicode(s);
 		if (scheme->precision > -1 && scheme->precision < ft_strlen(scheme->str))
 		{
-			while (scheme->str[scheme->precision - 1] < 0 &&
-				scheme->str[scheme->precision - 1] > -63)
+			while (scheme->str[scheme->precision] < -63 )//&&
+				//scheme->str[scheme->precision] > -63)
 				scheme->precision--;
 		}
 	}
