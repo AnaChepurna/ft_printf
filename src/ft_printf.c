@@ -23,6 +23,8 @@ int				ft_printf(const char *restrict format, ...)
 	symbols = 0;
 	while (format[i] && symbols > -1)
 	{
+		if (symbols < 0)
+			return (symbols);
 		if (format[i] == '%')
 		{
 			i++;
@@ -31,7 +33,6 @@ int				ft_printf(const char *restrict format, ...)
 		else
 			i += handle_line(format + i, &symbols);
 	}
-	//ft_putstr(format);
 	va_end(ptr);
 	return (symbols);
 }

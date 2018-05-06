@@ -143,4 +143,10 @@ void			stabilize_oux(t_scheme *scheme, uintmax_t number);
 void			print_scheme(t_scheme *scheme);
 void			print_format(int *symbols, t_scheme *scheme);
 
+/*
+ **unicode.c
+*/
+char			*get_strunicode(wchar_t *wstr);
+char			*get_unicode(wchar_t c);
+
 #endif

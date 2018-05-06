@@ -79,9 +79,10 @@ int				handle_format(const char *format, int *symbols, va_list ptr)
 	i += handle_size(format + i, scheme);
 	i += handle_type(format + i, scheme);
 	stabilize(scheme);
-	//print_scheme(scheme);
 	create_format(symbols, scheme, ptr);
-	if (scheme->type != 'n')
+	if (!(scheme->str))
+		*symbols = -1;
+	else if (scheme->type != 'n')
 		print_format(symbols, scheme);
 	scheme_del(&scheme);
 	return (i);
