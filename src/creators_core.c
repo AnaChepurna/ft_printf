@@ -95,7 +95,7 @@ void	create_c(t_scheme *scheme, va_list ptr)
 	wchar_t	c;
 
 	c = get_c(scheme, ptr);
-	if (scheme->type == 'C' || scheme->size == 'l')
+	if ((scheme->type == 'C' || scheme->size == 'l') && (MB_CUR_MAX == LC_ALL))
 	{
 		// if (MB_CUR_MAX != LC_ALL)
 		// 	return ;

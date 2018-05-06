@@ -24,7 +24,7 @@ int				ft_printf(const char *restrict format, ...)
 	while (format[i] && symbols > -1)
 	{
 		if (symbols < 0)
-			return (symbols);
+			break ;
 		if (format[i] == '%')
 		{
 			i++;
