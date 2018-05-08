@@ -88,6 +88,8 @@ void	create_s(t_scheme *scheme, va_list ptr)
 	else
 		scheme->str = ft_strdup((char *)s);
 	scheme->len = ft_strlen(scheme->str);
+	if (scheme->precision > scheme->len)
+		scheme->precision = -1;
 }
 
 void	create_c(t_scheme *scheme, va_list ptr)

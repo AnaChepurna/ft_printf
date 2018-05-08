@@ -18,7 +18,7 @@ void	stabilize(t_scheme *scheme)
 		scheme->flag -= F_ZERO;
 	if (scheme->flag & F_SPACE && scheme->flag & F_PLUS)
 		scheme->flag -= F_SPACE;
-	if (IS_C(scheme->type))
+	if (IS_C(scheme->type) || !scheme->type)
 	{
 		scheme->precision = -1;
 		if (scheme->flag & F_SPACE)
@@ -26,7 +26,7 @@ void	stabilize(t_scheme *scheme)
 		if (scheme->flag & F_PLUS)
 			scheme->flag -= F_PLUS;
 	}
-	if (IS_U(scheme->type))
+	if (IS_U(scheme->type) || IS_O(scheme->type) || IS_S(scheme->type))
 	{
 		if (scheme->flag & F_SPACE)
 			scheme->flag -= F_SPACE;
@@ -37,10 +37,11 @@ void	stabilize(t_scheme *scheme)
 
 static void		no_spec(t_scheme *scheme)
 {
+	if ((scheme->str = ft_strnew(1)))
+		(scheme->str)[0] = scheme->type;
 	scheme->type = '\0';
-	scheme->str = ft_strdup("");
 	scheme->len = 1;
-	scheme->flag = 0;
+	//scheme->flag = 0;
 }
 
 static void		create_format(int *symbols, t_scheme *scheme, va_list ptr)
@@ -86,14 +87,14 @@ int				handle_format(const char *format, int *symbols, va_list ptr)
 	i += handle_precision(format + i, scheme, ptr);
 	i += handle_size(format + i, scheme);
 	i += handle_type(format + i, scheme);
-	stabilize(scheme);
 	create_format(symbols, scheme, ptr);
+	stabilize(scheme);
 	if (!(scheme->str))
 		*symbols = -1;
 	else if (scheme->type != 'n')
 		print_format(symbols, scheme);
-	if (!(scheme->type))
-		i--;
+	// if (!(scheme->type))
+	// 	i--;
 	scheme_del(&scheme);
 	return (i);
 }

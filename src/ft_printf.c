@@ -28,7 +28,7 @@ int				ft_printf(const char *restrict format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-			//if (format[i])
+			if (format[i])
 				i += handle_format(format + i, &symbols, ptr);
 		}
 		else
