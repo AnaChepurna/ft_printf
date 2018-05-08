@@ -1,16 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   unicode.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/08 10:18:05 by achepurn          #+#    #+#             */
+/*   Updated: 2018/05/08 10:18:09 by achepurn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 char	*get_strunicode(wchar_t *wstr)
 {
-	char *str;
-	char *buf;
+	char	*str;
+	char	*buf1;
+	char	*buf2;
 
-	str= ft_strdup("");
+	str = ft_strdup("");
 	while (*wstr)
 	{
-		buf = str;
-		str = ft_strjoin(buf, get_unicode(*wstr));
-		free(buf);
+		buf1 = str;
+		buf2 = get_unicode(*wstr);
+		str = ft_strjoin(buf1, buf2);
+		//printf("%p\n", buf);
+		free(buf1);
+		free(buf2);
 		wstr++;
 	}
 	return (str);

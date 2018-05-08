@@ -21,12 +21,15 @@ int		handle_line(const char *format, int *symbols)
 	while (format[i] && format[i] != '%')
 		i++;
 	str = NULL;
-	if (i)
+	if (i && *format)
 	{
 		str = ft_strsub(format, 0, i);
 		ft_putstr(str);
 		*symbols += i;
 		free(str);
 	}
-	return (i);
+	if (*format)
+		return (i);
+	else
+		return (0);
 }

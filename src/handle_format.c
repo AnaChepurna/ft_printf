@@ -35,6 +35,14 @@ void	stabilize(t_scheme *scheme)
 	}
 }
 
+static void		no_spec(t_scheme *scheme)
+{
+	scheme->type = '\0';
+	scheme->str = ft_strdup("");
+	scheme->len = 1;
+	scheme->flag = 0;
+}
+
 static void		create_format(int *symbols, t_scheme *scheme, va_list ptr)
 {
 	if (scheme->type == '%')
@@ -56,7 +64,7 @@ static void		create_format(int *symbols, t_scheme *scheme, va_list ptr)
 	else if (scheme->type == 'n')
 		create_n(symbols, ptr);
 	else
-		scheme->str = ft_strdup("");
+		no_spec(scheme);
 }
 
 int				handle_format(const char *format, int *symbols, va_list ptr)
@@ -84,6 +92,8 @@ int				handle_format(const char *format, int *symbols, va_list ptr)
 		*symbols = -1;
 	else if (scheme->type != 'n')
 		print_format(symbols, scheme);
+	if (!(scheme->type))
+		i--;
 	scheme_del(&scheme);
 	return (i);
 }

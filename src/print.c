@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-/*
+
 void			print_scheme(t_scheme *scheme)
 {
 	printf("flags = %i\n", scheme->flag);
@@ -20,7 +20,7 @@ void			print_scheme(t_scheme *scheme)
 	printf("size  = %c\n", (char)scheme->size);
 	printf("type  = %c\n", (char)scheme->type);
 	printf("order = %i\n", scheme->order);
-}*/
+}
 
 static void		put_format(t_scheme *scheme)
 {

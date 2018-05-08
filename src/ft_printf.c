@@ -28,10 +28,13 @@ int				ft_printf(const char *restrict format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-			i += handle_format(format + i, &symbols, ptr);
+			//if (format[i])
+				i += handle_format(format + i, &symbols, ptr);
 		}
 		else
+		{
 			i += handle_line(format + i, &symbols);
+		}
 	}
 	va_end(ptr);
 	return (symbols);
