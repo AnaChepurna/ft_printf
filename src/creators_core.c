@@ -60,6 +60,10 @@ void	create_p(t_scheme *scheme, va_list ptr)
 	str = ft_itoa_base(get_u(scheme, ptr), 16);
 	scheme->str = str;
 	scheme->len = ft_strlen(str) + 2;
+	if (scheme->precision >= scheme->len - 2)
+		scheme->len = scheme->precision + 2;
+	else if (scheme->precision)
+		scheme->precision = -1;
 	scheme->flag += ALT1;
 	scheme->flag += ALT2;
 }

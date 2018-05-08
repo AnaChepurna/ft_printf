@@ -27,6 +27,11 @@ void	stabilize_oux(t_scheme *scheme, uintmax_t number)
 		scheme->flag += ALT1 + ALT2;
 		scheme->len += 2;
 	}
+	if (scheme->flag & F_HASH && (IS_O(scheme->type)) && scheme->precision)
+	{
+		scheme->len--;
+		scheme->precision--;
+	}
 }
 
 // int		get_size(t_scheme *scheme)
