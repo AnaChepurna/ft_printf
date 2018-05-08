@@ -46,8 +46,6 @@ int		handle_precision(const char *format, t_scheme *scheme, va_list ptr)
 			while (IS_NUMBER(format[i]))
 				i++;
 		}
-		if (scheme->flag & F_ZERO)
-			scheme->flag -= F_ZERO;
 	}
 	return (i);
 }

@@ -14,6 +14,10 @@
 
 void	stabilize(t_scheme *scheme)
 {
+	print_scheme(scheme);
+	if (scheme->flag & F_ZERO && scheme->precision &&
+		scheme->type != '%' && !(IS_I(scheme->type)))
+		scheme->flag -= F_ZERO;
 	if (scheme->flag & F_ZERO && scheme->flag & F_MINUS)
 		scheme->flag -= F_ZERO;
 	if (scheme->flag & F_SPACE && scheme->flag & F_PLUS)
@@ -33,6 +37,7 @@ void	stabilize(t_scheme *scheme)
 		if (scheme->flag & F_PLUS)
 			scheme->flag -= F_PLUS;
 	}
+	print_scheme(scheme);
 }
 
 static void		no_spec(t_scheme *scheme)
