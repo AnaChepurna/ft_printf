@@ -55,7 +55,8 @@ void		create_g(t_scheme *scheme, va_list ptr)
 	{
 		num = number;
 		num = find_expo(&num);
-		if (number - (intmax_t)number == 0 && num < scheme->precision)
+		if ((number - (intmax_t)number == 0 && num < scheme->precision)
+			|| scheme->precision == 1)
 			scheme->str = ft_itoa(number);
 		else
 		{
