@@ -12,13 +12,6 @@
 
 #include "ft_printf.h"
 
-static void	adder(t_scheme *scheme)
-{
-	if ((scheme->flag & SIGN) || (scheme->flag & F_PLUS) ||
-		(scheme->flag & F_SPACE))
-		scheme->len++;
-}
-
 void		create_fe(t_scheme *scheme, va_list ptr)
 {
 	char		*str;
@@ -41,8 +34,27 @@ void		create_fe(t_scheme *scheme, va_list ptr)
 	}
 	scheme->str = str;
 	scheme->precision = -1;
-	scheme->len = ft_strlen(str);
-	adder(scheme);
+	scheme->len = ft_strlen(scheme->str);
+	if ((scheme->flag & SIGN) || (scheme->flag & F_PLUS) ||
+		(scheme->flag & F_SPACE))
+		scheme->len++;
+}
+
+static void	g_float(t_scheme *scheme, long double number, long double num)
+{
+	scheme->precision -= 3;
+	if (scheme->precision >= 0
+			&& (num >= scheme->precision + 3 || num < -4))
+	{
+		if (num > scheme->precision + 3)
+			scheme->precision = (int)num - 4;
+		scheme->str = create_exponent(scheme, number);
+	}
+	else
+	{
+		scheme->precision += 2 - (int)num;
+		scheme->str = create_float(scheme, number);
+	}
 }
 
 void		create_g(t_scheme *scheme, va_list ptr)
@@ -58,25 +70,13 @@ void		create_g(t_scheme *scheme, va_list ptr)
 		if (number - (intmax_t)number == 0 && num < scheme->precision)
 			scheme->str = ft_itoa(number);
 		else
-		{
-			scheme->precision -= 3;
-			if (scheme->precision > 0
-				&& (num >= scheme->precision || num < -4))
-			{
-				if (number && num > 1 && scheme->precision > 0)
-					scheme->precision = (int)num - 4;
-				scheme->str = create_exponent(scheme, number);
-			}
-			else
-			{
-				scheme->precision += 2 - (int)num;
-				scheme->str = create_float(scheme, number);
-			}
-		}
+			g_float(scheme, number, num);
 	}
-	scheme->len = ft_strlen(scheme->str);
 	scheme->precision = -1;
-	adder(scheme);
+	scheme->len = ft_strlen(scheme->str);
+	if ((scheme->flag & SIGN) || (scheme->flag & F_PLUS) ||
+		(scheme->flag & F_SPACE))
+		scheme->len++;
 }
 
 void		create_blanc(t_scheme *scheme)

@@ -79,8 +79,6 @@ void	create_s(t_scheme *scheme, va_list ptr)
 		scheme->str = ft_strdup("(null)");
 	else if (scheme->type == 'S' || scheme->size == 'l')
 	{
-		// if (MB_CUR_MAX != LC_ALL)
-		// 	return ;
 		scheme->str = get_strunicode(s);
 		if (scheme->precision > -1 && scheme->precision <
 			ft_strlen(scheme->str))
@@ -102,12 +100,8 @@ void	create_c(t_scheme *scheme, va_list ptr)
 
 	c = get_c(scheme, ptr);
 	if ((scheme->type == 'C' || scheme->size == 'l')
-	&& (MB_CUR_MAX == LC_ALL))
-	{
-		// if (MB_CUR_MAX != LC_ALL)
-		// 	return ;
+	&& (MB_CUR_MAX == 4))
 		get_unicode(c, &(scheme->str));
-	}
 	else
 	{
 		if ((scheme->str = ft_strnew(1)))

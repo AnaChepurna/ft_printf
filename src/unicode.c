@@ -31,16 +31,6 @@ char	*get_strunicode(wchar_t *wstr)
 	return (str);
 }
 
-// char	*create_unicode(wchar_t c)
-// {
-// 	char	*str;
-
-// 	if (ft_isalpha((int)c) || MB_CUR_MAX == LC_ALL)
-// 		get_unicode(c, &str);
-// 	else
-// 		str = ft_strdup("");
-// }
-
 void	get_unicode(wchar_t c, char **str)
 {
 	if ((*str = ft_strnew(4)))
