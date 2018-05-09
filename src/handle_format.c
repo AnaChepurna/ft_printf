@@ -15,8 +15,8 @@
 void	stabilize(t_scheme *scheme)
 {
 	//print_scheme(scheme);
-	if (scheme->flag & F_ZERO && scheme->precision &&
-		scheme->type != '%' && !(IS_I(scheme->type)))
+	if (scheme->flag & F_ZERO && scheme->precision > 0 &&
+		scheme->type != '%') //&& !(IS_I(scheme->type) && scheme->type != 'p'))
 		scheme->flag -= F_ZERO;
 	if (scheme->flag & F_ZERO && scheme->flag & F_MINUS)
 		scheme->flag -= F_ZERO;
@@ -30,7 +30,8 @@ void	stabilize(t_scheme *scheme)
 		if (scheme->flag & F_PLUS)
 			scheme->flag -= F_PLUS;
 	}
-	if (IS_U(scheme->type) || IS_O(scheme->type) || IS_S(scheme->type))
+	else if (IS_U(scheme->type) || IS_O(scheme->type) || IS_S(scheme->type) ||
+		scheme->type == 'p' || IS_X(scheme->type))
 	{
 		if (scheme->flag & F_SPACE)
 			scheme->flag -= F_SPACE;

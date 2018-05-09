@@ -59,7 +59,10 @@ int		handle_width(const char *format, t_scheme *scheme, va_list ptr)
 	{
 		scheme->width = va_arg(ptr, size_t);
 		if (scheme->width < 0)
-			scheme->width = 0;
+		{
+			scheme->width = -scheme->width;
+			scheme->flag = scheme->flag | F_MINUS;
+		}
 		i++;
 	}
 	else
@@ -68,12 +71,8 @@ int		handle_width(const char *format, t_scheme *scheme, va_list ptr)
 		while (IS_NUMBER(format[i]))
 			i++;
 	}
-	if (format[i] == '$')
-	{
-		scheme->order = scheme->width;
-		scheme->width = 0;
-		i++;
-	}
+	if (format[i] == '*' || (IS_NUMBER(format[i])))
+		return (i + handle_width(format + i, scheme, ptr));
 	return (i);
 }
 
