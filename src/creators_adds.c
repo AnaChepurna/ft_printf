@@ -61,7 +61,11 @@ void		create_g(t_scheme *scheme, va_list ptr)
 		{
 			scheme->precision -= 3;
 			if (num >= scheme->precision || num < -4)
+			{
+				if (number && num > 1 && scheme->precision > 0)
+					scheme->precision = (int)num - 4;
 				scheme->str = create_exponent(scheme, number);
+			}
 			else
 			{
 				scheme->precision += 2 - (int)num;
