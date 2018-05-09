@@ -31,7 +31,6 @@
 # define IS_E(n) (n) == 'e' || (n) == 'E'
 # define IS_A(n) (n) == 'a' || (n) == 'A'
 # define IS_G(n) (n) == 'g' || (n) == 'G'
-# define IS_B(n) (n) == 'b'
 
 # define F_MINUS	1
 # define F_PLUS 	2
@@ -49,7 +48,6 @@ typedef struct	s_scheme
 	int			precision;
 	int			size;
 	int			type;
-	int			order;
 	char		*str;
 	int			len;
 }				t_scheme;
@@ -97,9 +95,8 @@ void			create_c(t_scheme *scheme, va_list ptr);
 */
 void			create_fe(t_scheme *scheme, va_list ptr);
 void			create_g(t_scheme *scheme, va_list ptr);
-void			create_b(int *symbols, t_scheme *scheme, va_list ptr);
 void			create_n(int *symbols, va_list ptr);
-void 			create_blanc(t_scheme *scheme);
+void			create_blanc(t_scheme *scheme);
 
 /*
  **format_float.c
@@ -140,7 +137,6 @@ void			stabilize_oux(t_scheme *scheme, uintmax_t number);
 /*
  **print.c
 */
-void			print_scheme(t_scheme *scheme);
 void			print_format(int *symbols, t_scheme *scheme);
 
 /*

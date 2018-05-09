@@ -81,12 +81,6 @@ int				handle_format(const char *format, int *symbols, va_list ptr)
 	while (handle_flags(format + i, scheme))
 		i++;
 	i += handle_width(format + i, scheme, ptr);
-	if (scheme->order)
-	{
-		while (handle_flags(format + i, scheme))
-			i++;
-		i += handle_width(format + i, scheme, ptr);
-	}
 	i += handle_precision(format + i, scheme, ptr);
 	i += handle_size(format + i, scheme);
 	i += handle_type(format + i, scheme);

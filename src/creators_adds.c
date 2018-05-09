@@ -12,7 +12,14 @@
 
 #include "ft_printf.h"
 
-void	create_fe(t_scheme *scheme, va_list ptr)
+static void	adder(t_scheme *scheme)
+{
+	if ((scheme->flag & SIGN) || (scheme->flag & F_PLUS) ||
+		(scheme->flag & F_SPACE))
+		scheme->len++;
+}
+
+void		create_fe(t_scheme *scheme, va_list ptr)
 {
 	char		*str;
 	long double	number;
@@ -35,14 +42,13 @@ void	create_fe(t_scheme *scheme, va_list ptr)
 	scheme->str = str;
 	scheme->precision = -1;
 	scheme->len = ft_strlen(str);
-	if ((scheme->flag & SIGN) || (scheme->flag & F_PLUS) || (scheme->flag & F_SPACE))
-		scheme->len++;
+	adder(scheme);
 }
 
-void	create_g(t_scheme *scheme, va_list ptr)
+void		create_g(t_scheme *scheme, va_list ptr)
 {
 	long double number;
-	long double num;;
+	long double num;
 
 	number = get_f(scheme, ptr);
 	if (!(scheme->str = handle_naninf(number)))
@@ -65,43 +71,19 @@ void	create_g(t_scheme *scheme, va_list ptr)
 	}
 	scheme->len = ft_strlen(scheme->str);
 	scheme->precision = -1;
-	if ((scheme->flag & SIGN) || (scheme->flag & F_PLUS) || (scheme->flag & F_SPACE))
-		scheme->len++;
+	adder(scheme);
 }
 
-void create_blanc(t_scheme *scheme)
+void		create_blanc(t_scheme *scheme)
 {
-	//if (scheme->precision)
-		scheme->precision = -1;
+	scheme->precision = -1;
 	if (scheme->flag & F_SPACE)
 		scheme->flag -= F_SPACE;
 	scheme->str = ft_strdup("%");
 	scheme->len = ft_strlen(scheme->str);
 }
 
-// void	create_b(int *symbols, t_scheme *scheme, va_list ptr)
-// {
-// 	uintmax_t		number;
-// 	int				size;
-// 	unsigned char	*str;
-// 	char			*line;
-
-// 	number = get_u(scheme, ptr);
-// 	size = get_size(scheme);
-// 	str = (unsigned char *)&number;
-// 	line = ft_strdup("");
-// 	while (--size >= 0)
-// 		binary_format(str[size], &line, size != 0);
-// 	if (scheme->precision > -1)
-// 		binary_precision(scheme, &line);
-// 	if (scheme->width)
-// 		width_number(scheme, &line);
-// 	ft_putstr((char *)line);
-// 	*symbols += ft_strlen((char *)str);
-// 	free(line);
-// }
-
-void	create_n(int *symbols, va_list ptr)
+void		create_n(int *symbols, va_list ptr)
 {
 	int		*n;
 

@@ -23,7 +23,6 @@ t_scheme			*scheme_new(void)
 		res->precision = -1;
 		res->size = 0;
 		res->type = 0;
-		res->order = 0;
 		res->str = NULL;
 		res->len = 0;
 	}
