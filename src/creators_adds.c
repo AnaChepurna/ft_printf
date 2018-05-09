@@ -57,7 +57,8 @@ void		create_g(t_scheme *scheme, va_list ptr)
 		num = find_expo(&num);
 		// if (num)
 		// 	scheme->precision = (int)num;
-		if (number - (intmax_t)number == 0 && num < scheme->precision)
+		if ((number - (intmax_t)number == 0 && num < scheme->precision)
+			|| !scheme->precision)
 			scheme->str = ft_itoa(number);
 		else
 		{
@@ -65,7 +66,7 @@ void		create_g(t_scheme *scheme, va_list ptr)
 			if (num >= scheme->precision || num < -4)
 			{
 				if (number)
-					scheme->precision = (int)num - 3;
+					scheme->precision = (int)num - 4;
 				scheme->str = create_exponent(scheme, number);
 			}
 			else
