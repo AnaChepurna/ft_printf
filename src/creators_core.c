@@ -82,10 +82,10 @@ void	create_s(t_scheme *scheme, va_list ptr)
 		// if (MB_CUR_MAX != LC_ALL)
 		// 	return ;
 		scheme->str = get_strunicode(s);
-		if (scheme->precision > -1 && scheme->precision < ft_strlen(scheme->str))
+		if (scheme->precision > -1 && scheme->precision <
+			ft_strlen(scheme->str))
 		{
-			while (scheme->str[scheme->precision] < -63 )//&&
-				//scheme->str[scheme->precision] > -63)
+			while (scheme->str[scheme->precision] < -63)
 				scheme->precision--;
 		}
 	}
@@ -101,11 +101,12 @@ void	create_c(t_scheme *scheme, va_list ptr)
 	wchar_t	c;
 
 	c = get_c(scheme, ptr);
-	if ((scheme->type == 'C' || scheme->size == 'l') )//&& (MB_CUR_MAX == LC_ALL))
+	if ((scheme->type == 'C' || scheme->size == 'l'))
+	//&& (MB_CUR_MAX == LC_ALL))
 	{
 		// if (MB_CUR_MAX != LC_ALL)
 		// 	return ;
-		scheme->str = get_unicode(c);
+		get_unicode(c, &(scheme->str));
 	}
 	else
 	{

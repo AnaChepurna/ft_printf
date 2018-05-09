@@ -12,11 +12,10 @@
 
 #include "ft_printf.h"
 
-void	stabilize(t_scheme *scheme)
+void			stabilize(t_scheme *scheme)
 {
-	//print_scheme(scheme);
 	if (scheme->flag & F_ZERO && scheme->precision > 0 &&
-		scheme->type != '%') //&& !(IS_I(scheme->type) && scheme->type != 'p'))
+		scheme->type != '%')
 		scheme->flag -= F_ZERO;
 	if (scheme->flag & F_ZERO && scheme->flag & F_MINUS)
 		scheme->flag -= F_ZERO;
@@ -38,7 +37,6 @@ void	stabilize(t_scheme *scheme)
 		if (scheme->flag & F_PLUS)
 			scheme->flag -= F_PLUS;
 	}
-	//print_scheme(scheme);
 }
 
 static void		no_spec(t_scheme *scheme)
@@ -47,7 +45,6 @@ static void		no_spec(t_scheme *scheme)
 		(scheme->str)[0] = scheme->type;
 	scheme->type = '\0';
 	scheme->len = 1;
-	//scheme->flag = 0;
 }
 
 static void		create_format(int *symbols, t_scheme *scheme, va_list ptr)
@@ -99,8 +96,6 @@ int				handle_format(const char *format, int *symbols, va_list ptr)
 		*symbols = -1;
 	else if (scheme->type != 'n')
 		print_format(symbols, scheme);
-	// if (!(scheme->type))
-	// 	i--;
 	scheme_del(&scheme);
 	return (i);
 }

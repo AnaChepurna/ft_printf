@@ -147,6 +147,6 @@ void			print_format(int *symbols, t_scheme *scheme);
  **unicode.c
 */
 char			*get_strunicode(wchar_t *wstr);
-char			*get_unicode(wchar_t c);
+void			get_unicode(wchar_t c, char **str);
 
 #endif
